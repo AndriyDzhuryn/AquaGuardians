@@ -3,8 +3,6 @@
 
 import css from './App.module.css';
 
-import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
-
 // const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 // const SignupPage = lazy(() => import("../../pages/SignupPage/SignupPage.jsx"));
 // const SigninPage = lazy(() => import("../../pages/SigninPage/SigninPage.jsx"));
@@ -32,12 +30,7 @@ function App() {
   //   );
   // }
 
-  return (
-    <>
-      <div className={css.appWrapper}>App</div>
-      <NotFoundPage />
-    </>
-  );
+  return <div className={css.appWrapper}>App</div>;
 }
 
 export default App;

@@ -1,15 +1,8 @@
-import { Link } from 'react-router-dom';
-
 import css from './NotFoundPage.module.css';
 
 const NotFoundPage = () => {
   return (
     <section className={css.section}>
-      <nav className={css.nav}>
-        <Link className={css.navLink} to="/">
-          Home
-        </Link>
-      </nav>
       <picture>
         <source
           media="(max-width: 1440px)"
