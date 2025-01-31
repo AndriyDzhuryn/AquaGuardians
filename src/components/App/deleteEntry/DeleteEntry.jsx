@@ -14,6 +14,7 @@ const DeleteEntry = () => {
     <div>
       <button onClick={openModal}>Open Modal</button>
       <Modal
+        overlayClassName={css.modalOverlay}
         className={css.modal}
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -24,7 +25,9 @@ const DeleteEntry = () => {
             <h3>Delete entry</h3>
             <p>Are you sure you want to delete the entry?</p>
           </div>
-          <button>&times;</button>
+          <button>
+            <img src="../../../../public/icons/icons-sprite.svg#close-modal" />
+          </button>
         </div>
         <div className={css.control}>
           <button className={css.btnCancel}>Cancel</button>
