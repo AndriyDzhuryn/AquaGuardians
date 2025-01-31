@@ -1,7 +1,9 @@
 // import { lazy, useEffect } from "react";
 // import { Circles } from "react-loader-spinner";
 
-import css from "./App.module.css";
+import css from './App.module.css';
+
+import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 
 // const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 // const SignupPage = lazy(() => import("../../pages/SignupPage/SignupPage.jsx"));
@@ -30,7 +32,12 @@ function App() {
   //   );
   // }
 
-  return <div className={css.appWrapper}>App</div>;
+  return (
+    <>
+      <div className={css.appWrapper}>App</div>
+      <NotFoundPage />
+    </>
+  );
 }
 
 export default App;
