@@ -2,6 +2,8 @@
 // import { Circles } from "react-loader-spinner";
 
 import css from './App.module.css';
+import Modal from 'react-modal';
+import DeleteEntry from './deleteEntry/DeleteEntry';
 
 // const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 // const SignupPage = lazy(() => import("../../pages/SignupPage/SignupPage.jsx"));
@@ -12,7 +14,6 @@ import css from './App.module.css';
 // const NotFoundPage = lazy(() => {
 //   return import("../../pages/NotFoundPage/NotFoundPage.jsx");
 // });
-
 function App() {
   // if (isRefreshing) {
   //   return (
@@ -30,7 +31,11 @@ function App() {
   //   );
   // }
 
-  return <div className={css.appWrapper}>App</div>;
+  return (
+    <div className={css.appWrapper}>
+      <DeleteEntry />
+    </div>
+  );
 }
 
 export default App;
