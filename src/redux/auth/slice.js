@@ -6,6 +6,8 @@ const initialState = {
   user: {
     name: null,
     email: null,
+    gender: null,
+    photo: null,
   },
   loading: false,
   error: null,
@@ -14,15 +16,18 @@ const initialState = {
   isRefreshing: false,
 };
 
+
 const handlePending = state => {
   state.loading = true;
   state.error = null;
 };
 
+
 const handleRejected = (state, action) => {
   state.loading = false;
   state.error = action.payload;
 };
+
 
 const authSlice = createSlice({
   name: 'auth',
@@ -68,5 +73,7 @@ const authSlice = createSlice({
       });
   },
 });
+
+
 
 export const authReducers = authSlice.reducer;

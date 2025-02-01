@@ -3,6 +3,12 @@
 
 import css from './App.module.css';
 
+
+
+import  SettingModal  from '../Settings/Settings.jsx';
+
+
+
 // const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 // const SignupPage = lazy(() => import("../../pages/SignupPage/SignupPage.jsx"));
 // const SigninPage = lazy(() => import("../../pages/SigninPage/SigninPage.jsx"));
@@ -30,7 +36,9 @@ function App() {
   //   );
   // }
 
-  return <div className={css.appWrapper}>App</div>;
+  return <div className={css.appWrapper}>
+    <SettingModal isOpen={true} />
+  </div>;
 }
 
 export default App;
