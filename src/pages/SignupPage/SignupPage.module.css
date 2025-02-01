@@ -1,124 +1,58 @@
 .section {
-  background-image: url("../../assets/images/sign/dectop-bg-sign-up.png");
+  background-image: url("../../assets/images/sign/mobile-bg-sign-up.png");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center top;
+  background-position: center bottom;
   min-height: 100%;
-  max-width: 1440px;
+  max-width: 320px;
   margin: 0 auto;
-  border: 1px solid red;
 }
 .wrapper {
-  max-width: 384px;
-  padding: 148px 0 196px 0;
-  margin: 0 216px 0 auto;
-}
-.title {
-  color: var(--Primery-Color-Black, #2f2f2f);
-  font-family: Roboto;
-  font-size: 26px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 32px; /* 123.077% */
-  margin-bottom: 16px;
-}
-.form {
-  margin-bottom: 16px;
-}
-.label {
-  color: var(--Primery-Color-Black, #2f2f2f);
-  font-family: Roboto;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px; /* 133.333% */
-  margin-bottom: 8px;
-  display: block;
-}
-.label + .input + .label {
-  margin-top: 16px;
-}
-.inner {
-  position: relative;
-}
-.input {
-  font-family: Roboto;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px; /* 125% */
-  color: var(--Primery-Color-Blue, #407bff);
-  width: 100%;
-  border-radius: 6px;
-  border: 1px solid var(--Secondary-color-5, #d7e3ff);
-  padding: 12px 36px 12px 10px;
-}
-.input::placeholder {
-  color: var(--Secondary-color-4, #9ebbff);
-  font-family: Roboto;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px; /* 125% */
-}
-.eyeButton {
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.icon {
-  stroke: #407bff;
-  fill: none;
-}
-.btn {
-  color: var(--Primery-Color-White, #fff);
-  font-family: Roboto;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px; /* 133.333% */
-  width: 100%;
-  margin-top: 16px;
-  padding: 10px 30px;
-  border-radius: 10px;
-  border: none;
-  background: var(--Primery-Color-Blue, #407bff);
-  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  transition:
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.btn:hover {
-  color: #ff9d43;
-  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
-}
-.error {
-  color: var(--Secondary-color-3, #ef5050);
-  font-family: Roboto;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 18px; /* 128.571% */
+  max-width: 280px;
+  margin: 0 auto;
+  padding: 24px 0 204px 0;
 }
 
-.link {
-  font-family: Roboto;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px; /* 125% */
-  color: var(--Primery-Color-Blue, #407bff);
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+@media (min-resolution: 192dpi) and (min-width: 320px) {
+  .section {
+    background-image: url("../../assets/images/sign/mobile-bg-sign-up@2x.png");
+  }
 }
-.link:hover {
-  color: #ff9d43;
+
+@media only screen and (min-width: 768px) {
+  .section {
+    background-image: url("../../assets/images/sign/tablet-bg-sign-up.png");
+    background-size: cover;
+    max-width: 768px;
+  }
+  .wrapper {
+    max-width: 336px;
+    padding: 40px 0 172px 0;
+    margin: 0 auto 0 32px;
+  }
+}
+
+@media (min-resolution: 192dpi) and (min-width: 768px) {
+  .section {
+    background-image: url("../../assets/images/sign/tablet-bg-sign-up@2x.png");
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .section {
+    background-image: url("../../assets/images/sign/dectop-bg-sign-up.png");
+    background-position: center top;
+    max-width: 1440px;
+  }
+  .wrapper {
+    max-width: 384px;
+    padding: 148px 0 196px 0;
+    margin: 0 216px 0 auto;
+  }
+}
+
+@media (min-resolution: 192dpi) and (min-width: 1440px) {
+  .section {
+    background-image: url("../../assets/images/sign/dectop-bg-sign-up@2x.png");
+  }
 }
