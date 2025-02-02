@@ -1,0 +1,75 @@
+.wrapperWaterConsumedItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #d7e3ff;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.glassWaterWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.amountWater {
+  font-size: 18px;
+  line-height: 1.33;
+  color: #407bff;
+  margin-right: 12px;
+}
+
+.time {
+  font-size: 12px;
+  line-height: 2;
+  color: #2f2f2f;
+}
+
+.glassOfWater {
+  width: 17px;
+  height: 22px;
+  margin-right: 12px;
+  fill: none;
+  stroke: #407bff;
+}
+
+.btnWater {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.btnWater:not(:last-child) {
+  padding-right: 18px;
+}
+
+.btnWater:last-child {
+  padding-right: 6px;
+}
+
+.editWaterItem {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: #407bff;
+}
+
+.trash {
+  width: 16px;
+  height: 16px;
+  stroke: #ef5050;
+  fill: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .wrapperWaterConsumedItem {
+    justify-content: space-between;
+  }
+
+  .amountWater {
+    margin-right: 16px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+}
