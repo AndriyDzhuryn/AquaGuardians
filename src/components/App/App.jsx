@@ -3,9 +3,6 @@
 
 import css from './App.module.css';
 
-// import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
-// import WaterTracker from '../WaterTracker/WaterTracker';
-
 // const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 // const SignupPage = lazy(() => import("../../pages/SignupPage/SignupPage.jsx"));
 // const SigninPage = lazy(() => import("../../pages/SigninPage/SigninPage.jsx"));
