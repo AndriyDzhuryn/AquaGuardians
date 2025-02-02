@@ -40,11 +40,11 @@
 }
 
 .btnWater:not(:last-child) {
-  padding-right: 18px;
+  margin-right: 18px;
 }
 
 .btnWater:last-child {
-  padding-right: 6px;
+  margin-right: 6px;
 }
 
 .editWaterItem {
