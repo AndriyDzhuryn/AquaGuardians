@@ -1,17 +1,19 @@
-// import { lazy, useEffect } from "react";
+import { lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
 // import { Circles } from "react-loader-spinner";
 
+import Layout from '../Layout/Layout';
 import css from './App.module.css';
 
-// const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
-// const SignupPage = lazy(() => import("../../pages/SignupPage/SignupPage.jsx"));
-// const SigninPage = lazy(() => import("../../pages/SigninPage/SigninPage.jsx"));
-// const WelcomePage = lazy(() =>
-//   import("../../pages/WelcomePage/WelcomePage.jsx")
-// );
-// const NotFoundPage = lazy(() => {
-//   return import("../../pages/NotFoundPage/NotFoundPage.jsx");
-// });
+const WelcomePage = lazy(() =>
+  import('../../pages/WelcomePage/WelcomePage.jsx')
+);
+const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
+const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage.jsx'));
+const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage.jsx'));
+const NotFoundPage = lazy(() => {
+  return import('../../pages/NotFoundPage/NotFoundPage.jsx');
+});
 
 function App() {
   // if (isRefreshing) {
@@ -30,7 +32,19 @@ function App() {
   //   );
   // }
 
-  return <div className={css.appWrapper}>App</div>;
+  return (
+    <div className={css.appWrapper}>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/signin" element={<SigninPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Layout>
+    </div>
+  );
 }
 
 export default App;
