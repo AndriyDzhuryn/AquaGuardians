@@ -3,7 +3,7 @@
 
 // import css from './App.module.css';
 
-import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
+// import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 // import WaterTracker from '../WaterTracker/WaterTracker';
 
 // const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
@@ -33,11 +33,7 @@ function App() {
   //   );
   // }
 
-  return (
-    <>
-      <NotFoundPage />
-    </>
-  );
+  return <div>App</div>;
 }
 
 export default App;
