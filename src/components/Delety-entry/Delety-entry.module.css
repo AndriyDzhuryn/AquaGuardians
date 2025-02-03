@@ -1,5 +1,5 @@
 .modal {
-  max-width: 592px;
+  width: 280px;
   height: fit-content;
   position: absolute;
   left: 50%;
@@ -7,7 +7,7 @@
   transform: translate(-50%, -50%);
   padding: 32px 24px;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 10);
 }
 
 .wrapper {
@@ -56,17 +56,17 @@
 
 .control {
   display: flex;
+  flex-direction: column-reverse;
   gap: 24px;
   justify-content: end;
   margin-top: 24px;
 }
 .control button {
-  padding: 10px 30px;
+  padding: 8px 30px;
   border-radius: 10px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 24px;
-
   border: none;
 }
 .btnCancel {
@@ -84,4 +84,19 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media only screen and (min-width: 768px) {
+  .modal {
+    width: 592px;
+    height: 208px;
+  }
+  .control {
+    flex-direction: row;
+  }
+  .control button {
+    width: 160px;
+    height: 44px;
+    font-size: 18px;
+  }
 }
