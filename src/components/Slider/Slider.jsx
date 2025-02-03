@@ -4,6 +4,7 @@ import css from './Slider.module.css';
 
 const Slider = () => {
   const [value, setValue] = useState(50);
+
   const sliderRef = useRef(null);
 
   const handleChange = e => {

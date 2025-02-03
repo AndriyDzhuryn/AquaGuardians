@@ -1,6 +1,7 @@
 .sliderWrapper {
   display: flex;
   flex-direction: column;
+
   width: 280px;
   margin: 0 auto;
   margin-bottom: 16px;
@@ -11,6 +12,7 @@
   font-size: 18px;
   line-height: 1.33;
   color: #407bff;
+
   margin-bottom: 12px;
 }
 
@@ -26,6 +28,7 @@
   border-radius: 10px;
   width: 256px;
   height: 8px;
+
   background-color: #d7e3ff;
   margin: 3px auto 16px;
 }
@@ -43,10 +46,12 @@
 
 .dynamSliderWrapper {
   position: absolute;
+
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
   color: #407bff;
+
   transform: translateX(100%);
   top: -20px;
   padding: 5px 10px;
@@ -175,9 +180,6 @@
 
   .statSliderWrapper {
     width: 391px;
-  }
-
-  .valueStatWrapper {
   }
 
   .btnAddWater {
