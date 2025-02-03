@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import css from './Delety-entry.module.css';
+import css from './Delete-entry.module.css';
 import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
@@ -15,14 +15,14 @@ const DeleteEntry = ({ entryId, setEntries }) => {
 
   const handleDelete = async () => {
     try {
-      //   const token = localStorage.getItem('token');
-      //   await axios.delete(https://your-api.com/api/water-intake/${entryId}, {
-      //     headers: { Authorization: Bearer ${token} },
-      //   });
-      //   setEntries(prevEntries =>
-      //     prevEntries.filter(entry => entry._id !== entryId)
-      //   ); //setEntries - стан у компоненті listWater
-      //   setIsOpen(false);
+      const token = localStorage.getItem('token');
+      await axios.delete(`https://your-api.com/api/water-intake/${entryId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setEntries(prevEntries =>
+        prevEntries.filter(entry => entry._id !== entryId)
+      ); //setEntries - стан у компоненті listWater
+      setIsOpen(false);
     } catch (error) {
       iziToast.error({ title: 'Error', message: 'Failed to delete entry' });
     }

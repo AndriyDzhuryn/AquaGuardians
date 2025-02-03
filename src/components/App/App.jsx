@@ -21,7 +21,7 @@ import RestrictedRoute from '../RestrictedRoute/RestrictedRoute.jsx';
 import PrivateRoute from '../PrivateRoute/PrivateRoute.jsx';
 import { apiGetCurrentUser } from '../../redux/auth/operations.js';
 import { selectAuthIsRefreshing } from '../../redux/auth/selectors.js';
-import DeleteEntry from '../Delety-entry/Delety-entry.jsx';
+import DeleteEntry from '../Delete-entry/Delete-entry.jsx';
 
 function App() {
   const isRefreshing = useSelector(selectAuthIsRefreshing);
@@ -49,7 +49,6 @@ function App() {
 
   return (
     <Suspense>
-      <DeleteEntry />
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route
