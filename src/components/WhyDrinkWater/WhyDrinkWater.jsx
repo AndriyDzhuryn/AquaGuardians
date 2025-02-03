@@ -36,3 +36,5 @@ const WhyDrinkWater = () => {
     </div>
   );
 };
+
+export default WhyDrinkWater;

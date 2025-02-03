@@ -1,6 +1,5 @@
 // import { lazy, useEffect } from "react";
 // import { Circles } from "react-loader-spinner";
-// import SharedLayout from '../SharedLayout/SharedLayout';
 
 import css from './App.module.css';
 
@@ -14,7 +13,10 @@ import css from './App.module.css';
 //   return import("../../pages/NotFoundPage/NotFoundPage.jsx");
 // });
 
+import WelcomePage from '../../pages/WelcomePage/WelcomePage.jsx';
+
 function App() {
+  return <WelcomePage />;
   // if (isRefreshing) {
   //   return (
   //     <div className={css.loaderWrapper}>
@@ -31,7 +33,7 @@ function App() {
   //   );
   // }
 
-  return <div className={css.appWrapper}>App</div>;
+  // return <div className={css.appWrapper}>App</div>;
 }
 
 export default App;
