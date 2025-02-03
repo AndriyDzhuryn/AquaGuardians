@@ -1,0 +1,61 @@
+.dailyNormaWrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ecf2ff;
+  border-radius: 10px;
+  padding: 8px 20px;
+  width: 166px;
+  height: 74px;
+  box-shadow: 0 4px 8px 0 rgba(158, 187, 255, 0.12);
+  margin-bottom: 232px;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+  color: #2f2f2f;
+  margin-bottom: 12px;
+}
+
+.NormaWrapper {
+  display: flex;
+}
+
+.dailyNorma {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1;
+  color: #407bff;
+}
+
+.btnDailyNorma {
+  width: 30px;
+  height: 22px;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #8baeff;
+}
+
+.btnDailyNorma:hover {
+  color: #ff9d43;
+}
+
+@media only screen and (min-width: 768px) {
+  .dailyNormaWrapper {
+    height: 76px;
+    margin-bottom: 326px;
+  }
+
+  .dailyNorma {
+    font-size: 24px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .dailyNormaWrapper {
+    margin-bottom: 466px;
+  }
+}

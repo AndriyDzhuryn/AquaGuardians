@@ -1,0 +1,51 @@
+.section {
+  width: 320px;
+  margin: 0 auto;
+  background-image: url('../../assets/images/tracker-water/mobile-bg-tracker-water-min.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center bottom;
+  min-height: 100%;
+  height: 1436px;
+}
+
+@media (min-resolution: 192dpi) and (min-width: 320px) {
+  .section {
+    background-image: url('../../assets/images/tracker-water/mobile-bg-tracker-water@2x-min.png');
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .section {
+    width: 768px;
+    height: 1368px;
+    background-image: url('../../assets/images/tracker-water/tablet-bg-tracker-water-min.png');
+  }
+}
+
+@media (min-resolution: 192dpi) and (min-width: 768px) {
+  .section {
+    background-image: url('../../assets/images/tracker-water/tablet-bg-tracker-water@2x-min.png');
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .section {
+    width: 1440px;
+    height: 800px;
+    background-image: url('../../assets/images/tracker-water/dectop-bg-tracker-water-min.png');
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 1440px;
+    height: 800px;
+  }
+}
+
+@media (min-resolution: 192dpi) and (min-width: 1440px) {
+  .section {
+    background-image: url('../../assets/images/tracker-water/dectop-bg-tracker-water@2x-min.png');
+  }
+}
