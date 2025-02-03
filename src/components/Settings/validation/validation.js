@@ -13,15 +13,15 @@ export const validationSchema = Yup.object().shape({
     .oneOf(['female', 'male'], 'Виберіть коректну гендерну ідентичність')
     .required('Обов’язковий вибір гендеру'),
   outdatedPassword: Yup.string()
-    .required(),
+    .required('Старий пароль є обов’язковим'),
 
   newPassword: Yup.string()
     .min(8, 'Пароль має містити мінімум 8 символів')
     .max(64, 'Пароль занадто довгий')
-    .required(),
+    .required('Пароль є обов’язковим'),
 
   repeatPassword: Yup.string()
-    .required()
+    .required('Пароль є обов’язковим')
     .test('repeatPassword-match', 'Паролі не співпадають', function (value) {
       const { newPassword } = this.parent;
       if (newPassword && newPassword.length > 0) {

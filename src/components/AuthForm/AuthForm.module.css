@@ -46,7 +46,7 @@
   font-weight: 400;
   line-height: 20px; /* 125% */
 }
-.eyeButton {
+.button {
   position: absolute;
   top: 50%;
   right: 12px;
