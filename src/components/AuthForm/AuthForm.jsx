@@ -1,10 +1,26 @@
 import { useId, useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import toast, { Toaster } from 'react-hot-toast';
+
+import { apiSignInUser, apiSignUpUser } from '../../redux/auth/operations';
 
 import css from './AuthForm.module.css';
+
+const signUpNotify = () =>
+  toast.error('User with this email already exist', {
+    duration: 3000,
+    position: 'top-right',
+  });
+
+const signInNotify = () =>
+  toast.error('The wrong email or pasword', {
+    duration: 3000,
+    position: 'top-right',
+  });
 
 const AuthForm = ({ type }) => {
   const isSignUp = type === 'signup';
@@ -20,6 +36,9 @@ const AuthForm = ({ type }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const togglePasswordVisibility = () => setShowPassword(prev => !prev);
   const toggleRepeatPasswordVisibility = () =>
     setShowRepeatPassword(prev => !prev);
@@ -29,15 +48,42 @@ const AuthForm = ({ type }) => {
       .email('Invalid email address')
       .required('Email is required'),
     password: Yup.string()
-      .min(7, 'Password length must be at least 7 characters')
+      .min(8, 'Password length must be at least 8 characters')
+      .max(64, 'Password length mustn`t be bigger 64 characters')
       .required('Password is required'),
-    repeatePassword: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Passwords must match')
-      .required('Repeat password is required'),
+    repeatePassword: isSignUp
+      ? Yup.string()
+          .oneOf([Yup.ref('password'), null], 'Passwords must match')
+          .required('Repeat password is required')
+      : Yup.string().notRequired(), // Здесь важно добавить notRequired() для SignIn
   });
 
   const handleSubmit = (values, actions) => {
-    // dispatch(apiLoginUser(values));
+    if (isSignUp) {
+      const { repeatePassword, ...userData } = values;
+      const arr = { ...userData, name: 'Kostia' };
+      dispatch(apiSignUpUser(arr))
+        .unwrap()
+        .then(() => {
+          navigate('/signin', { replace: true });
+        })
+        .catch(error => {
+          if (error === 'Request failed with status code 400') {
+            signUpNotify();
+          }
+        });
+    } else {
+      dispatch(apiSignInUser(values))
+        .unwrap()
+        .then(() => {
+          navigate('/home');
+        })
+        .catch(error => {
+          if (error === 'Request failed with status code 400') {
+            signInNotify();
+          }
+        });
+    }
     actions.resetForm();
   };
 
@@ -80,7 +126,7 @@ const AuthForm = ({ type }) => {
             >
               <svg className={css.icon} width="14" height="12">
                 <use
-                  href={`../../../public/icons/icons-sprite.svg#${
+                  href={`../../../icons/icons-sprite.svg#${
                     showPassword ? 'eye' : 'eye-slash'
                   }`}
                 ></use>
@@ -113,7 +159,7 @@ const AuthForm = ({ type }) => {
                 >
                   <svg className={css.icon} width="14" height="12">
                     <use
-                      href={`../../../public/icons/icons-sprite.svg#${
+                      href={`../../../icons/icons-sprite.svg#${
                         showRepeatPassword ? 'eye' : 'eye-slash'
                       }`}
                     ></use>
@@ -142,6 +188,7 @@ const AuthForm = ({ type }) => {
           Sign up
         </Link>
       )}
+      <Toaster />
     </>
   );
 };
