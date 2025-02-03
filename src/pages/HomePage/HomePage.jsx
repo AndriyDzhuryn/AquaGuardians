@@ -7,18 +7,10 @@ import css from './HomePage.module.css';
 const HomePage = () => {
   return (
     <section className={css.section}>
-      <div className={css.welcomeWrapper}>
+      <div className={css.wrapper}>
         <div>
           <DailyNorma />
-          <div className={css.btnSliderWrapper}>
-            <Slider />
-            <button className={css.btn} type="submit">
-              <svg className={css.editWaterItem}>
-                <use href="../../../public/icons/icons-sprite.svg#plus-circle"></use>
-              </svg>
-              Add Water
-            </button>
-          </div>
+          <Slider />
         </div>
         <WaterTracker />
       </div>

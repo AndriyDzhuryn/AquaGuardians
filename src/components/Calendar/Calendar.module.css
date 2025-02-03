@@ -66,6 +66,7 @@
   height: 30px;
   font-size: 14px;
   line-height: 1.29;
+  border: none;
 }
 
 .day.norm {

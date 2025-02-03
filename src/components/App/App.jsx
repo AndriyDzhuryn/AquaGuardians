@@ -5,7 +5,7 @@ import { Circles } from 'react-loader-spinner';
 
 import Layout from '../Layout/Layout.jsx';
 import RestrictedRoute from '../RestrictedRoute.jsx';
-import PrivateRoute from '../PrivateRoute.jsx';
+// import PrivateRoute from '../PrivateRoute.jsx';
 
 import { selectRefreshing } from '../../redux/auth/selectors.js';
 
@@ -55,7 +55,7 @@ function App() {
           />
           <Route
             path="/home"
-            element={<PrivateRoute component={<HomePage />} />}
+            element={<RestrictedRoute component={<HomePage />} />}
           />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

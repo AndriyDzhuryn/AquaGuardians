@@ -3,6 +3,7 @@ import { useState } from 'react';
 import css from './WaterTracker.module.css';
 import WaterItems from '../WaterItems/WaterItems';
 import Calendar from '../Calendar/Calendar';
+import clsx from 'clsx';
 
 const WaterTracker = () => {
   const [waterList, setWaterList] = useState([
@@ -36,7 +37,12 @@ const WaterTracker = () => {
     <div className={css.waterTrackerWrapper}>
       <h2 className={css.title}>Today</h2>
 
-      <ul className={css.listWaterTracker}>
+      <ul
+        className={clsx(
+          css.listWaterTracker,
+          waterList.length < 5 && css.scrollbar
+        )}
+      >
         {waterList.map(item => (
           <li key={item.id} className={css.waterConsumedItem}>
             <WaterItems amount={item.amount} time={item.time} />
@@ -47,7 +53,7 @@ const WaterTracker = () => {
         <svg className={css.plus}>
           <use href="../../../public/icons/icons-sprite.svg#plus-small"></use>
         </svg>
-        <span className={css.btnTextAddWater}>Add water</span>
+        Add water
       </button>
 
       <Calendar waterData={waterData} />
