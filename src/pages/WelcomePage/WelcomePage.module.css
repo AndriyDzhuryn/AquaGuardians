@@ -33,7 +33,7 @@
     min-height: calc(100vh - 60px);
     background-image: url('../../assets/images/home/dectop-bg-home-page-min.png');
     background-position: center, center bottom;
-    background-size: contain, contain;
+    background-size: 100%;
   }
 }
 
