@@ -21,7 +21,7 @@ import RestrictedRoute from '../RestrictedRoute/RestrictedRoute.jsx';
 import PrivateRoute from '../PrivateRoute/PrivateRoute.jsx';
 import { apiGetCurrentUser } from '../../redux/auth/operations.js';
 import { selectAuthIsRefreshing } from '../../redux/auth/selectors.js';
-import DeleteEntry from '../Delete-entry/Delete-entry.jsx';
+import LogoutModal from '../LogoutModal/LogoutModal.jsx';
 
 function App() {
   const isRefreshing = useSelector(selectAuthIsRefreshing);
@@ -49,6 +49,7 @@ function App() {
 
   return (
     <Suspense>
+      <LogoutModal />
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route
