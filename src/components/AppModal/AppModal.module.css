@@ -1,0 +1,108 @@
+.modal {
+  width: 280px;
+  height: fit-content;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 32px 24px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 10);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.text h3 {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 32px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.text p {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.wrapper button {
+  background-color: transparent;
+  color: #407bff;
+  border: none;
+  padding: 6px;
+  font-size: 24px;
+  line-height: 100%;
+}
+.wrapper button svg {
+  width: 24px;
+  height: 24px;
+  stroke: #407bff;
+}
+
+.control {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 24px;
+  justify-content: end;
+  margin-top: 24px;
+}
+.control button {
+  padding: 8px 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  border: none;
+}
+.btnCancel {
+  background-color: #d7e3ff;
+  color: #407bff;
+}
+.btnDelete {
+  background-color: #ef5050;
+  color: white;
+}
+.modalOverlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media only screen and (min-width: 768px) {
+  .modal {
+    width: 592px;
+    height: 208px;
+  }
+  .control {
+    flex-direction: row;
+  }
+  .control button {
+    width: 160px;
+    height: 44px;
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .control {
+    justify-content: flex-start;
+  }
+}
