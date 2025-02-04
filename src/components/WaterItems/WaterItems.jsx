@@ -1,6 +1,29 @@
 import css from './WaterItems.module.css';
+import AppModal from '../AppModal/AppModal.jsx';
+import { useState } from 'react';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+import { useDispatch } from 'react-redux';
 
-const WaterItems = ({ amount, time }) => {
+const WaterItems = ({ amount, time, id }) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleDelete = async () => {
+    try {
+      // const token = localStorage.getItem('token');
+      // await axios.delete(`https://your-api.com/api/water-intake/${id}`, {
+      //   headers: { Authorization: `Bearer ${token}` },
+      // });
+
+      // setEntries(prevEntries => prevEntries.filter(entry => entry._id !== id)); //setEntries - стан у компоненті listWater
+
+      setIsOpen(false);
+    } catch (error) {
+      iziToast.error({ title: 'Error', message: 'Failed to delete entry' });
+    }
+  };
+
   return (
     <div className={css.wrapperWaterConsumedItem}>
       <div className={css.glassWaterWrapper}>
@@ -19,11 +42,24 @@ const WaterItems = ({ amount, time }) => {
             <use href="../../../public/icons/icons-sprite.svg#pensil-aquare"></use>
           </svg>
         </button>
-        <button className={css.btnWater}>
+        <button
+          className={css.btnWater}
+          onClick={() => {
+            setModalIsOpen(true);
+          }}
+        >
           <svg className={css.trash}>
             <use href="../../../public/icons/icons-sprite.svg#trash"></use>
           </svg>
         </button>
+        <AppModal
+          modalIsOpen={modalIsOpen}
+          setIsOpen={setModalIsOpen}
+          handleAccept={handleDelete}
+          title="Delete entry"
+          description="Are you sure you want to delete the entry?"
+          acceptButton="Delete"
+        />
       </div>
     </div>
   );

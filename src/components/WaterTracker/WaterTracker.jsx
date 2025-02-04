@@ -45,7 +45,7 @@ const WaterTracker = () => {
       >
         {waterList.map(item => (
           <li key={item.id} className={css.waterConsumedItem}>
-            <WaterItems amount={item.amount} time={item.time} />
+            <WaterItems amount={item.amount} time={item.time} id={item.id} />
           </li>
         ))}
       </ul>
