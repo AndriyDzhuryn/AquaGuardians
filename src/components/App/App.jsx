@@ -21,6 +21,7 @@ import RestrictedRoute from '../RestrictedRoute/RestrictedRoute.jsx';
 import PrivateRoute from '../PrivateRoute/PrivateRoute.jsx';
 import { apiGetCurrentUser } from '../../redux/auth/operations.js';
 import { selectAuthIsRefreshing } from '../../redux/auth/selectors.js';
+import Layout from '../Layout/Layout.jsx';
 
 function App() {
   const isRefreshing = useSelector(selectAuthIsRefreshing);
@@ -47,26 +48,31 @@ function App() {
   }
 
   return (
-    <Suspense>
-      <Routes>
-        <Route path="/" element={<WelcomePage />} />
-        <Route
-          path="/home"
-          element={<PrivateRoute component={<HomePage />} />}
-        />
-        <Route
-          path="/signup"
-          element={
-            <RestrictedRoute component={<SignupPage />} redirectTo="/signin" />
-          }
-        />
-        <Route
-          path="/signin"
-          element={<RestrictedRoute component={<SigninPage />} />}
-        />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Suspense>
+    <Layout>
+      <Suspense>
+        <Routes>
+          <Route path="/" element={<WelcomePage />} />
+          <Route
+            path="/home"
+            element={<PrivateRoute component={<HomePage />} />}
+          />
+          <Route
+            path="/signup"
+            element={
+              <RestrictedRoute
+                component={<SignupPage />}
+                redirectTo="/signin"
+              />
+            }
+          />
+          <Route
+            path="/signin"
+            element={<RestrictedRoute component={<SigninPage />} />}
+          />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
+    </Layout>
   );
 }
 
