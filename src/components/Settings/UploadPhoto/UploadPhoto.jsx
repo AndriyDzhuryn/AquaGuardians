@@ -42,11 +42,7 @@ const UploadPhoto = ({ photo, setPhoto }) => {
         <svg className={style.iconupload} width="16" height="16">
           <use href="/icons/icons-sprite.svg#arrow-up-tray" />
         </svg>
-<<<<<<< Updated upstream
         Upload photo
-=======
-        Upload a photo
->>>>>>> Stashed changes
         <input
           type="file"
           id="photo"
