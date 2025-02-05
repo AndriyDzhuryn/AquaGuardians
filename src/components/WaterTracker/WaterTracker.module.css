@@ -1,0 +1,93 @@
+.listWaterTracker::-webkit-scrollbar {
+  width: 4px;
+}
+
+.listWaterTracker::-webkit-scrollbar-track {
+  background-color: #d7e3ff;
+  border-radius: 8px;
+}
+
+.listWaterTracker::-webkit-scrollbar-thumb {
+  background-color: #9ebbff;
+  border-radius: 8px;
+}
+
+.listWaterTracker::-webkit-scrollbar-thumb:hover {
+  background-color: #88acff;
+}
+
+.listWaterTracker.scrollbar::-webkit-scrollbar {
+  width: 0;
+}
+
+.waterTrackerWrapper {
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 24px 8px;
+  width: 280px;
+  height: 836px;
+  background-color: #ecf2ff;
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
+}
+
+.title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.25;
+  color: #2f2f2f;
+}
+
+.listWaterTracker {
+  display: flex;
+  flex-direction: column;
+  height: 220px;
+  overflow-y: scroll;
+  margin-bottom: 12px;
+}
+
+.btnAddWater {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+  width: 97px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #407bff;
+  stroke: #407bff;
+}
+
+.btnAddWater:hover {
+  color: #ff9d43;
+  stroke: #ff9d43;
+}
+
+.plus {
+  width: 10px;
+  height: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .waterTrackerWrapper {
+    padding: 32px 24px;
+    width: 704px;
+    height: 688px;
+  }
+
+  .title {
+    font-size: 26px;
+    line-height: 1.23;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .waterTrackerWrapper {
+    margin-left: 32px;
+    width: 592px;
+    height: 680px;
+  }
+}

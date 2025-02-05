@@ -1,86 +1,79 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {
+  apiGetCurrentUser,
+  apiLogOutUser,
+  apiSignInUser,
+  apiSignUpUser,
+} from './operations';
 
-import { login, logout, refreshUser, register, updateUserProfile } from './operations.js';
-
-const initialState = {
-  user: {
-    name: null,
-    email: null,
-    gender: null,
-    photo: null,
-    id: null,
-  },
-  loading: false,
+const INITIAL_STATE = {
+  userData: null,
+  isLoading: false,
   error: null,
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
 };
 
-
-const handlePending = state => {
-  state.loading = true;
-  state.error = null;
-};
-
-
-const handleRejected = (state, action) => {
-  state.loading = false;
-  state.error = action.payload;
-};
-
-
 const authSlice = createSlice({
   name: 'auth',
-  initialState,
-  extraReducers: builder => {
+  initialState: INITIAL_STATE,
+  extraReducers: builder =>
     builder
-      .addCase(register.pending, handlePending)
-      .addCase(register.fulfilled, (state, action) => {
-        state.loading = false;
-        state.isLoggedIn = true;
-        state.user = action.payload.user;
+      .addCase(apiSignUpUser.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(apiSignUpUser.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.token = action.payload.token;
+        state.userData = action.payload.user;
       })
-      .addCase(register.rejected, handleRejected)
+      .addCase(apiSignUpUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
 
-      .addCase(login.pending, handlePending)
-      .addCase(login.fulfilled, (state, action) => {
-        state.loading = false;
+      .addCase(apiSignInUser.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(apiSignInUser.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.isLoggedIn = true;
-        state.user = action.payload.user;
         state.token = action.payload.token;
+        state.userData = action.payload.user;
       })
-      .addCase(login.rejected, handleRejected)
-
-      .addCase(logout.pending, handlePending)
-      .addCase(logout.fulfilled, () => {
-        return initialState;
+      .addCase(apiSignInUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       })
-      .addCase(logout.rejected, handleRejected)
 
-      .addCase(refreshUser.pending, state => {
+      .addCase(apiGetCurrentUser.pending, state => {
         state.isRefreshing = true;
         state.error = null;
       })
-      .addCase(refreshUser.fulfilled, (state, action) => {
+      .addCase(apiGetCurrentUser.fulfilled, (state, action) => {
         state.isRefreshing = false;
         state.isLoggedIn = true;
-        state.user = action.payload;
+        state.userData = action.payload;
       })
-      .addCase(refreshUser.rejected, (state, action) => {
+      .addCase(apiGetCurrentUser.rejected, (state, action) => {
         state.isRefreshing = false;
         state.error = action.payload;
       })
-      .addCase(updateUserProfile.pending, handlePending)
-      .addCase(updateUserProfile.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload;
+
+      .addCase(apiLogOutUser.pending, state => {
+        state.isLoading = true;
+        state.error = null;
       })
-    .addCase(updateUserProfile.rejected, handleRejected);
-  },
+      .addCase(apiLogOutUser.fulfilled, () => {
+        return INITIAL_STATE;
+      })
+      .addCase(apiLogOutUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      }),
 });
 
-
-
-export const authReducers = authSlice.reducer;
+export const authReducer = authSlice.reducer;
