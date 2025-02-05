@@ -9,12 +9,6 @@ export const validationSchema = Yup.object().shape({
     .email('Некоректний формат email')
     .required('Email є обов’язковим'),
 
-  gender: Yup.string()
-    .oneOf(['female', 'male'], 'Виберіть коректну гендерну ідентичність')
-    .required('Обов’язковий вибір гендеру'),
-  outdatedPassword: Yup.string()
-    .required('Старий пароль є обов’язковим'),
-
   newPassword: Yup.string()
     .min(8, 'Пароль має містити мінімум 8 символів')
     .max(64, 'Пароль занадто довгий')

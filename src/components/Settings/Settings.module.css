@@ -84,6 +84,7 @@
 }
 .avatar {
   width: 80px;
+<<<<<<< Updated upstream
   height: 80px;
   border-radius: 80px;
 }
@@ -95,6 +96,25 @@
   font-weight: 500;
   line-height: 18px;
   cursor: pointer;
+=======
+    height: 80px;
+    border-radius: 50%;
+}
+.iconupload {
+  stroke: #407bff;
+  fill: none;
+  margin-right: 8px;
+}
+.iconAvatar {
+}
+.labelPhoto {
+  color: var(--Primery-Color-Blue, #407BFF);
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+>>>>>>> Stashed changes
 }
 
 .iconupload {
