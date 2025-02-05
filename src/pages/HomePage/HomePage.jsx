@@ -1,5 +1,5 @@
-import DailyNorma from '../../components/DailyNorma/DailyNorma.jsx';
-import Slider from '../../components/Slider/Slider.jsx';
+import DailyNormaPanel from '../../components/DailyNormaPanel/DailyNormaPanel.jsx';
+import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel.jsx';
 import WaterTracker from '../../components/WaterTracker/WaterTracker.jsx';
 
 import css from './HomePage.module.css';
@@ -9,8 +9,8 @@ const HomePage = () => {
     <section className={css.section}>
       <div className={css.wrapper}>
         <div>
-          <DailyNorma />
-          <Slider />
+          <DailyNormaPanel />
+          <WaterRatioPanel />
         </div>
         <WaterTracker />
       </div>
