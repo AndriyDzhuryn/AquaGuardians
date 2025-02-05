@@ -1,0 +1,35 @@
+.container {
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.containerWelcome {
+  text-align: left;
+  padding-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+
+  .containerWelcome {
+    padding-bottom: 50px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+    padding: 0;
+  }
+
+  .containerWelcome {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+  }
+}
