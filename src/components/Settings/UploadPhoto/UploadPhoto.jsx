@@ -28,9 +28,9 @@ const UploadPhoto = ({ photo, setPhoto }) => {
         />
       ) : (
         <svg
-          className={style.iconAvatar}
+
           fill="none"
-          stroke="#407BFF"
+          stroke="#2f2f2f"
           width="80px"
           height="80px"
         >
@@ -42,7 +42,7 @@ const UploadPhoto = ({ photo, setPhoto }) => {
         <svg className={style.iconupload} width="16" height="16">
           <use href="/icons/icons-sprite.svg#arrow-up-tray" />
         </svg>
-        Завантажити фото
+        Upload photo
         <input
           type="file"
           id="photo"

@@ -69,3 +69,34 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+
+export const updateUserProfile = createAsyncThunk(
+  'auth/updateProfile',
+  async (formData, thunkAPI) => {
+    try {
+
+
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+      const id = state.auth.id
+      setToken(token);
+
+
+      
+      formData.forEach((value, key) => console.log(key, value));
+      console.log('Base URL:', authInstance.defaults.baseURL); 
+      console.log('Token:', token);  
+      
+
+      const { data } = await authInstance.patch(`/users/${id}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      return data;
+    } catch (error) {
+      console.error('Error updating profile:', error.response?.data || error.message);
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);

@@ -36,8 +36,13 @@ function App() {
   //   );
   // }
 
+  const onClose = () => { 
+    console.log(' test: close', true);
+  }
+
   return <div className={css.appWrapper}>
-    <SettingModal isOpen={true} />
+
+    <SettingModal onClose={onClose} />
   </div>;
 }
 
