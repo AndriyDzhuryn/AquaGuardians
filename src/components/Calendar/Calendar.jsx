@@ -16,7 +16,7 @@ const Calendar = ({ waterData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
-  // const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
+  const [menuPosition, setMenuPosition] = useState({ top: 0, left: -8 });
 
   const calendarRef = useRef(null);
   const dropdownRef = useRef(null);
@@ -47,19 +47,19 @@ const Calendar = ({ waterData }) => {
   }, []);
 
   const handleDayClick = (event, day) => {
-    // const rect = event.target.getBoundingClientRect();
-    // const calendarRect = calendarRef.current.getBoundingClientRect();
-    const rect = event.target.getBoundingClientRect();
-    console.log(rect);
+    const buttonElement = event.target.closest(`.${css.day}`);
+    if (!buttonElement) return;
+
+    const buttonRect = buttonElement.getBoundingClientRect();
+    const calendarRect = calendarRef.current.getBoundingClientRect();
 
     setIsOpen(!isOpen);
+    setMenuPosition({
+      ...menuPosition,
+      top: buttonRect.top - calendarRect.top - 250,
+    });
 
-    // setMenuPosition({
-    //   top: rect.top - calendarRect.top - 80,
-    //   left: rect.left - calendarRect.left + rect.width / 2 - 100,
-    // });
-
-    setSelectedDate(prevDate => (prevDate === day ? null : day));
+    setSelectedDate(prevDate => (prevDate === day ? null : day)); // Перемикання
   };
 
   return (
@@ -106,6 +106,7 @@ const Calendar = ({ waterData }) => {
         ))}
         <div ref={dropdownRef}>
           <DaysGeneralStats
+            position={menuPosition}
             isOpen={isOpen}
             date={selectedDate}
             waterData={
@@ -118,18 +119,6 @@ const Calendar = ({ waterData }) => {
           />
         </div>
       </div>
-
-      {/* {selectedDate && isOpen && (
-        <div
-          className={css.dropdownMenu}
-          style={{
-            top: `${menuPosition.top}px`,
-            left: `${menuPosition.left}px`,
-          }}
-        > */}
-
-      {/* </div>
-      )} */}
     </div>
   );
 };
