@@ -1,0 +1,79 @@
+.accentLabel {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.label {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.labelsContainer {
+  flex-wrap: wrap;
+}
+
+.select {
+  display: flex;
+  gap: 24px;
+}
+
+.infoBox {
+  font-weight: 400;
+  font-size: 16px;
+  gap: 8px;
+}
+
+.field {
+  border: 1px solid #407bff;
+  border-radius: 6px;
+  width: 544px;
+  height: 44px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: #407bff;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+}
+
+.waterLiters {
+  display: flex;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 133%;
+  color: #407bff;
+}
+
+.textRequired {
+  display: flex;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  margin-bottom: 26px;
+  gap: 6px;
+}
+
+.waterDrink {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  margin-bottom: 16px;
+}
+
+.submitBtn {
+  color: #fafafa;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 133%;
+  text-align: center;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  border-radius: 10px;
+  padding: 10px 30px;
+  width: 160px;
+  height: 44px;
+  background: #407bff;
+  margin-left: 384px;
+}
