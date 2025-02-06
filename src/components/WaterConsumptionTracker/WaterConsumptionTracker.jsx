@@ -5,7 +5,7 @@ const WaterConsumptionTracker = () => {
   const navigate = useNavigate();
 
   const handleTryTrackerClick = () => {
-    navigate('/singup');
+    navigate('/signup');
   };
 
   return (

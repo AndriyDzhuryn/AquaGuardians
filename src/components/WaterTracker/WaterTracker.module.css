@@ -3,12 +3,12 @@
 }
 
 .listWaterTracker::-webkit-scrollbar-track {
-  background-color: #d7e3ff;
+  background-color: var(--Secondary-color-5);
   border-radius: 8px;
 }
 
 .listWaterTracker::-webkit-scrollbar-thumb {
-  background-color: #9ebbff;
+  background-color: var(--Secondary-color-4);
   border-radius: 8px;
 }
 
@@ -26,7 +26,7 @@
   padding: 24px 8px;
   width: 280px;
   height: 836px;
-  background-color: #ecf2ff;
+  background-color: var(--Secondary-color-2);
   box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
 }
 
@@ -34,7 +34,7 @@
   font-weight: 500;
   font-size: 24px;
   line-height: 1.25;
-  color: #2f2f2f;
+  color: var(--Primery-Color-Black);
 }
 
 .listWaterTracker {
@@ -57,13 +57,13 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: #407bff;
-  stroke: #407bff;
+  color: var(--Primery-Color-Blue);
+  stroke: var(--Primery-Color-Blue);
 }
 
 .btnAddWater:hover {
-  color: #ff9d43;
-  stroke: #ff9d43;
+  color: var(--Secondary-color-6);
+  stroke: var(--Secondary-color-6);
 }
 
 .plus {
