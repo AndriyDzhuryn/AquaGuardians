@@ -1,5 +1,4 @@
 .trackerBenefits {
-  color: #2f2f2f;
   margin-bottom: 40px;
 }
 
@@ -41,7 +40,6 @@
 }
 
 .benefitsText {
-  font-weight: 400;
   font-size: 16px;
   line-height: 20px;
 }
@@ -51,19 +49,19 @@
   height: 32px;
   stroke-width: 2px;
   fill: none;
-  stroke: #407bff;
+  stroke: var(--Primery-Color-Blue);
 }
 
 .btnTryTracker {
   font-size: 16px;
   line-height: 20px;
-  color: #ffffff;
+  color: var(--Primery-Color-White);
   border-radius: 10px;
   padding: 8px 30px;
   width: 280px;
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
   border: none;
-  background: #407bff;
+  background: var(--Primery-Color-Blue);
   cursor: pointer;
   transition: box-shadow 250ms ease;
 }

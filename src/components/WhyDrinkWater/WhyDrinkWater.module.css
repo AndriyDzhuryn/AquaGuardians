@@ -1,9 +1,8 @@
 .reasonsWrapper {
   border-radius: 10px;
   padding: 24px 16px;
-  color: #2f2f2f;
   box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.34);
-  background: #ecf2ff;
+  background: var(--Secondary-color-2);
 }
 
 .title3 {
@@ -31,7 +30,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #407bff;
+  background-color: var(--Primery-Color-Blue);
   flex-shrink: 0;
 }
 
