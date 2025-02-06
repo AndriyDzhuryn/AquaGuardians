@@ -14,8 +14,6 @@ import css from './Calendar.module.css';
 const Calendar = ({ waterData }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  const classNames = [css.day];
-
   const start = startOfMonth(currentDate);
   const end = endOfMonth(currentDate);
   const days = eachDayOfInterval({ start, end });
@@ -30,7 +28,7 @@ const Calendar = ({ waterData }) => {
             className={css.btnSwitchMonth}
           >
             <svg className={css.switchMonth}>
-              <use href="../../../public/icons/icons-sprite.svg#chevron-left"></use>
+              <use href="../../../icons/icons-sprite.svg#chevron-left"></use>
             </svg>
           </button>
           <p className={css.monthName}>{format(currentDate, 'MMMM yyyy')}</p>
@@ -39,7 +37,7 @@ const Calendar = ({ waterData }) => {
             className={css.btnSwitchMonth}
           >
             <svg className={css.switchMonth}>
-              <use href="../../../public/icons/icons-sprite.svg#chevron-right"></use>
+              <use href="../../../icons/icons-sprite.svg#chevron-right"></use>
             </svg>
           </button>
         </div>
@@ -48,12 +46,11 @@ const Calendar = ({ waterData }) => {
       <div className={css.wrapperDays}>
         {days.map(day => {
           const progress = waterData[format(day, 'yyyy-MM-dd')] || 0;
-          if (progress < 100) classNames.push(css.norm);
           return (
             <div key={day} className={css.wrapperDay}>
-              <p className={clsx(css.day, progress < 100 && css.norm)}>
+              <button className={clsx(css.day, progress < 100 && css.norm)}>
                 {format(day, 'd')}
-              </p>
+              </button>
               <span className={css.textProgress}>{progress}%</span>
             </div>
           );

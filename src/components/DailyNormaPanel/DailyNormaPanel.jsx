@@ -1,8 +1,8 @@
-import css from './DailyNorma.module.css';
+import css from './DailyNormaPanel.module.css';
 import { useState } from 'react';
 import DailyNormaModal from '../DailyNormaModal/DailyNormaModal';
 
-const DailyNorma = () => {
+const DailyNormaPanel = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
@@ -10,11 +10,12 @@ const DailyNorma = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
   return (
-    <div className={css.dailyNormaWrapper}>
+    <div className={css.container}>
       <h2 className={css.title}>My daily norma</h2>
-      <div className={css.btnEditWrapper}>
-        <p className={css.dailyNorma}>1.5 L</p>
+      <div className={css.wrapper}>
+        <h2 className={css.number}>1.5 L</h2>
         <button type="button" className={css.btnEdit} onClick={openModal}>
           Edit
         </button>
@@ -24,4 +25,4 @@ const DailyNorma = () => {
   );
 };
 
-export default DailyNorma;
+export default DailyNormaPanel;

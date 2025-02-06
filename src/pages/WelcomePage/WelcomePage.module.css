@@ -1,0 +1,44 @@
+.backgroundContainer {
+  overflow: hidden;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-image: url('../../assets/images/home/mobile-bg-home-page-min.png');
+}
+
+@media screen and (min-resolution: 192dpi) and (min-width: 320px) {
+  .backgroundContainer {
+    background-image: url('../../assets/images/home/mobile-bg-home-page@2x-min.png');
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .backgroundContainer {
+    min-height: calc(100vh - 65px);
+    background-image: url('../../assets/images/home/tablet-bg-home-page-min.png');
+    background-position: 10% 97%;
+  }
+}
+
+@media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+  .backgroundContainer {
+    background-image: url('../../assets/images/home/tablet-bg-home-page@2x-min.png');
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .backgroundContainer {
+    min-height: calc(100vh - 60px);
+    background-image: url('../../assets/images/home/dectop-bg-home-page-min.png');
+    background-position: center, center bottom;
+    background-size: 100%;
+  }
+}
+
+@media screen and (min-width: 1440px) and (min-resolution: 192dpi) {
+  .backgroundContainer {
+    background-image: url('../../assets/images/home/dectop-bg-home-page@2x-min.png');
+  }
+}

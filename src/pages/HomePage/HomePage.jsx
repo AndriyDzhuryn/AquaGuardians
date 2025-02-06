@@ -1,5 +1,5 @@
-import DailyNorma from '../../components/DailyNorma/DailyNorma.jsx';
-import Slider from '../../components/Slider/Slider.jsx';
+import DailyNormaPanel from '../../components/DailyNormaPanel/DailyNormaPanel.jsx';
+import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel.jsx';
 import WaterTracker from '../../components/WaterTracker/WaterTracker.jsx';
 
 import css from './HomePage.module.css';
@@ -7,18 +7,10 @@ import css from './HomePage.module.css';
 const HomePage = () => {
   return (
     <section className={css.section}>
-      <div className={css.welcomeWrapper}>
+      <div className={css.wrapper}>
         <div>
-          <DailyNorma />
-          <div className={css.btnSliderWrapper}>
-            <Slider />
-            <button className={css.btn} type="submit">
-              <svg className={css.editWaterItem}>
-                <use href="../../../public/icons/icons-sprite.svg#plus-circle"></use>
-              </svg>
-              Add Water
-            </button>
-          </div>
+          <DailyNormaPanel />
+          <WaterRatioPanel />
         </div>
         <WaterTracker />
       </div>

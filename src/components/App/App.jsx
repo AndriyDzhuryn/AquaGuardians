@@ -1,28 +1,35 @@
-import { lazy } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
+
 import { Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Circles } from 'react-loader-spinner';
-
-import Layout from '../Layout/Layout.jsx';
-import RestrictedRoute from '../RestrictedRoute.jsx';
-import PrivateRoute from '../PrivateRoute.jsx';
-
-import { selectRefreshing } from '../../redux/auth/selectors.js';
 
 import css from './App.module.css';
 
-const WelcomePage = lazy(() =>
-  import('../../pages/WelcomePage/WelcomePage.jsx')
-);
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage.jsx'));
 const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage.jsx'));
+const WelcomePage = lazy(() =>
+  import('../../pages/WelcomePage/WelcomePage.jsx')
+);
 const NotFoundPage = lazy(() => {
   return import('../../pages/NotFoundPage/NotFoundPage.jsx');
 });
 
+import RestrictedRoute from '../RestrictedRoute/RestrictedRoute.jsx';
+import PrivateRoute from '../PrivateRoute/PrivateRoute.jsx';
+import { apiGetCurrentUser } from '../../redux/auth/operations.js';
+import { selectAuthIsRefreshing } from '../../redux/auth/selectors.js';
+import Layout from '../Layout/Layout.jsx';
+
 function App() {
-  const isRefreshing = useSelector(selectRefreshing);
+  const isRefreshing = useSelector(selectAuthIsRefreshing);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(apiGetCurrentUser());
+  }, [dispatch]);
 
   if (isRefreshing) {
     return (
@@ -41,26 +48,31 @@ function App() {
   }
 
   return (
-    <div className={css.appWrapper}>
-      <Layout>
+    <Layout>
+      <Suspense>
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route
+            path="/home"
+            element={<PrivateRoute component={<HomePage />} />}
+          />
+          <Route
             path="/signup"
-            element={<RestrictedRoute component={<SignupPage />} />}
+            element={
+              <RestrictedRoute
+                component={<SignupPage />}
+                redirectTo="/signin"
+              />
+            }
           />
           <Route
             path="/signin"
             element={<RestrictedRoute component={<SigninPage />} />}
           />
-          <Route
-            path="/home"
-            element={<PrivateRoute component={<HomePage />} />}
-          />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-      </Layout>
-    </div>
+      </Suspense>
+    </Layout>
   );
 }
 

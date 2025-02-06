@@ -1,39 +1,57 @@
 @font-face {
-  font-family: 'Roboto';
-  src: url(./fonts/Roboto-Regular.woff2) format('woff2'),
-    url(./fonts/Roboto-Regular.woff) format('woff');
+  font-family: "Roboto";
+  src:
+    url(./fonts/Roboto-Regular.woff2) format("woff2"),
+    url(./fonts/Roboto-Regular.woff) format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Roboto';
-  src: url(./fonts/Roboto-Medium.woff2) format('woff2'),
-    url(./fonts/Roboto-Medium.woff) format('woff');
+  font-family: "Roboto";
+  src:
+    url(./fonts/Roboto-Medium.woff2) format("woff2"),
+    url(./fonts/Roboto-Medium.woff) format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Roboto';
-  src: url(./fonts/Roboto-Bold.woff2) format('woff2'),
-    url(./fonts/Roboto-Bold.woff) format('woff');
+  font-family: "Roboto";
+  src:
+    url(./fonts/Roboto-Bold.woff2) format("woff2"),
+    url(./fonts/Roboto-Bold.woff) format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
+  /* Colors */
+  --Primery-Color-White: #ffffff;
+  --Primery-Color-Black: #2f2f2f;
+  --Primery-Color-Blue: #407bff;
+
+  --Secondary-color-2: #ecf2ff;
+  --Secondary-color-3: #ef5050;
+  --Secondary-color-4: #9ebbff;
+  --Secondary-color-5: #d7e3ff;
+  --Secondary-color-6: #ff9d43;
+}
+
+body {
   font-family: Roboto, sans-serif;
-  line-height: 1.5;
+  font-size: 16px;
+  font-style: normal;
   font-weight: 400;
+  line-height: 20px; /* 125% */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--Primery-Color-Black);
 }
 
 h1,

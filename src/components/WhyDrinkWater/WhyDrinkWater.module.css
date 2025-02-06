@@ -1,0 +1,53 @@
+.reasonsWrapper {
+  border-radius: 10px;
+  padding: 24px 16px;
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.34);
+  background: var(--Secondary-color-2);
+}
+
+.title3 {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 19.98px;
+  margin-bottom: 12px;
+}
+
+.reasonsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.listItem::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--Primery-Color-Blue);
+  flex-shrink: 0;
+}
+
+.listText {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .reasonsWrapper {
+    padding: 32px 24px;
+    width: 494px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .reasonsWrapper {
+    align-self: flex-end;
+  }
+}

@@ -47,6 +47,26 @@
   margin-right: 6px;
 }
 
+.btnWater:not(:last-child):hover::after {
+  content: '';
+  position: absolute;
+  border: 1px solid #9ebbff;
+  width: 18px;
+  height: 0px;
+  transform: translateY(20px);
+  margin-left: -18px;
+}
+
+.btnWater:last-child:hover::after {
+  content: '';
+  position: absolute;
+  border: 1px solid #ef5050;
+  width: 18px;
+  height: 0px;
+  transform: translateY(20px);
+  margin-left: -17px;
+}
+
 .editWaterItem {
   width: 16px;
   height: 16px;
