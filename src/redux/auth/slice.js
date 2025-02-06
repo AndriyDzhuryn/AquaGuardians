@@ -4,6 +4,7 @@ import {
   apiLogOutUser,
   apiSignInUser,
   apiSignUpUser,
+  updateUserProfile,
 } from './operations';
 
 const INITIAL_STATE = {
@@ -73,7 +74,19 @@ const authSlice = createSlice({
       .addCase(apiLogOutUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-      }),
+      })
+      .addCase(updateUserProfile.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+       state.userData = action.payload.user;
+       state.isLoading = false;
+      }).
+      addCase(updateUserProfile.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+  }),
 });
 
 export const authReducer = authSlice.reducer;
