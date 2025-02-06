@@ -3,7 +3,7 @@ import css from './AppModal.module.css';
 
 Modal.setAppElement('#root');
 
-const LogoutModal = ({
+const AppModal = ({
   setIsOpen,
   modalIsOpen,
   handleAccept,
@@ -44,4 +44,4 @@ const LogoutModal = ({
   );
 };
 
-export default LogoutModal;
+export default AppModal;
