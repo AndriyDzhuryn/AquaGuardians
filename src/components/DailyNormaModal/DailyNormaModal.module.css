@@ -1,0 +1,74 @@
+.modalOverley {
+  display: flex;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 10px;
+  padding: 32px 24px;
+  width: 592px;
+  height: 712px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.modalCloseBtn {
+  border: none;
+  background: transparent;
+  position: absolute;
+  top: 32px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
+  color: #407bff;
+}
+
+.modalTitle {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.formulasContainer {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 12px;
+}
+
+.formula {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 133%;
+  color: #407bff;
+}
+
+.infoContainer {
+  border-radius: 10px;
+  border: 1px solid #d7e3ff;
+  width: 544px;
+  height: 68px;
+  margin-bottom: 24px;
+}
+
+.star {
+  color: #407bff;
+}
+
+.info {
+  color: #8f8f8f;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  padding: 10px;
+}
