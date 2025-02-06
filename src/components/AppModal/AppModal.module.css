@@ -42,7 +42,7 @@
 
 .wrapper button {
   background-color: transparent;
-  color: #407bff;
+  color: var(--Primery-Color-Blue);
   border: none;
   padding: 6px;
   font-size: 24px;
@@ -51,7 +51,7 @@
 .wrapper button svg {
   width: 24px;
   height: 24px;
-  stroke: #407bff;
+  stroke: var(--Primery-Color-Blue);
 }
 
 .control {
@@ -70,12 +70,16 @@
   border: none;
 }
 .btnCancel {
-  background-color: #d7e3ff;
-  color: #407bff;
+  background-color: var(--Secondary-color-5);
+  color: var(--Primery-Color-Blue);
 }
 .btnDelete {
-  background-color: #ef5050;
-  color: white;
+  background-color: var(--Secondary-color-3);
+  color: var(--Primery-Color-White);
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+}
+.btnDelete:hover {
+  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.34);
 }
 .modalOverlay {
   position: fixed;
@@ -83,7 +87,7 @@
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: var(--Primery-Color-Black);
 }
 
 @media only screen and (min-width: 768px) {
@@ -103,6 +107,6 @@
 
 @media only screen and (min-width: 1440px) {
   .control {
-    justify-content: flex-start;
+    justify-content: flex-end;
   }
 }
