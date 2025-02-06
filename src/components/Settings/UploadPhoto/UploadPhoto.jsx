@@ -23,7 +23,7 @@ const UploadPhoto = ({ photo, setPhoto }) => {
       {photo ? (
         <img
           src={URL.createObjectURL(photo)}
-          alt="Avatar користувача"
+          alt="Avatar"
           className={style.avatar}
         />
       ) : (

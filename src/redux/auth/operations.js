@@ -82,25 +82,24 @@ export const apiLogOutUser = createAsyncThunk(
 
 
 export const updateUserProfile = createAsyncThunk(
+
+  
   'auth/updateProfile',
   async (formData, thunkAPI) => {
     try {
-
-
       const state = thunkAPI.getState();
-      const token = state.auth.token;
-      const id = state.auth.id
-      setToken(token);
-
+      const token = state.token;
+      const id = state.userData.id;
+      
+    //  formData.forEach((value, key) => console.log(key, value));
 
       
-      formData.forEach((value, key) => console.log(key, value));
-      console.log('Base URL:', authInstance.defaults.baseURL); 
-      console.log('Token:', token);  
-      
 
-      const { data } = await authInstance.patch(`/users/${id}`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+      const { data } = await authInstans.patch(`/users/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${token}`,
+         },
       });
 
       return data;

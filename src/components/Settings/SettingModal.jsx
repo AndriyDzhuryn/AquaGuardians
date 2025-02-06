@@ -3,14 +3,14 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { validationSchema } from './validation/validation.js';
 import style from '../Settings/Settings.module.css';
-import { selectUser } from '../../redux/auth/selectors.js';
+import { selectAuthUserData } from '../../redux/auth/selectors.js';
 import InputFromPassword from './InputFromPassword/InputFromPassword.jsx';
 import CloseButton from './CloseButton/ClosseButton.jsx';
 import UploadPhoto from './UploadPhoto/UploadPhoto.jsx';
 import { updateUserProfile } from '../../redux/auth/operations.js';
 
 const SettingModal = ({ onClose }) => {
-  const userData = useSelector(selectUser);
+  const userData = useSelector(selectAuthUserData);
   const [photo, setPhoto] = useState(null);
   const dispatch = useDispatch();
   const [visiblePasswords, setVisiblePasswords] = useState({});
@@ -71,14 +71,14 @@ const SettingModal = ({ onClose }) => {
           enableReinitialize
           initialValues={initialValues}
         >
-          {({ values }) => (
+          {({ values, errors, touched}) => (
             <Form className={style.form}>
                 <h3 className={style.titlePhoto}>Your photo</h3>
               <div className={style.upload}>
                 <UploadPhoto photo={photo} setPhoto={setPhoto} />
               </div>
-
-              <div className={style.info}>
+              <div className={style.container}>
+                    <div className={style.info}>
                 <label className={style.gender}>
                   Your gender identity
                 </label>
@@ -90,7 +90,8 @@ const SettingModal = ({ onClose }) => {
                     name="gender"
                     value="woman"
                     checked={values.gender === "woman"}
-                  /> Woman</div>
+                    />  <span className={style.identification}>Woman</span>
+                  </div>
                   <div className={style.radio}>
                     <Field
                     type="radio"
@@ -98,47 +99,42 @@ const SettingModal = ({ onClose }) => {
                     name="gender"
                     value="man"
                     checked={values.gender === "man"}
-                  /> Man</div>
+                  /> <span className={style.identification}>Man</span></div>
                   
                 </div>
-                <div className={style.inputContainer}>
-                  <div className={style.inputBlock}>
-                  <label htmlFor="name">Your name</label>
-                  <Field
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Enter your name"
-                    className={style.input}
-                    autoComplete="name"
-                  />
-                  <ErrorMessage
-                    name="name"
-                    component="div"
-                    className={style.error}
-                  />
-                  </div>
-                  
-                  <div className={style.inputBlock}>
-                    <label htmlFor="email">E-mail</label>
-                  <Field
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Enter your email"
-                    className={style.input}
-                    autoComplete="email"
-                  />
-                  <ErrorMessage
-                    name="email"
-                    component="div"
-                    className={style.error}
-                  />
- </div>
-                  
-                </div>
-              </div>
+                 <div className={style.inputContainer}>
+          <div className={style.inputBlock}>
+  <label htmlFor="name" className={style.label} >Your name</label>
+  <Field
+    type="text"
+    id="name"
+    name="name"
+    placeholder="Enter your name"
+    className={errors.name && touched.name ? `${style.inputerror}` : `${style.input}`}
+    autoComplete="name"
+  />
+  {errors.name && touched.name && (
+    <ErrorMessage name="name" component="span" className={style.error} />
+  )}
+</div>
 
+<div className={style.inputBlock}>
+  <label htmlFor="email" className={style.label}>E-mail</label>
+  <Field
+    type="email"
+    id="email"
+    name="email"
+    placeholder="Enter your email"
+    className={errors.email && touched.email ? `${style.inputerror}` : `${style.input}`}
+    autoComplete="email"
+  />
+  {errors.email && touched.email && (
+    <ErrorMessage name="email" component="span" className={style.error} />
+  )}
+</div>
+
+        </div>
+              </div>
               <div className={style.password}>
                 <h3 className={style.passwordtitle}>Password</h3>
                 {['outdatedPassword', 'newPassword', 'repeatPassword'].map(
@@ -154,6 +150,8 @@ const SettingModal = ({ onClose }) => {
                       <InputFromPassword
                         id={field}
                         name={field}
+                        error={errors[field]}
+                        touched={touched.newPassword}
                         showPassword={visiblePasswords[field]}
                         togglePasswordVisibility={() =>
                           togglePasswordVisibility(field)
@@ -169,6 +167,8 @@ const SettingModal = ({ onClose }) => {
                   )
                 )}
               </div>
+                </div>
+          
 
               <button type="submit" className={style.submitButton}>
                 Save

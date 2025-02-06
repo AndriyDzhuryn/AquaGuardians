@@ -7,6 +7,8 @@ const InputFromPassword = ({
   showPassword,
   togglePasswordVisibility,
   autoComplete,
+  error,
+  touched,
 }) => (
   <div className={style.wrapper}>
     <Field
@@ -15,14 +17,16 @@ const InputFromPassword = ({
       autoComplete={autoComplete}
       name={name}
       placeholder="Password"
-      className={style.input}
+      className={
+        error && touched ? `${style.input} ${style.inputerror}` : style.input
+      }
     />
     <button
       type="button"
       className={style.button}
       onClick={togglePasswordVisibility}
     >
-      <svg className={style.icon} width="16" height="16">
+      <svg className={style.eyes} width="16" height="16">
         <use
           href={`../../../public/icons/icons-sprite.svg#${
             showPassword ? 'eye' : 'eye-slash'
