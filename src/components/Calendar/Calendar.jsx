@@ -7,10 +7,11 @@ import {
   subMonths,
   addMonths,
 } from 'date-fns';
+import clsx from 'clsx';
 
 import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats.jsx';
+
 import css from './Calendar.module.css';
-import clsx from 'clsx';
 
 const Calendar = ({ waterData }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,10 +41,7 @@ const Calendar = ({ waterData }) => {
         calendarRef.current.contains(event.target) &&
         (!dropdownRef.current || !dropdownRef.current.contains(event.target))
       ) {
-        // setIsOpen(true);
         setSelectedDate(null);
-      }
-      if (!selectedDate) {
         setIsOpen(false);
       }
     };
