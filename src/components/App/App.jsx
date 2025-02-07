@@ -14,7 +14,7 @@ import css from './App.module.css';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
 const SignUpPage = lazy(() => import('../../pages/SignUpPage/SignUpPage.jsx'));
-const SignInPage = lazy(() => import('../../pages/SignInPage/SignInPage.jsx'));
+const SignInPage = lazy(() => import('../../pages/SigninPage/SigninPage.jsx'));
 const WelcomePage = lazy(() =>
   import('../../pages/WelcomePage/WelcomePage.jsx')
 );

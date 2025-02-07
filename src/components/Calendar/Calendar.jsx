@@ -16,6 +16,7 @@ const Calendar = ({ waterData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: -8 });
 
   const calendarRef = useRef(null);
@@ -26,16 +27,23 @@ const Calendar = ({ waterData }) => {
   const days = eachDayOfInterval({ start, end });
 
   useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
     const handleClickOutside = event => {
       if (
         calendarRef.current &&
         calendarRef.current.contains(event.target) &&
         (!dropdownRef.current || !dropdownRef.current.contains(event.target))
       ) {
-        setIsOpen(!isOpen);
+        // setIsOpen(true);
         setSelectedDate(null);
       }
-      if (selectedDate === null) {
+      if (!selectedDate) {
         setIsOpen(false);
       }
     };
@@ -47,19 +55,33 @@ const Calendar = ({ waterData }) => {
   }, []);
 
   const handleDayClick = (event, day) => {
+    setSelectedDate(day);
+    setIsOpen(true);
+
     const buttonElement = event.target.closest(`.${css.day}`);
     if (!buttonElement) return;
 
     const buttonRect = buttonElement.getBoundingClientRect();
     const calendarRect = calendarRef.current.getBoundingClientRect();
 
-    setIsOpen(!isOpen);
-    setMenuPosition({
-      ...menuPosition,
-      top: buttonRect.top - calendarRect.top - 250,
-    });
+    let left = -8;
+    let top = buttonRect.top - calendarRect.top - 250;
 
-    setSelectedDate(prevDate => (prevDate === day ? null : day)); // Перемикання
+    if (windowWidth < 768) {
+      left = -8;
+      top = buttonRect.top - calendarRect.top - 250;
+    } else if (windowWidth >= 768 && windowWidth < 1440) {
+      left = buttonRect.left - calendarRect.left - 275;
+      top = buttonRect.top - calendarRect.top - 238;
+      if (left < -10) {
+        left = buttonRect.left - calendarRect.left + 17;
+        top = buttonRect.top - calendarRect.top - 238;
+      }
+    } else if (windowWidth >= 1440) {
+      left = buttonRect.left - calendarRect.left - 275;
+      top = buttonRect.top - calendarRect.top - 238;
+    }
+    setMenuPosition({ top, left });
   };
 
   return (
