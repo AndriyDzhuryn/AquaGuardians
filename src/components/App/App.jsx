@@ -13,9 +13,9 @@ const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage.jsx'));
 const WelcomePage = lazy(() =>
   import('../../pages/WelcomePage/WelcomePage.jsx')
 );
-const NotFoundPage = lazy(() => {
-  return import('../../pages/NotFoundPage/NotFoundPage.jsx');
-});
+// const NotFoundPage = lazy(() => {
+//   return import('../../pages/NotFoundPage/NotFoundPage.jsx');
+// });
 
 import RestrictedRoute from '../RestrictedRoute/RestrictedRoute.jsx';
 import PrivateRoute from '../PrivateRoute/PrivateRoute.jsx';
@@ -69,7 +69,10 @@ function App() {
             path="/signin"
             element={<RestrictedRoute component={<SigninPage />} />}
           />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route
+            path="*"
+            element={<RestrictedRoute component={<SigninPage />} />}
+          />
         </Routes>
       </Suspense>
     </Layout>

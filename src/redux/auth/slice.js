@@ -27,8 +27,8 @@ const authSlice = createSlice({
       })
       .addCase(apiSignUpUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.token = action.payload.token;
-        state.userData = action.payload.user;
+        // state.token = action.payload.token;
+        state.userData = action.payload.data;
       })
       .addCase(apiSignUpUser.rejected, (state, action) => {
         state.isLoading = false;
@@ -42,8 +42,8 @@ const authSlice = createSlice({
       .addCase(apiSignInUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
-        state.token = action.payload.token;
-        state.userData = action.payload.user;
+        state.token = action.payload.data.accessToken;
+        // state.userData = action.payload.user;
       })
       .addCase(apiSignInUser.rejected, (state, action) => {
         state.isLoading = false;
@@ -57,7 +57,7 @@ const authSlice = createSlice({
       .addCase(apiGetCurrentUser.fulfilled, (state, action) => {
         state.isRefreshing = false;
         state.isLoggedIn = true;
-        state.userData = action.payload;
+        state.userData = action.payload.data;
       })
       .addCase(apiGetCurrentUser.rejected, (state, action) => {
         state.isRefreshing = false;
@@ -75,18 +75,18 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(updateUserProfile.pending, (state) => {
+      .addCase(updateUserProfile.pending, state => {
         state.isLoading = true;
         state.error = null;
       })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
-       state.userData = action.payload.user;
-       state.isLoading = false;
-      }).
-      addCase(updateUserProfile.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-  }),
+        state.userData = action.payload.user;
+        state.isLoading = false;
+      })
+      .addCase(updateUserProfile.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      }),
 });
 
 export const authReducer = authSlice.reducer;
