@@ -13,7 +13,7 @@ import { selectAuthIsRefreshing } from '../../redux/auth/selectors.js';
 import css from './App.module.css';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
-const SignUpPage = lazy(() => import('../../pages/SignUpPage/SignUpPage.jsx'));
+const SignUpPage = lazy(() => import('../../pages/SignupPage/SignupPage.jsx'));
 const SignInPage = lazy(() => import('../../pages/SigninPage/SigninPage.jsx'));
 const WelcomePage = lazy(() =>
   import('../../pages/WelcomePage/WelcomePage.jsx')
