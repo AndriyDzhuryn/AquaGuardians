@@ -8,7 +8,14 @@ import {
 } from './operations';
 
 const INITIAL_STATE = {
-  userData: null,
+  userData: {
+    gender: null,
+    name: null,
+    email: null,
+    password: null,
+    photo: null,
+    waterRate: null,
+  },
   isLoading: false,
   error: null,
   token: null,

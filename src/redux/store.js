@@ -1,6 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { waterReducer } from './water/slice';
-
 import {
   FLUSH,
   PAUSE,
@@ -13,7 +11,10 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { authReducer } from './auth/slice';
+import { authReducer } from './auth/slice.js';
+import { waterReducer } from './water/slice.js';
+import { waterTodayReducer } from './today/slice.js';
+import { waterMonthReducer } from './month/slice.js';
 
 const authConfig = {
   key: 'authKey',
@@ -24,6 +25,8 @@ const authConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authConfig, authReducer),
+    month: waterMonthReducer,
+    today: waterTodayReducer,
     water: waterReducer,
   },
   middleware: getDefaultMiddleware =>

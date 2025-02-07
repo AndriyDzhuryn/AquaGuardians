@@ -2,11 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { authInstans } from '../auth/operations.js';
 
-export const addWater = createAsyncThunk(
-  'water/addWater',
-  async (water, thunkAPI) => {
+export const apiGetMonthWater = createAsyncThunk(
+  'month/monthWater',
+  async ({ year, month }, thunkAPI) => {
     try {
-      const response = await authInstans.post('/water/', water);
+      const response = await authInstans.get(`/month/${year}/${month}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
