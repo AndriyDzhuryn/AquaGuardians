@@ -13,8 +13,8 @@ import { selectAuthIsRefreshing } from '../../redux/auth/selectors.js';
 import css from './App.module.css';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
-const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage.jsx'));
-const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage.jsx'));
+const SignUpPage = lazy(() => import('../../pages/SignUpPage/SignUpPage.jsx'));
+const SignInPage = lazy(() => import('../../pages/SignInPage/SignInPage.jsx'));
 const WelcomePage = lazy(() =>
   import('../../pages/WelcomePage/WelcomePage.jsx')
 );
@@ -59,18 +59,18 @@ function App() {
             path="/signup"
             element={
               <RestrictedRoute
-                component={<SignupPage />}
+                component={<SignUpPage />}
                 redirectTo="/signin"
               />
             }
           />
           <Route
             path="/signin"
-            element={<RestrictedRoute component={<SigninPage />} />}
+            element={<RestrictedRoute component={<SignInPage />} />}
           />
           <Route
             path="*"
-            element={<RestrictedRoute component={<SigninPage />} />}
+            element={<RestrictedRoute component={<SignInPage />} />}
           />
         </Routes>
       </Suspense>
