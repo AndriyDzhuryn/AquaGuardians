@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px solid #d7e3ff;
+  border-bottom: 1px solid var(--Secondary-color-5);
   padding-top: 12px;
   padding-bottom: 12px;
 }
@@ -15,14 +15,14 @@
 .amountWater {
   font-size: 18px;
   line-height: 1.33;
-  color: #407bff;
+  color: var(--Primery-Color-Blue);
   margin-right: 12px;
 }
 
 .time {
   font-size: 12px;
   line-height: 2;
-  color: #2f2f2f;
+  color: var(--Primery-Color-Black);
 }
 
 .glassOfWater {
@@ -30,7 +30,7 @@
   height: 22px;
   margin-right: 12px;
   fill: none;
-  stroke: #407bff;
+  stroke: var(--Primery-Color-Blue);
 }
 
 .btnWater {
@@ -50,7 +50,7 @@
 .btnWater:not(:last-child):hover::after {
   content: '';
   position: absolute;
-  border: 1px solid #9ebbff;
+  border: 1px solid var(--Secondary-color-4);
   width: 18px;
   height: 0px;
   transform: translateY(20px);
@@ -60,7 +60,7 @@
 .btnWater:last-child:hover::after {
   content: '';
   position: absolute;
-  border: 1px solid #ef5050;
+  border: 1px solid var(--Secondary-color-3);
   width: 18px;
   height: 0px;
   transform: translateY(20px);
@@ -71,21 +71,17 @@
   width: 16px;
   height: 16px;
   fill: none;
-  stroke: #407bff;
+  stroke: var(--Primery-Color-Blue);
 }
 
 .trash {
   width: 16px;
   height: 16px;
-  stroke: #ef5050;
+  stroke: var(--Secondary-color-3);
   fill: none;
 }
 
 @media only screen and (min-width: 768px) {
-  .wrapperWaterConsumedItem {
-    justify-content: space-between;
-  }
-
   .amountWater {
     margin-right: 16px;
   }
