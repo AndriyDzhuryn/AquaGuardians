@@ -15,7 +15,7 @@ const DaysGeneralStats = ({ position, isOpen, date, waterData }) => {
             {date?.toLocaleDateString('en-US', {
               day: 'numeric',
             })}
-            ,{' '}
+            {', '}
             {date?.toLocaleDateString('en-US', {
               month: 'long',
             })}
