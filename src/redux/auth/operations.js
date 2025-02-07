@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const authInstans = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://aqua-mind.onrender.com',
 });
 
 export const setToken = token => {
