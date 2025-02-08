@@ -43,6 +43,21 @@ export const apiSignInUser = createAsyncThunk(
   }
 );
 
+export const apiLogOutUser = createAsyncThunk(
+  'auth/logoutUser',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await authInstans.post('auth/logout');
+      console.log(data);
+      clearToken();
+      return data;
+    } catch (error) {
+      console.log(error.message);
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const apiGetCurrentUser = createAsyncThunk(
   'auth/getCurrentUser',
   async (_, thunkApi) => {
@@ -72,17 +87,26 @@ export const apiGetCurrentUser = createAsyncThunk(
   }
 );
 
-export const apiLogOutUser = createAsyncThunk(
-  'auth/logoutUser',
-  async (_, thunkApi) => {
+export const apiUpdateUserProfile = createAsyncThunk(
+  'user/updateProfile',
+  async (formData, thunkAPI) => {
     try {
-      const { data } = await authInstans.post('auth/logout');
-      console.log(data);
-      clearToken();
+      const { data } = await authInstans.patch(`/user`, formData);
       return data;
-    } catch (error) {
-      console.log(error.message);
-      return thunkApi.rejectWithValue(error.message);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const apiUpdateUserPhoto = createAsyncThunk(
+  'user/updateUserPhoto',
+  async (urlPhoto, thunkAPI) => {
+    try {
+      const { data } = await authInstans.patch(`/user/photo`, urlPhoto);
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );

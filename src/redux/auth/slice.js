@@ -4,8 +4,10 @@ import {
   apiLogOutUser,
   apiSignInUser,
   apiSignUpUser,
+  apiUpdateUserPhoto,
+  apiUpdateUserProfile,
   // updateUserProfile,
-} from './operations';
+} from './operations.js';
 
 const INITIAL_STATE = {
   userData: null,
@@ -48,6 +50,12 @@ const authSlice = createSlice({
       })
       .addCase(apiSignInUser.rejected, handleRejected)
 
+      .addCase(apiLogOutUser.pending, handlePending)
+      .addCase(apiLogOutUser.fulfilled, () => {
+        return INITIAL_STATE;
+      })
+      .addCase(apiLogOutUser.rejected, handleRejected)
+
       .addCase(apiGetCurrentUser.pending, state => {
         state.isRefreshing = true;
         state.error = null;
@@ -62,11 +70,19 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
 
-      .addCase(apiLogOutUser.pending, handlePending)
-      .addCase(apiLogOutUser.fulfilled, () => {
-        return INITIAL_STATE;
+      .addCase(apiUpdateUserProfile.pending, handlePending)
+      .addCase(apiUpdateUserProfile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.userData = action.payload;
       })
-      .addCase(apiLogOutUser.rejected, handleRejected),
+      .addCase(apiUpdateUserProfile.rejected, handleRejected)
+
+      .addCase(apiUpdateUserPhoto.pending, handlePending)
+      .addCase(apiUpdateUserPhoto.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.userData = action.payload;
+      })
+      .addCase(apiUpdateUserPhoto.rejected, handleRejected),
 
   // .addCase(updateUserProfile.pending, handlePending)
   // .addCase(updateUserProfile.fulfilled, (state, action) => {
