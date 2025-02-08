@@ -2,13 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { updateWaterRate } from './operations';
 
 const handlePending = state => {
-  state.loading = true;
-  state.error = null;
+  state.waterRate.loading = true;
+  state.waterRate.error = null;
 };
 
 const handleRejected = (state, action) => {
-  state.loading = false;
-  state.error = action.payload;
+  state.waterRate.loading = false;
+  state.waterRate.error = action.payload;
 };
 
 const waterRateSlice = createSlice({
@@ -23,9 +23,9 @@ const waterRateSlice = createSlice({
       .addCase(updateWaterRate.pending, handlePending)
       .addCase(updateWaterRate.rejected, handleRejected)
       .addCase(updateWaterRate.fulfilled, (state, action) => {
-        state.loading = false;
-        state.error = null;
-        state.waterRate = action.payload.waterRate;
+        state.waterRate.loading = false;
+        state.waterRate.error = null;
+        state.waterRate.waterRate = action.payload.waterRate;
       });
   },
 });

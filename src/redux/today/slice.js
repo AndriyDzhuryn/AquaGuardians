@@ -9,13 +9,13 @@ const INITIAL_STATE = {
 };
 
 const handlePending = state => {
-  state.isLoading = true;
-  state.error = null;
+  state.today.isLoading = true;
+  state.today.error = null;
 };
 
 const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
+  state.today.isLoading = false;
+  state.today.error = action.payload;
 };
 
 const waterTodaySlice = createSlice({
@@ -25,8 +25,8 @@ const waterTodaySlice = createSlice({
     builder
       .addCase(apiGetTodayWater.pending, handlePending)
       .addCase(apiGetTodayWater.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.waterTodayData = action.payload;
+        state.today.isLoading = false;
+        state.today.waterTodayData = action.payload;
       })
       .addCase(apiGetTodayWater.rejected, handleRejected),
 });
