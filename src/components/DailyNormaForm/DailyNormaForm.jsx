@@ -1,14 +1,24 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import css from './DailyNormaForm.module.css';
 import { useState, useEffect } from 'react';
 import FormInput from './FormInput/FormInput';
 import RadioButtons from './RadioButtons/RadioButtons';
+import * as Yup from 'yup';
+import { updateWaterRate } from '../../redux/waterRate/operations';
+import { useDispatch } from 'react-redux';
+
+const dailyNormaFormSchema = Yup.object().shape({
+  waterAmount: Yup.string()
+    .max(2, 'Too long! Amount of water should be in liters.')
+    .required('Required'),
+});
 
 const DailyNormaForm = () => {
   const [liters, setLiters] = useState(0);
   const [gender, setGender] = useState('female');
   const [weight, setWeight] = useState('0');
   const [time, setTime] = useState('0');
+  const dispatch = useDispatch();
   useEffect(() => {
     if (gender === 'female') {
       setLiters(
@@ -25,6 +35,11 @@ const DailyNormaForm = () => {
 
   const submitData = values => {
     console.log(values.waterAmount);
+    dispatch(
+      updateWaterRate({
+        waterRate: Number.parseFloat(values.waterAmount) * 1000,
+      })
+    );
   };
 
   return (
@@ -37,6 +52,7 @@ const DailyNormaForm = () => {
           waterAmount: '0',
         }}
         onSubmit={submitData}
+        validationSchema={dailyNormaFormSchema}
       >
         {props => (
           <Form>
@@ -65,6 +81,11 @@ const DailyNormaForm = () => {
                 <label>
                   <Field className={css.field} name="waterAmount" />
                 </label>
+                <ErrorMessage
+                  className={css.error}
+                  name="waterAmount"
+                  component="span"
+                />
               </div>
             </div>
             <button className={css.submitBtn} type="submit">

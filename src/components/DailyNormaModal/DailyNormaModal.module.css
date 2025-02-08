@@ -1,7 +1,8 @@
 .modalOverley {
   display: flex;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.8);
   position: fixed;
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
@@ -9,15 +10,14 @@
   background-size: cover;
   justify-content: center;
   align-items: center;
-  opacity: 0.8;
 }
 
 .modal {
   background-color: white;
   border-radius: 10px;
-  padding: 32px 24px;
-  width: 592px;
-  height: 712px;
+  padding: 24px 12px;
+  width: 280px;
+  min-height: 816px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -25,14 +25,18 @@
 }
 
 .modalCloseBtn {
+  display: flex;
   border: none;
   background: transparent;
   position: absolute;
-  top: 32px;
-  right: 24px;
+  stroke: #407bff;
+  top: 24px;
+  right: 12px;
+}
+
+.svg {
   width: 24px;
   height: 24px;
-  color: #407bff;
 }
 
 .modalTitle {
@@ -42,7 +46,8 @@
 
 .formulasContainer {
   display: flex;
-  gap: 24px;
+  flex-direction: column;
+  row-gap: 16px;
   margin-bottom: 12px;
 }
 
@@ -56,8 +61,7 @@
 .infoContainer {
   border-radius: 10px;
   border: 1px solid #d7e3ff;
-  width: 544px;
-  height: 68px;
+  width: 256px;
   margin-bottom: 24px;
 }
 
@@ -71,4 +75,31 @@
   font-size: 12px;
   line-height: 133%;
   padding: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 32px 24px;
+    width: 704px;
+    min-height: 696px;
+  }
+  .formulasContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    margin-bottom: 12px;
+  }
+  .infoContainer {
+    width: 656px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .modal {
+    width: 592px;
+    min-height: 712px;
+  }
+  .infoContainer {
+    width: 544px;
+  }
 }

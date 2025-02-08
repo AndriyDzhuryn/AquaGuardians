@@ -22,13 +22,13 @@
 .infoBox {
   font-weight: 400;
   font-size: 16px;
-  gap: 8px;
+  padding-bottom: 8px;
 }
 
 .field {
   border: 1px solid #407bff;
   border-radius: 6px;
-  width: 544px;
+  width: 256px;
   height: 44px;
   font-weight: 400;
   font-size: 16px;
@@ -39,19 +39,19 @@
 }
 
 .waterLiters {
-  display: flex;
   font-weight: 700;
   font-size: 18px;
   line-height: 133%;
   color: #407bff;
+  align-items: center;
+  margin-left: 4px;
 }
 
 .textRequired {
-  display: flex;
   font-weight: 400;
   font-size: 16px;
   line-height: 125%;
-  margin-bottom: 26px;
+  margin-bottom: 24px;
   gap: 6px;
 }
 
@@ -59,7 +59,7 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 111%;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .submitBtn {
@@ -72,8 +72,28 @@
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
   border-radius: 10px;
   padding: 10px 30px;
-  width: 160px;
-  height: 44px;
+  width: 100%;
   background: #407bff;
-  margin-left: 384px;
+}
+
+.error {
+  color: red;
+  margin-bottom: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .field {
+    width: 656px;
+  }
+  .submitBtn {
+    width: 160px;
+    display: block;
+    margin-left: auto;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .field {
+    width: 544px;
+  }
 }
