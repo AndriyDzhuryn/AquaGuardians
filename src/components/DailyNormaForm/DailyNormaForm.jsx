@@ -4,23 +4,12 @@ import { useState, useEffect } from 'react';
 import FormInput from './FormInput/FormInput';
 import RadioButtons from './RadioButtons/RadioButtons';
 import * as Yup from 'yup';
+import { updateWaterRate } from '../../redux/waterRate/operations';
+import { useDispatch } from 'react-redux';
 
-const DailyNormaFormSchema = Yup.object().shape({
-  gender: Yup.string()
-    .min(2, 'Too Short!')
-    .max(10, 'Too Long!')
-    .required('Required'),
-  weight: Yup.string()
-    .min(2, 'Too Short!')
-    .max(5, 'Too Long!')
-    .required('Required'),
-  time: Yup.string()
-    .min(2, 'Too Short!')
-    .max(5, 'Too Long!')
-    .required('Required'),
+const dailyNormaFormSchema = Yup.object().shape({
   waterAmount: Yup.string()
-    .min(2, 'Too Short!')
-    .max(10, 'Too Long!')
+    .max(2, 'Too long! Amount of water should be in liters.')
     .required('Required'),
 });
 
@@ -29,6 +18,7 @@ const DailyNormaForm = () => {
   const [gender, setGender] = useState('female');
   const [weight, setWeight] = useState('0');
   const [time, setTime] = useState('0');
+  const dispatch = useDispatch();
   useEffect(() => {
     if (gender === 'female') {
       setLiters(
@@ -45,6 +35,11 @@ const DailyNormaForm = () => {
 
   const submitData = values => {
     console.log(values.waterAmount);
+    dispatch(
+      updateWaterRate({
+        waterRate: Number.parseFloat(values.waterAmount) * 1000,
+      })
+    );
   };
 
   return (
@@ -57,7 +52,7 @@ const DailyNormaForm = () => {
           waterAmount: '0',
         }}
         onSubmit={submitData}
-        validationSchema={DailyNormaFormSchema}
+        validationSchema={dailyNormaFormSchema}
       >
         {props => (
           <Form>
@@ -69,7 +64,6 @@ const DailyNormaForm = () => {
                 <label>
                   <FormInput name="weight" onChange={setWeight} {...props} />
                 </label>
-                <ErrorMessage name="weight" component="span" />
                 <p className={css.infoBox}>
                   The time of active participation in sports or other activities
                   with a high physical. Load in hours:
@@ -77,7 +71,6 @@ const DailyNormaForm = () => {
                 <label>
                   <FormInput name="time" onChange={setTime} {...props} />
                 </label>
-                <ErrorMessage name="time" component="span" />
                 <p className={css.textRequired}>
                   The required amount of water in liters per day:
                   <span className={css.waterLiters}>{liters.toFixed(1)} L</span>
@@ -88,7 +81,11 @@ const DailyNormaForm = () => {
                 <label>
                   <Field className={css.field} name="waterAmount" />
                 </label>
-                <ErrorMessage name="waterAmount" component="span" />
+                <ErrorMessage
+                  className={css.error}
+                  name="waterAmount"
+                  component="span"
+                />
               </div>
             </div>
             <button className={css.submitBtn} type="submit">

@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { waterReducer } from './water/slice';
+import { waterRateReducer } from './waterRate/slice';
 
 import {
   FLUSH,
@@ -25,6 +26,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authConfig, authReducer),
     water: waterReducer,
+    waterRate: waterRateReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
