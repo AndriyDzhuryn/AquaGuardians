@@ -11,7 +11,7 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
-const waterSlice = createSlice({
+const waterRateSlice = createSlice({
   name: 'waterRate',
   initialState: {
     waterRate: null,
@@ -30,4 +30,4 @@ const waterSlice = createSlice({
   },
 });
 
-export const waterRateReducer = waterSlice.reducer;
+export const waterRateReducer = waterRateSlice.reducer;
