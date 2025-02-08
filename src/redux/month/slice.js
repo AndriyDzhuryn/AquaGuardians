@@ -3,9 +3,19 @@ import { createSlice } from '@reduxjs/toolkit';
 import { apiGetMonthWater } from './operations.js';
 
 const INITIAL_STATE = {
-  waterMonthData: [],
+  waterMonthData: null,
   isLoading: false,
   error: null,
+};
+
+const handlePending = state => {
+  state.isLoading = true;
+  state.error = null;
+};
+
+const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
 };
 
 const waterMonthSlice = createSlice({
@@ -13,18 +23,12 @@ const waterMonthSlice = createSlice({
   initialState: INITIAL_STATE,
   extraReducers: builder =>
     builder
-      .addCase(apiGetMonthWater.pending, state => {
-        state.isLoading = true;
-        state.error = null;
-      })
+      .addCase(apiGetMonthWater.pending, handlePending)
       .addCase(apiGetMonthWater.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.waterMonthData = action.payload.data;
+        state.waterMonthData = action.payload;
       })
-      .addCase(apiGetMonthWater.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      }),
+      .addCase(apiGetMonthWater.rejected, handleRejected),
 });
 
 export const waterMonthReducer = waterMonthSlice.reducer;
