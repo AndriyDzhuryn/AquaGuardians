@@ -22,7 +22,7 @@
 .infoBox {
   font-weight: 400;
   font-size: 16px;
-  gap: 8px;
+  padding-bottom: 8px;
 }
 
 .field {
@@ -44,6 +44,7 @@
   font-size: 18px;
   line-height: 133%;
   color: #407bff;
+  align-items: center;
 }
 
 .textRequired {
@@ -51,7 +52,8 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 125%;
-  margin-bottom: 26px;
+  /* margin-bottom: 26px; */
+  padding-bottom: 24px;
   gap: 6px;
 }
 
@@ -59,7 +61,8 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 111%;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
+  padding-bottom: 16px;
 }
 
 .submitBtn {
@@ -76,4 +79,5 @@
   height: 44px;
   background: #407bff;
   margin-left: 384px;
+  margin-top: 8px;
 }

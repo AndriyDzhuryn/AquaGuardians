@@ -1,7 +1,8 @@
 .modalOverley {
   display: flex;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.8);
   position: fixed;
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
@@ -9,7 +10,6 @@
   background-size: cover;
   justify-content: center;
   align-items: center;
-  opacity: 0.8;
 }
 
 .modal {
@@ -25,14 +25,12 @@
 }
 
 .modalCloseBtn {
+  display: flex;
   border: none;
   background: transparent;
   position: absolute;
-  top: 32px;
-  right: 24px;
-  width: 24px;
-  height: 24px;
-  color: #407bff;
+  stroke: #407bff;
+  margin-left: 496px;
 }
 
 .modalTitle {

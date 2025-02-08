@@ -10,10 +10,13 @@ const DailyNormaModal = ({ closeModal }) => {
           type="button"
           onClick={closeModal}
         >
-          &times;
-          {/* <svg>
-            <use href="../../public/icons/icons-sprite.svg#close-icon"></use>
-          </svg> */}
+          <svg>
+            <use
+              href="../../public/icons/icons-sprite.svg#close-icon"
+              width="24px"
+              height="24px"
+            ></use>
+          </svg>
         </button>
         <h2 className={css.modalTitle}>My daily norma</h2>
         <div className={css.formulasContainer}>

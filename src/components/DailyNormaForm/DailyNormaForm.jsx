@@ -1,8 +1,28 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import css from './DailyNormaForm.module.css';
 import { useState, useEffect } from 'react';
 import FormInput from './FormInput/FormInput';
 import RadioButtons from './RadioButtons/RadioButtons';
+import * as Yup from 'yup';
+
+const DailyNormaFormSchema = Yup.object().shape({
+  gender: Yup.string()
+    .min(2, 'Too Short!')
+    .max(10, 'Too Long!')
+    .required('Required'),
+  weight: Yup.string()
+    .min(2, 'Too Short!')
+    .max(5, 'Too Long!')
+    .required('Required'),
+  time: Yup.string()
+    .min(2, 'Too Short!')
+    .max(5, 'Too Long!')
+    .required('Required'),
+  waterAmount: Yup.string()
+    .min(2, 'Too Short!')
+    .max(10, 'Too Long!')
+    .required('Required'),
+});
 
 const DailyNormaForm = () => {
   const [liters, setLiters] = useState(0);
@@ -37,6 +57,7 @@ const DailyNormaForm = () => {
           waterAmount: '0',
         }}
         onSubmit={submitData}
+        validationSchema={DailyNormaFormSchema}
       >
         {props => (
           <Form>
@@ -48,6 +69,7 @@ const DailyNormaForm = () => {
                 <label>
                   <FormInput name="weight" onChange={setWeight} {...props} />
                 </label>
+                <ErrorMessage name="weight" component="span" />
                 <p className={css.infoBox}>
                   The time of active participation in sports or other activities
                   with a high physical. Load in hours:
@@ -55,6 +77,7 @@ const DailyNormaForm = () => {
                 <label>
                   <FormInput name="time" onChange={setTime} {...props} />
                 </label>
+                <ErrorMessage name="time" component="span" />
                 <p className={css.textRequired}>
                   The required amount of water in liters per day:
                   <span className={css.waterLiters}>{liters.toFixed(1)} L</span>
@@ -65,6 +88,7 @@ const DailyNormaForm = () => {
                 <label>
                   <Field className={css.field} name="waterAmount" />
                 </label>
+                <ErrorMessage name="waterAmount" component="span" />
               </div>
             </div>
             <button className={css.submitBtn} type="submit">
