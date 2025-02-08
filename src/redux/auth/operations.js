@@ -90,7 +90,15 @@ export const apiGetCurrentUser = createAsyncThunk(
 export const apiUpdateUserProfile = createAsyncThunk(
   'user/updateProfile',
   async (formData, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+
+    if (!token) {
+      return thunkAPI.rejectWithValue('No token provided to refresh user');
+    }
+
     try {
+      setToken(token);
       const { data } = await authInstans.patch(`/user`, formData);
       return data;
     } catch (e) {
@@ -102,7 +110,15 @@ export const apiUpdateUserProfile = createAsyncThunk(
 export const apiUpdateUserPhoto = createAsyncThunk(
   'user/updateUserPhoto',
   async (urlPhoto, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+
+    if (!token) {
+      return thunkAPI.rejectWithValue('No token provided to refresh user');
+    }
+
     try {
+      setToken(token);
       const { data } = await authInstans.patch(`/user/photo`, urlPhoto);
       return data;
     } catch (e) {
