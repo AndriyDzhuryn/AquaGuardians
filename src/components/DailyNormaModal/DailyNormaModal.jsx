@@ -1,19 +1,39 @@
 import css from './DailyNormaModal.module.css';
 import DailyNormaForm from '../DailyNormaForm/DailyNormaForm';
+import { useEffect } from 'react';
 
 const DailyNormaModal = ({ closeModal }) => {
+  useEffect(() => {
+    const closeByEscape = event => {
+      if (event.code === 'Escape') {
+        closeModal();
+      }
+    };
+    window.addEventListener('keydown', closeByEscape);
+    return () => {
+      window.removeEventListener('keydown', closeByEscape);
+    };
+  }, [closeModal]);
+  const closeByBackdrop = event => {
+    if (event.target === event.currentTarget) {
+      closeModal();
+    }
+  };
   return (
-    <div className={css.modalOverley}>
+    <div className={css.modalOverley} onClick={closeByBackdrop}>
       <div className={css.modal}>
         <button
           className={css.modalCloseBtn}
           type="button"
           onClick={closeModal}
         >
-          &times;
-          {/* <svg>
-            <use href="../../public/icons/icons-sprite.svg#close-icon"></use>
-          </svg> */}
+          <svg className={css.svg}>
+            <use
+              href="../../public/icons/icons-sprite.svg#close-icon"
+              width="24px"
+              height="24px"
+            ></use>
+          </svg>
         </button>
         <h2 className={css.modalTitle}>My daily norma</h2>
         <div className={css.formulasContainer}>
