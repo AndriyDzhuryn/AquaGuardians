@@ -25,7 +25,7 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
-const authSlice = createSlice({
+const userSlice = createSlice({
   name: 'user',
   initialState: INITIAL_STATE,
   extraReducers: builder =>
@@ -53,4 +53,4 @@ const authSlice = createSlice({
       .addCase(apiUpdateUserPhoto.rejected, handleRejected),
 });
 
-export const authReducer = authSlice.reducer;
+export const userReducer = userSlice.reducer;
