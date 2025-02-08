@@ -1,0 +1,24 @@
+.appHeader {
+  max-width: 280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  /* padding: 4px 8px; */
+  /* border-bottom: 1px solid #ccc; */
+}
+
+@media (min-width: 768px) {
+  .appHeader {
+    max-width: 704px;
+    /* padding: 6px 12px; */
+  }
+}
+
+@media (min-width: 1440px) {
+  .appHeader {
+    max-width: 1216px;
+    /* padding: 10px 20px; */
+  }
+}

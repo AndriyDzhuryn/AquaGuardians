@@ -1,0 +1,59 @@
+.userLogoModal {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+  z-index: 100;
+  max-width: 118px;
+}
+
+.dropdownList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 118px;
+  list-style: none;
+  margin: 0;
+  padding: 16px;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.2);
+}
+.itemWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.dropdownItem {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #407bff;
+  cursor: pointer;
+}
+
+.setIcon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: #407bff;
+}
+.outIcon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: #407bff;
+}
+
+/* @media (min-width: 768px) {
+
+} */
+
+/* @media (min-width: 1440px) {
+
+} */

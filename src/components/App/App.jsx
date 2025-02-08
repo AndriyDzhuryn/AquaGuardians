@@ -10,6 +10,9 @@ import Layout from '../Layout/Layout.jsx';
 import { apiGetCurrentUser } from '../../redux/auth/operations.js';
 import { selectAuthIsRefreshing } from '../../redux/auth/selectors.js';
 
+//цей компонент рендерить хедер та все інше по тз
+import SharedLayout from '../SharedLayout/SharedLayout.jsx';
+
 import css from './App.module.css';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
@@ -50,28 +53,36 @@ function App() {
     <Layout>
       <Suspense>
         <Routes>
-          <Route path="/" element={<WelcomePage />} />
-          <Route
-            path="/home"
-            element={<PrivateRoute component={<HomePage />} />}
-          />
-          <Route
-            path="/signup"
-            element={
-              <RestrictedRoute
-                component={<SignUpPage />}
-                redirectTo="/signin"
-              />
-            }
-          />
-          <Route
-            path="/signin"
-            element={<RestrictedRoute component={<SignInPage />} />}
-          />
-          <Route
-            path="*"
-            element={<RestrictedRoute component={<SignInPage />} />}
-          />
+          {/* SharedLayout рендериться на маршруті "/" і обгортає вкладені сторінки */}
+          <Route path="/" element={<SharedLayout />}>
+            {/* За замовчуванням для "/" рендериться WelcomePage */}
+            <Route index element={<WelcomePage />} />
+
+            <Route
+              path="home"
+              element={<PrivateRoute component={<HomePage />} />}
+            />
+
+            <Route
+              path="signup"
+              element={
+                <RestrictedRoute
+                  component={<SignUpPage />}
+                  redirectTo="/signin"
+                />
+              }
+            />
+
+            <Route
+              path="signin"
+              element={<RestrictedRoute component={<SignInPage />} />}
+            />
+
+            <Route
+              path="*"
+              element={<RestrictedRoute component={<SignInPage />} />}
+            />
+          </Route>
         </Routes>
       </Suspense>
     </Layout>

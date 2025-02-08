@@ -1,0 +1,22 @@
+.logo {
+  max-width: 102px;
+  max-height: 48px;
+  cursor: pointer;
+}
+
+.logoImage {
+  width: auto;
+  height: auto;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+/* @media (min-width: 768px) {
+ 
+} */
+
+/* @media (min-width: 1440px) {
+
+} */
