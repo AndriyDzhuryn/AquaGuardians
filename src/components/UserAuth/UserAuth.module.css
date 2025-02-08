@@ -1,0 +1,48 @@
+.userAuthBtn {
+  padding: 0;
+  margin: 0;
+  /* border: 0; */
+  border: none;
+  background-color: #fff;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  cursor: pointer;
+}
+
+.userSpan {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.25;
+  color: #407bff;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.userIcon {
+  width: 28px;
+  height: 28px;
+  /* border-radius: 50%;
+  border-color: #2f2f2f; */
+  fill: none;
+  stroke: #2f2f2f;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.userAuthBtn:hover {
+  transform: scale(1.1);
+}
+
+@media (min-width: 768px) {
+  .userSpan {
+    font-size: 18px;
+    line-height: 1.3;
+  }
+}
+
+/* @media (min-width: 1440px) {
+  .userAuthBtn {
+  }
+} */
