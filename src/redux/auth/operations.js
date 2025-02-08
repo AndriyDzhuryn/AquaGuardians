@@ -114,11 +114,3 @@ export const apiLogOutUser = createAsyncThunk(
 //     }
 //   }
 // );
-
-export const updateUserProfile = createAsyncThunk(
-  'auth/updateProfile',
-  async (formData, thunkAPI) => {
-    try {
-    } catch (e) {}
-  }
-);
