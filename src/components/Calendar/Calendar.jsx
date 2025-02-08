@@ -22,6 +22,7 @@ const Calendar = ({ waterData }) => {
 
   const calendarRef = useRef(null);
   const dropdownRef = useRef(null);
+  const buttonRef = useRef(null);
 
   const start = startOfMonth(currentDate);
   const end = endOfMonth(currentDate);
@@ -37,9 +38,10 @@ const Calendar = ({ waterData }) => {
   useEffect(() => {
     const handleClickOutside = event => {
       if (
-        calendarRef.current &&
-        calendarRef.current.contains(event.target) &&
-        (!dropdownRef.current || !dropdownRef.current.contains(event.target))
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target)
       ) {
         setSelectedDate(null);
         setIsOpen(false);
@@ -111,6 +113,7 @@ const Calendar = ({ waterData }) => {
         {days.map(day => (
           <div key={day} className={css.wrapperDay}>
             <button
+              ref={buttonRef}
               className={clsx(
                 css.day,
                 waterData[format(day, 'yyyy-MM-dd')] < 100 && css.norm
