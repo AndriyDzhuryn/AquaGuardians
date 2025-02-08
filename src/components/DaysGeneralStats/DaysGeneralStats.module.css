@@ -1,0 +1,40 @@
+.statsWrapper {
+  position: absolute;
+  top: var(--dropdown-top);
+  left: var(--dropdown-left);
+  background: var(--Primery-Color-White);
+  border-radius: 10px;
+  z-index: 10;
+  border-radius: 10px;
+  padding: 24px 13px;
+  width: 280px;
+  height: 188px;
+  box-shadow: 0 4px 4px 0 rgba(64, 123, 255, 0.3);
+}
+
+.dateMonth {
+  color: var(--Primery-Color-Blue);
+  margin-bottom: 16px;
+}
+
+.dailyNorma {
+  color: var(--Primery-Color-Black);
+}
+
+.dailyNorma:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.result {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+  color: var(--Primery-Color-Blue);
+}
+
+@media only screen and (min-width: 768px) {
+  .statsWrapper {
+    padding: 24px 16px;
+    width: 292px;
+  }
+}

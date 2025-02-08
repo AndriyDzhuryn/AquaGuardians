@@ -1,0 +1,252 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  display: flex;
+  padding: 32px 12px;
+  flex-direction: column;
+  border-radius: 10px;
+ 
+  background: var(--Primery-Color-White);
+}
+
+
+.error {
+  color: var(--Secondary-color-3);
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.settings {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+.close {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  margin: auto;
+}
+
+.icon {
+  stroke: var(--Primery-Color-Black);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.titlePhoto {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.upload {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 222px;
+  margin-bottom: 24px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.labelPhoto {
+  color: var(--Primery-Color-Blue);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.iconupload {
+  stroke: var(--Primery-Color-Blue);
+  fill: none;
+  margin-right: 8px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.gender {
+    font-size: 18px;
+    font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.radioGroup {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.radio {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.label{
+  margin-bottom: 8px;
+}
+.inputBlock {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.passwordtitle{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+.password {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.inputpass {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.wrapper {
+  position: relative;
+}
+.eyes{
+  fill: none;
+  stroke: var(--Primery-Color-Blue);
+}
+
+.input {
+  min-width: 256px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--Primery-Color-Blue);
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--Secondary-color-5);
+  padding: 12px 10px;
+  outline: none;
+}
+.inputerror {
+  width: 100%;
+    border-radius: 6px;
+  font-size: 16px;
+    font-weight: 400;
+    padding: 12px 10px;
+      outline: none;
+    line-height: 20px;
+  border: 1px solid var(--Secondary-color-3);
+  color: var(--Secondary-color-3);
+}
+
+.input::placeholder {
+  color: var(--Secondary-color-4);
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.submitButton {
+  display: flex;
+  padding: 8px 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  border-radius: 10px;
+  background: var(--Primery-Color-Blue);
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  outline: none;
+  cursor: pointer;
+  color: var(--Primery-Color-White);
+  text-align: center;
+  font-weight: 500;
+}
+@media only screen and (min-width: 768px) {
+  .modalContent{
+    padding: 32px 24px;
+  }
+   .submitButton{
+      width: 160px;
+      padding: 10px 30px;
+      margin-left: auto;
+   }
+   .info{
+    margin-right: 288px;
+   }
+   .password{
+    margin-right: 288px;
+   }
+   .input{
+    min-width: 392px;
+   }
+}
+
+@media only screen and (min-width: 1440px){
+  .info{
+    margin-right: 24px;
+  }
+  .password{
+    margin-right: 176px;
+  }
+  .radioGroup{
+    margin-bottom:52px;
+  }
+  .container{
+    display: flex;
+  }
+}

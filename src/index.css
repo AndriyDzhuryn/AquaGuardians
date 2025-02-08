@@ -1,28 +1,25 @@
 @font-face {
-  font-family: "Roboto";
-  src:
-    url(./fonts/Roboto-Regular.woff2) format("woff2"),
-    url(./fonts/Roboto-Regular.woff) format("woff");
+  font-family: 'Roboto';
+  src: url(./fonts/Roboto-Regular.woff2) format('woff2'),
+    url(./fonts/Roboto-Regular.woff) format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Roboto";
-  src:
-    url(./fonts/Roboto-Medium.woff2) format("woff2"),
-    url(./fonts/Roboto-Medium.woff) format("woff");
+  font-family: 'Roboto';
+  src: url(./fonts/Roboto-Medium.woff2) format('woff2'),
+    url(./fonts/Roboto-Medium.woff) format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Roboto";
-  src:
-    url(./fonts/Roboto-Bold.woff2) format("woff2"),
-    url(./fonts/Roboto-Bold.woff) format("woff");
+  font-family: 'Roboto';
+  src: url(./fonts/Roboto-Bold.woff2) format('woff2'),
+    url(./fonts/Roboto-Bold.woff) format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -46,7 +43,7 @@ body {
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px; /* 125% */
+  line-height: 1.25; /* 125% */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

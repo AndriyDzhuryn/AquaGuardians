@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import clsx from 'clsx';
+
+import WaterItems from '../WaterItems/WaterItems.jsx';
+import Calendar from '../Calendar/Calendar.jsx';
 
 import css from './WaterTracker.module.css';
-import WaterItems from '../WaterItems/WaterItems';
-import Calendar from '../Calendar/Calendar';
-import clsx from 'clsx';
 
 const WaterTracker = () => {
   const [waterList, setWaterList] = useState([
@@ -19,18 +20,20 @@ const WaterTracker = () => {
   ]);
 
   const waterData = {
-    '2025-01-01': 100,
-    '2025-01-02': 100,
-    '2025-01-03': 100,
-    '2025-01-04': 100,
-    '2025-01-05': 100,
-    '2025-01-06': 100,
-    '2025-01-07': 100,
-    '2025-01-08': 100,
-    '2025-01-09': 100,
-    '2025-01-10': 100,
-    '2025-01-11': 100,
-    '2025-01-17': 50,
+    '2025-01-01': { norm: 1.5, progress: 60, servings: 6 },
+    '2025-01-02': { norm: 2.0, progress: 80, servings: 8 },
+    '2025-01-03': { norm: 1.5, progress: 100, servings: 5 },
+    '2025-01-04': { norm: 1.5, progress: 70, servings: 4 },
+    '2025-01-05': { norm: 1.5, progress: 60, servings: 6 },
+    '2025-01-06': { norm: 1.5, progress: 100, servings: 4 },
+    '2025-01-07': { norm: 1.5, progress: 60, servings: 6 },
+    '2025-01-08': { norm: 1.5, progress: 70, servings: 5 },
+    '2025-01-09': { norm: 1.5, progress: 60, servings: 6 },
+    '2025-01-10': { norm: 1.5, progress: 100, servings: 6 },
+    '2025-01-11': { norm: 1.5, progress: 60, servings: 5 },
+    '2025-01-17': { norm: 1.5, progress: 70, servings: 6 },
+    '2025-01-19': { norm: 1.5, progress: 100, servings: 4 },
+    '2025-01-20': { norm: 1.5, progress: 60, servings: 6 },
   };
 
   return (

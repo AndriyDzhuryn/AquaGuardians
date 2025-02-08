@@ -1,9 +1,11 @@
-import css from './WaterItems.module.css';
-import AppModal from '../AppModal/AppModal.jsx';
 import { useState } from 'react';
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
 import { useDispatch } from 'react-redux';
+import iziToast from 'izitoast';
+
+import AppModal from '../AppModal/AppModal.jsx';
+
+import css from './WaterItems.module.css';
+import 'izitoast/dist/css/iziToast.min.css';
 
 const WaterItems = ({ amount, time, id }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);

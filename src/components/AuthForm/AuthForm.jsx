@@ -10,14 +10,26 @@ import { apiSignInUser, apiSignUpUser } from '../../redux/auth/operations';
 
 import css from './AuthForm.module.css';
 
-const signUpNotify = () =>
+const signUpError = () =>
   toast.error('User with this email already exist', {
     duration: 3000,
     position: 'top-right',
   });
 
-const signInNotify = () =>
+const signInError = () =>
   toast.error('The wrong email or pasword', {
+    duration: 3000,
+    position: 'top-right',
+  });
+
+const signUpSuccess = () =>
+  toast.success('Successfully registered user!', {
+    duration: 3000,
+    position: 'top-right',
+  });
+
+const signInSuccess = () =>
+  toast.success('Successfully logged user!', {
     duration: 3000,
     position: 'top-right',
   });
@@ -58,33 +70,34 @@ const AuthForm = ({ type }) => {
       : Yup.string().notRequired(), // Здесь важно добавить notRequired() для SignIn
   });
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = values => {
     if (isSignUp) {
       const { repeatePassword, ...userData } = values;
-      const arr = { ...userData, name: 'Kostia' };
-      dispatch(apiSignUpUser(arr))
+      console.log(userData);
+      dispatch(apiSignUpUser(userData))
         .unwrap()
         .then(() => {
+          signUpSuccess();
           navigate('/signin', { replace: true });
         })
         .catch(error => {
-          if (error === 'Request failed with status code 400') {
-            signUpNotify();
+          if (error === 'Request failed with status code 409') {
+            signUpError();
           }
         });
     } else {
       dispatch(apiSignInUser(values))
         .unwrap()
         .then(() => {
+          signInSuccess();
           navigate('/home');
         })
         .catch(error => {
-          if (error === 'Request failed with status code 400') {
-            signInNotify();
+          if (error) {
+            signInError();
           }
         });
     }
-    actions.resetForm();
   };
 
   return (
