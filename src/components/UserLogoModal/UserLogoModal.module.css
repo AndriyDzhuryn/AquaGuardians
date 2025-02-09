@@ -37,23 +37,10 @@
   cursor: pointer;
 }
 
-.setIcon {
-  width: 16px;
-  height: 16px;
-  fill: none;
-  stroke: #407bff;
-}
+.setIcon,
 .outIcon {
   width: 16px;
   height: 16px;
   fill: none;
   stroke: #407bff;
 }
-
-/* @media (min-width: 768px) {
-
-} */
-
-/* @media (min-width: 1440px) {
-
-} */

@@ -5,11 +5,11 @@ import UserLogo from '../UserLogo/UserLogo.jsx';
 import css from './Header.module.css';
 import { selectAuthIsLoggedIn } from '../../redux/auth/selectors.js';
 
-const user = {
-  name: '',
-  email: 'david@gmail.com',
-  avatar: '../../../public/logo.svg',
-};
+// const user = {
+//   name: '',
+//   email: 'david@gmail.com',
+//   avatar: '../../../public/logo.svg',
+// };
 
 const Header = () => {
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <header className={css.appHeader}>
       <Logo />
-      {isLoggedIn ? <UserLogo user={user} /> : <UserAuth />}
+      {isLoggedIn ? <UserLogo /> : <UserAuth />}
     </header>
   );
 };
