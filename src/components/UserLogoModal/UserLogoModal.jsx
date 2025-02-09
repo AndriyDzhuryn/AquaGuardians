@@ -45,7 +45,7 @@ const UserLogoModal = ({ onClose }) => {
       <ul className={css.dropdownList}>
         <div className={css.itemWrapper}>
           <svg className={css.setIcon}>
-            <use href="icons-sprite.svg#cog-tooth"></use>
+            <use href="/icons/icons-sprite.svg#cog-tooth"></use>
           </svg>
           <li onClick={handleSettingClick} className={css.dropdownItem}>
             Setting
@@ -53,7 +53,7 @@ const UserLogoModal = ({ onClose }) => {
         </div>
         <div className={css.itemWrapper}>
           <svg className={css.outIcon}>
-            <use href="icons-sprite.svg#arrow-right-on-rectangle"></use>
+            <use href="/icons/icons-sprite.svg#arrow-right-on-rectangle"></use>
           </svg>
           <li onClick={handleLogoutClick} className={css.dropdownItem}>
             Logout

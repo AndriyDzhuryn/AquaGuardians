@@ -8,7 +8,7 @@ const Logo = () => {
 
   const handleLogoClick = () => {
     if (isLoggedIn) {
-      navigate('/home');
+      navigate('/');
     } else {
       navigate('/welcome');
     }

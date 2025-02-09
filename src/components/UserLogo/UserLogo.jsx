@@ -12,7 +12,7 @@ const UserLogo = () => {
   const user = {
     name: 'David',
     email: 'david@gmail.com',
-    avatar: '../../../public/avatar.png',
+    avatar: '/avatar.png',
   };
 
   const toggleModal = () => {
