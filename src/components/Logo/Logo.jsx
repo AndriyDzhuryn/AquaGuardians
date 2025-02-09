@@ -16,11 +16,7 @@ const Logo = () => {
 
   return (
     <div className={css.logo} onClick={handleLogoClick}>
-      <img
-        src="../../../public/logo/logo.png"
-        alt="Logo"
-        className={css.logoImage}
-      />
+      <img src="/logo/logo.png" alt="Logo" className={css.logoImage} />
     </div>
   );
 };
