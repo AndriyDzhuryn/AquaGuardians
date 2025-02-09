@@ -84,6 +84,10 @@
   line-height: 1.25;
 }
 
+.input[type='time']::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+
 .formBottom {
   display: flex;
   flex-direction: column;

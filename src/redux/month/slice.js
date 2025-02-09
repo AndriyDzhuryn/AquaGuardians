@@ -9,13 +9,13 @@ const INITIAL_STATE = {
 };
 
 const handlePending = state => {
-  state.month.isLoading = true;
-  state.month.error = null;
+  state.isLoading = true;
+  state.error = null;
 };
 
 const handleRejected = (state, action) => {
-  state.month.isLoading = false;
-  state.month.error = action.payload;
+  state.isLoading = false;
+  state.error = action.payload;
 };
 
 const waterMonthSlice = createSlice({
@@ -25,8 +25,8 @@ const waterMonthSlice = createSlice({
     builder
       .addCase(apiGetMonthWater.pending, handlePending)
       .addCase(apiGetMonthWater.fulfilled, (state, action) => {
-        state.month.isLoading = false;
-        state.month.waterMonthData = action.payload;
+        state.isLoading = false;
+        state.waterMonthData = action.payload.data;
       })
       .addCase(apiGetMonthWater.rejected, handleRejected),
 });
