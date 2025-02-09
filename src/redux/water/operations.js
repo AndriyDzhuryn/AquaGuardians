@@ -26,3 +26,15 @@ export const addWater = createAsyncThunk(
     }
   }
 );
+
+export const deleteWater = createAsyncThunk(
+  'water/deleteWater',
+  async (id, thunkApi) => {
+    try {
+      await axios.delete(`/water/${id}`);
+      return id;
+    } catch (e) {
+      return thunkApi.rejectWithValue(e.message);
+    }
+  }
+);
