@@ -1,5 +1,5 @@
 import Modal from 'react-modal';
-import css from '../AppModal/AppModal.module.css';
+import css from '../UserLogoutModal/UserLogoutModal.module.css';
 import { apiLogOutUser } from '../../redux/auth/operations.js';
 import { useDispatch } from 'react-redux';
 import iziToast from 'izitoast';
@@ -12,12 +12,12 @@ const UserLogoutModal = ({ onClose }) => {
     e.preventDefault();
     e.stopPropagation();
     console.log(1);
-    // try {
-    //   dispatch(apiLogOutUser());
-    //   iziToast.success({ message: 'Logged out successfully' });
-    // } catch (error) {
-    //   iziToast.error({ message: `Logout failed: ${error}` });
-    // }
+    try {
+      dispatch(apiLogOutUser());
+      iziToast.success({ message: 'Logged out successfully' });
+    } catch (error) {
+      iziToast.error({ message: `Logout failed: ${error}` });
+    }
   };
 
   return (
