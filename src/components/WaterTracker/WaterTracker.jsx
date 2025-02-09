@@ -54,7 +54,7 @@ const WaterTracker = () => {
       </ul>
       <button className={css.btnAddWater}>
         <svg className={css.plus}>
-          <use href="../../../public/icons/icons-sprite.svg#plus-small"></use>
+          <use href="/public/icons/icons-sprite.svg#plus-small"></use>
         </svg>
         Add water
       </button>
