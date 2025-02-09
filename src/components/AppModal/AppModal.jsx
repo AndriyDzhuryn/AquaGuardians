@@ -1,43 +1,42 @@
 import Modal from 'react-modal';
 import css from './AppModal.module.css';
+import 'izitoast/dist/css/iziToast.min.css';
+import { deleteWater } from '../../redux/water/operations.js';
+import { useDispatch } from 'react-redux';
 
 Modal.setAppElement('#root');
 
-const AppModal = ({
-  setIsOpen,
-  modalIsOpen,
-  handleAccept,
-  title,
-  description,
-  acceptButton,
-}) => {
-  const closeModal = () => setIsOpen(false);
-
+const AppModal = ({ id, onClose }) => {
+  const dispatch = useDispatch();
+  const handleDelete = () => {
+    dispatch(deleteWater(id));
+    onClose();
+  };
   return (
     <Modal
       overlayClassName={css.modalOverlay}
       className={css.modal}
-      isOpen={modalIsOpen}
-      onRequestClose={closeModal}
+      isOpen={true}
+      onRequestClose={onClose}
       contentLabel="Example Modal"
     >
       <div className={css.wrapper}>
         <div className={css.text}>
-          <h3>{title}</h3>
-          <p>{description}</p>
+          <h3>Delete entry</h3>
+          <p>Are you sure you want to delete the entry?</p>
         </div>
-        <button type="button" onClick={closeModal}>
+        <button type="button" onClick={onClose}>
           <svg width="24" height="24">
             <use href="../../../public/icons/icons-sprite.svg#close-icon"></use>
           </svg>
         </button>
       </div>
       <div className={css.control}>
-        <button className={css.btnCancel} type="button" onClick={closeModal}>
+        <button className={css.btnCancel} type="button" onClick={onClose}>
           Cancel
         </button>
-        <button className={css.btnDelete} type="button" onClick={handleAccept}>
-          {acceptButton}
+        <button className={css.btnDelete} type="button" onClick={handleDelete}>
+          Delete
         </button>
       </div>
     </Modal>
