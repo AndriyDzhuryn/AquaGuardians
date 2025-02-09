@@ -94,7 +94,7 @@ const Calendar = ({ waterData }) => {
             className={css.btnSwitchMonth}
           >
             <svg className={css.switchMonth}>
-              <use href="../../../icons/icons-sprite.svg#chevron-left"></use>
+              <use href="/icons/icons-sprite.svg#chevron-left"></use>
             </svg>
           </button>
           <p className={css.monthName}>{format(currentDate, 'MMMM yyyy')}</p>
@@ -103,7 +103,7 @@ const Calendar = ({ waterData }) => {
             className={css.btnSwitchMonth}
           >
             <svg className={css.switchMonth}>
-              <use href="../../../icons/icons-sprite.svg#chevron-right"></use>
+              <use href="/icons/icons-sprite.svg#chevron-right"></use>
             </svg>
           </button>
         </div>
