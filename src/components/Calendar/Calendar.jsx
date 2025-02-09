@@ -8,12 +8,20 @@ import {
   addMonths,
 } from 'date-fns';
 import clsx from 'clsx';
+import { useDispatch, useSelector } from 'react-redux';
 
 import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats.jsx';
 
+import { apiGetMonthWater } from '../../redux/month/operations.js';
+import { selectMonthUserData } from '../../redux/month/selectors.js';
+
 import css from './Calendar.module.css';
 
-const Calendar = ({ waterData }) => {
+const Calendar = () => {
+  const monthData = useSelector(selectMonthUserData);
+
+  const dispatch = useDispatch();
+
   const [isOpen, setIsOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
@@ -27,13 +35,17 @@ const Calendar = ({ waterData }) => {
   const start = startOfMonth(currentDate);
   const end = endOfMonth(currentDate);
   const days = eachDayOfInterval({ start, end });
+  const month = start.toLocaleDateString('en-US', { month: 'numeric' });
+  const year = start.toLocaleDateString('en-US', { year: 'numeric' });
 
   useEffect(() => {
+    dispatch(apiGetMonthWater({ month, year }));
+
     const handleResize = () => setWindowWidth(window.innerWidth);
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [dispatch, month, year]);
 
   useEffect(() => {
     const handleClickOutside = event => {
@@ -110,36 +122,39 @@ const Calendar = ({ waterData }) => {
       </div>
 
       <div className={css.wrapperDays}>
-        {days.map(day => (
-          <div key={day} className={css.wrapperDay}>
-            <button
-              ref={buttonRef}
-              className={clsx(
-                css.day,
-                waterData[format(day, 'yyyy-MM-dd')] < 100 && css.norm
-              )}
-              onClick={event => handleDayClick(event, day)}
-            >
-              {format(day, 'd')}
-            </button>
-            <span className={css.textProgress}>
-              {waterData[format(day, 'yyyy-MM-dd')]?.progress || 0}%
-            </span>
-          </div>
-        ))}
+        {Array.isArray(monthData) &&
+          days.map(day => (
+            <div key={day} className={css.wrapperDay}>
+              <button
+                ref={buttonRef}
+                className={clsx(
+                  css.day,
+                  monthData[format(day, 'yyyy-MM-dd')] < 100 && css.norm
+                )}
+                onClick={event => handleDayClick(event, day)}
+              >
+                {format(day, 'd')}
+              </button>
+              <span className={css.textProgress}>
+                {monthData[format(day, 'yyyy-MM-dd')]?.percentage || 0}%
+              </span>
+            </div>
+          ))}
         <div ref={dropdownRef}>
-          <DaysGeneralStats
-            position={menuPosition}
-            isOpen={isOpen}
-            date={selectedDate}
-            waterData={
-              waterData[format(selectedDate, 'yyyy-MM-dd')] || {
-                norm: 0,
-                progress: 0,
-                servings: 0,
+          {Array.isArray(monthData) && (
+            <DaysGeneralStats
+              position={menuPosition}
+              isOpen={isOpen}
+              date={selectedDate}
+              monthData={
+                monthData[format(selectedDate, 'yyyy-MM-dd')] || {
+                  dailyWaterNorm: 0,
+                  percentage: 0,
+                  consumptionCount: 0,
+                }
               }
-            }
-          />
+            />
+          )}
         </div>
       </div>
     </div>
