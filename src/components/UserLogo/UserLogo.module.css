@@ -49,6 +49,7 @@
   line-height: 1.25;
 }
 .arrowIcon {
+  margin-left: 4px;
   width: 16px;
   height: 16px;
   fill: none;
