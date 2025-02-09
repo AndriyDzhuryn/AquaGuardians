@@ -30,7 +30,7 @@ const WaterItems = ({ amount, time, id }) => {
     <div className={css.wrapperWaterConsumedItem}>
       <div className={css.glassWaterWrapper}>
         <svg className={css.glassOfWater}>
-          <use href="/public/icons/icons-sprite.svg#glass-of-water"></use>
+          <use href="/icons/icons-sprite.svg#glass-of-water"></use>
         </svg>
         <div>
           <span className={css.amountWater}>{amount} мл</span>
@@ -41,7 +41,7 @@ const WaterItems = ({ amount, time, id }) => {
       <div>
         <button className={css.btnWater}>
           <svg className={css.editWaterItem}>
-            <use href="/public/icons/icons-sprite.svg#pensil-aquare"></use>
+            <use href="/icons/icons-sprite.svg#pensil-aquare"></use>
           </svg>
         </button>
         <button
@@ -51,7 +51,7 @@ const WaterItems = ({ amount, time, id }) => {
           }}
         >
           <svg className={css.trash}>
-            <use href="/public/icons/icons-sprite.svg#trash"></use>
+            <use href="/icons/icons-sprite.svg#trash"></use>
           </svg>
         </button>
         <AppModal
