@@ -1,11 +1,13 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import css from './DailyNormaForm.module.css';
 import { useState, useEffect } from 'react';
-import FormInput from './FormInput/FormInput';
-import RadioButtons from './RadioButtons/RadioButtons';
-import * as Yup from 'yup';
-import { updateWaterRate } from '../../redux/waterRate/operations';
 import { useDispatch } from 'react-redux';
+import * as Yup from 'yup';
+
+import FormInput from './FormInput/FormInput.jsx';
+import RadioButtons from './RadioButtons/RadioButtons.jsx';
+import { updateWaterRate } from '../../redux/waterRate/operations.js';
+
+import css from './DailyNormaForm.module.css';
 
 const dailyNormaFormSchema = Yup.object().shape({
   waterAmount: Yup.string()
@@ -13,7 +15,7 @@ const dailyNormaFormSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const DailyNormaForm = () => {
+const DailyNormaForm = ({ closeModal }) => {
   const [liters, setLiters] = useState(0);
   const [gender, setGender] = useState('female');
   const [weight, setWeight] = useState('0');
@@ -40,6 +42,7 @@ const DailyNormaForm = () => {
         waterRate: Number.parseFloat(values.waterAmount) * 1000,
       })
     );
+    closeModal();
   };
 
   return (
