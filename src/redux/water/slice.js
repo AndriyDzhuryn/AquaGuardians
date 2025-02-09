@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { addWater } from './operations';
+import { addWater, deleteWater } from './operations';
 
 const handlePending = state => {
   state.loading = true;
@@ -27,7 +27,13 @@ const waterSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.items.push(action.payload);
-      });
+      })
+      .addCase(deleteWater.pending, handlePending)
+      .addCase(deleteWater.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = state.items.filter(e => e.id !== action.payload);
+      })
+      .addCase(deleteWater.rejected, handleRejected);
   },
 });
 

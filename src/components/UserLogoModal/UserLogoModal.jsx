@@ -55,7 +55,12 @@ const UserLogoModal = ({ onClose }) => {
           <svg className={css.outIcon}>
             <use href="icons-sprite.svg#arrow-right-on-rectangle"></use>
           </svg>
-          <li onClick={handleLogoutClick} className={css.dropdownItem}>
+          <li
+            onClick={() => {
+              setShowLogoutModal(true);
+            }}
+            className={css.dropdownItem}
+          >
             Logout
           </li>
         </div>

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export const authInstans = axios.create({
   baseURL: 'https://aqua-mind.onrender.com',
@@ -42,7 +43,6 @@ export const apiSignInUser = createAsyncThunk(
     }
   }
 );
-
 export const apiLogOutUser = createAsyncThunk(
   'auth/logoutUser',
   async (_, thunkApi) => {
@@ -57,6 +57,30 @@ export const apiLogOutUser = createAsyncThunk(
     }
   }
 );
+// export const apiLogOutUser = createAsyncThunk(
+//   'auth/logoutUser',
+//   async (_, thunkApi) => {
+//     try {
+//       const sessionId = Cookies.get('sessionId');
+
+//       const { data } = await authInstans.post(
+//         'auth/logout',
+//         { sessionId },
+//         {
+//           headers: {
+//             'Content-Type': 'application/json',
+//           },
+//         }
+//       );
+//       console.log(data);
+//       clearToken();
+//       return data;
+//     } catch (error) {
+//       console.log(error.message);
+//       return thunkApi.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const apiGetCurrentUser = createAsyncThunk(
   'auth/getCurrentUser',
