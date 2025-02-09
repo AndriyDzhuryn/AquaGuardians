@@ -37,6 +37,13 @@ const customStyles = {
   },
 };
 
+function getTodayDateWithTime(time) {
+  const parts = time.split(':');
+  var date = new Date();
+  date.setHours(parts[0], parts[1], 0, 0);
+  return date.toISOString().slice(0, 16);
+}
+
 export default function AddWaterModal({ isOpen, onClose }) {
   const timeFieldId = useId();
   const volumeFieldId = useId();
@@ -54,8 +61,8 @@ export default function AddWaterModal({ isOpen, onClose }) {
   };
 
   const handleSubmit = (values, actions) => {
-    onAddWater(values);
-    // додати переведення часу в дату
+    const date = getTodayDateWithTime(values.time);
+    onAddWater(values, date);
     actions.resetForm();
     onClose();
   };
@@ -137,10 +144,11 @@ export default function AddWaterModal({ isOpen, onClose }) {
           <div className={css.formField}>
             <label htmlFor={timeFieldId}>Recording time:</label>
             <Field
-              type="time"
               name="time"
               id="timeFieldId"
               className={css.input}
+              type="time"
+              placeholder="HH:MM"
             />
             <ErrorMessage name="time" component="span" className={css.error} />
           </div>
