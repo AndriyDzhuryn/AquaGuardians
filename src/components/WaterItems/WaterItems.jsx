@@ -3,12 +3,14 @@ import { useDispatch } from 'react-redux';
 import iziToast from 'izitoast';
 
 import AppModal from '../AppModal/AppModal.jsx';
+import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 
 import css from './WaterItems.module.css';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const WaterItems = ({ amount, time, id }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const dispatch = useDispatch();
 
   const handleDelete = async () => {
@@ -39,7 +41,10 @@ const WaterItems = ({ amount, time, id }) => {
       </div>
 
       <div>
-        <button className={css.btnWater}>
+        <button
+          className={css.btnWater}
+          onClick={() => setEditModalIsOpen(true)}
+        >
           <svg className={css.editWaterItem}>
             <use href="../../../public/icons/icons-sprite.svg#pensil-aquare"></use>
           </svg>
@@ -61,6 +66,11 @@ const WaterItems = ({ amount, time, id }) => {
           title="Delete entry"
           description="Are you sure you want to delete the entry?"
           acceptButton="Delete"
+        />
+        <AddWaterModal
+          isOpen={editModalIsOpen}
+          onClose={() => setEditModalIsOpen(false)}
+          editData={{ id, amount, time }}
         />
       </div>
     </div>

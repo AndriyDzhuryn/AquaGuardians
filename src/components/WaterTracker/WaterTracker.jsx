@@ -5,6 +5,7 @@ import WaterItems from '../WaterItems/WaterItems.jsx';
 import Calendar from '../Calendar/Calendar.jsx';
 
 import css from './WaterTracker.module.css';
+import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 
 const WaterTracker = () => {
   const [waterList, setWaterList] = useState([
@@ -36,6 +37,10 @@ const WaterTracker = () => {
     '2025-01-20': { norm: 1.5, progress: 60, servings: 6 },
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <div className={css.waterTrackerWrapper}>
       <h2 className={css.title}>Today</h2>
@@ -52,7 +57,7 @@ const WaterTracker = () => {
           </li>
         ))}
       </ul>
-      <button className={css.btnAddWater}>
+      <button className={css.btnAddWater} onClick={openModal}>
         <svg className={css.plus}>
           <use href="../../../public/icons/icons-sprite.svg#plus-small"></use>
         </svg>
@@ -60,6 +65,7 @@ const WaterTracker = () => {
       </button>
 
       <Calendar waterData={waterData} />
+      <AddWaterModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };
