@@ -1,53 +1,100 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import Modal from 'react-modal'; 
 import css from './UserLogoModal.module.css';
 import SettingModal from '../Settings/SettingModal';
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
 
 const UserLogoModal = () => {
+
+
+
+
+
   const [showSettingModal, setShowSettingModal] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
-
+  const [dropdownVisible, setDropdownVisible] = useState(true);
   const dropdownRef = useRef(null);
 
+
+
   const handleSettingClick = () => {
+    setDropdownVisible(false);
     setShowSettingModal(true);
   };
 
   const handleLogoutClick = () => {
+    setDropdownVisible(false);
     setShowLogoutModal(true);
   };
 
-  const closeSettingModal = () => {
+  const closeModal = () => {
+    setDropdownVisible(false);
     setShowSettingModal(false);
+    setShowLogoutModal(false);
+    console.log(dropdownVisible);
+    console.log(showSettingModal);
+    console.log(showLogoutModal);
   };
 
-  const closeLogoutModal = () => {
-    setShowLogoutModal(false);
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownVisible(false);
+    }
   };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={css.userLogoModal} ref={dropdownRef}>
-      <ul className={css.dropdownList}>
-        <li onClick={handleSettingClick} className={css.dropdownItem}>
-          <div className={css.itemWrapper}>
-            <svg className={css.setIcon}>
-              <use href="/icons/icons-sprite.svg#cog-tooth"></use>
-            </svg>
-            <span>Setting</span>
-          </div>
-        </li>
-        <li onClick={handleLogoutClick} className={css.dropdownItem}>
-          <div className={css.itemWrapper}>
-            <svg className={css.outIcon}>
-              <use href="/icons/icons-sprite.svg#arrow-right-on-rectangle"></use>
-            </svg>
-            <span>Logout</span>
-          </div>
-        </li>
-      </ul>
+      {dropdownVisible && (
+        <ul className={css.dropdownList}>
+          <li className={css.dropdownItem}>
+            <div className={css.itemWrapper}>
+              <button onClick={handleSettingClick} type="button" className={css.button}>
+                <svg className={css.setIcon}>
+                  <use href="/icons/icons-sprite.svg#cog-tooth"></use>
+                </svg>
+                Setting
+              </button>
+            </div>
+          </li>
+          <li className={css.dropdownItem}>
+            <div className={css.itemWrapper}>
+              <button onClick={handleLogoutClick} type="button" className={css.button}>
+                <svg className={css.outIcon}>
+                  <use href="/icons/icons-sprite.svg#arrow-right-on-rectangle"></use>
+                </svg>
+                Logout
+              </button>
+            </div>
+          </li>
+        </ul>
+      )}
 
-      {showSettingModal && <SettingModal onClose={closeSettingModal} />}
-      {showLogoutModal && <UserLogoutModal onClose={closeLogoutModal} />}
+      <Modal
+        isOpen={showSettingModal}
+        onRequestClose={closeModal}
+        contentLabel="Setting Modal"
+        className={css.modal}
+        overlayClassName={css.overlay}
+      >
+        <SettingModal onClose={closeModal} />
+      </Modal>
+
+      <Modal
+        isOpen={showLogoutModal}
+        onRequestClose={closeModal}
+        contentLabel="Logout Modal"
+        className={css.modal}
+        overlayClassName={css.overlay}
+      >
+        <UserLogoutModal onClose={closeModal} />
+      </Modal>
     </div>
   );
 };
