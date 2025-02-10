@@ -59,11 +59,11 @@ const authSlice = createSlice({
       .addCase(apiLogOutUser.rejected, handleRejected)
 
       .addCase(apiGetCurrentUser.pending, state => {
-        state.isRefreshing = true;
+    
         state.error = null;
       })
       .addCase(apiGetCurrentUser.fulfilled, (state, action) => {
-        state.isRefreshing = false;
+    
         state.isLoggedIn = true;
         state.userData = action.payload.data;
       })
@@ -82,7 +82,7 @@ const authSlice = createSlice({
       .addCase(apiUpdateUserPhoto.pending, handlePending)
       .addCase(apiUpdateUserPhoto.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.userData = action.payload;
+        state.userData.photo = action.payload.data.photo;
       })
       .addCase(apiUpdateUserPhoto.rejected, handleRejected),
 
