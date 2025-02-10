@@ -31,9 +31,6 @@ const UserLogoModal = () => {
     setDropdownVisible(false);
     setShowSettingModal(false);
     setShowLogoutModal(false);
-    console.log(dropdownVisible);
-    console.log(showSettingModal);
-    console.log(showLogoutModal);
   };
 
   const handleClickOutside = (event) => {
