@@ -6,19 +6,20 @@ import WaterItems from '../WaterItems/WaterItems.jsx';
 import Calendar from '../Calendar/Calendar.jsx';
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 
-import { getWater } from '../../redux/water/operations.js';
-import { selectWater } from '../../redux/water/selectors.js';
+import { selectTodayUserData } from '../../redux/today/selectors.js';
+import { apiGetTodayWater } from '../../redux/today/operations.js';
 
 import css from './WaterTracker.module.css';
 
 const WaterTracker = () => {
   const dispatch = useDispatch();
 
-  const waterList = useSelector(selectWater);
-
   useEffect(() => {
-    dispatch(getWater());
+    dispatch(apiGetTodayWater());
   }, [dispatch]);
+
+  const waterToday = useSelector(selectTodayUserData);
+  const waterList = waterToday.records;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
