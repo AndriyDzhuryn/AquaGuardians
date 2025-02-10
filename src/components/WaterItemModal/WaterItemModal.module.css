@@ -36,54 +36,6 @@
   stroke: var(--Primery-Color-Blue);
 }
 
-.btnWater {
-  padding: 0;
-  border: none;
-  background-color: transparent;
-}
-
-.btnWater:not(:last-child) {
-  margin-right: 18px;
-}
-
-.btnWater:last-child {
-  margin-right: 6px;
-}
-
-.btnWater:not(:last-child):hover::after {
-  content: '';
-  position: absolute;
-  border: 1px solid var(--Secondary-color-4);
-  width: 18px;
-  height: 0px;
-  transform: translateY(20px);
-  margin-left: -18px;
-}
-
-.btnWater:last-child:hover::after {
-  content: '';
-  position: absolute;
-  border: 1px solid var(--Secondary-color-3);
-  width: 18px;
-  height: 0px;
-  transform: translateY(20px);
-  margin-left: -17px;
-}
-
-.editWaterItem {
-  width: 16px;
-  height: 16px;
-  fill: none;
-  stroke: var(--Primery-Color-Blue);
-}
-
-.trash {
-  width: 16px;
-  height: 16px;
-  stroke: var(--Secondary-color-3);
-  fill: none;
-}
-
 @media only screen and (min-width: 768px) {
   .amountWater {
     margin-right: 16px;
