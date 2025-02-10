@@ -1,11 +1,12 @@
 import { useId, useRef, useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik';
 import { useDispatch } from 'react-redux';
-import { addWater, updateWater } from '../../redux/water/operations';
+import { addWater, updateWater } from '../../redux/water/operations.js';
 import * as Yup from 'yup';
 import Modal from 'react-modal';
 import css from './AddWaterModal.module.css';
-import WaterItemModal from '../WaterItemModal/WaterItemModal';
+import WaterItemModal from '../WaterItemModal/WaterItemModal.jsx';
+import { apiGetTodayWater } from '../../redux/today/operations.js';
 
 Modal.setAppElement('#root');
 
@@ -41,9 +42,7 @@ const customStyles = {
   },
 };
 
-
 export default function AddWaterModal({ isOpen, onClose, editData }) {
-
   const timeFieldId = useId();
   const volumeFieldId = useId();
   const formikRef = useRef(null);
@@ -64,16 +63,24 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
     return date.split('T')[1].substring(0, 5);
   };
 
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+  };
+
   useEffect(() => {
-    if (editData) {
+    if (!editData) {
+      const currentTime = getCurrentTime();
       setInitialValues({
-        date: extractTimeFromDate(editData.date),
-        volume: editData.amount || 0,
+        date: currentTime,
+        volume: 0,
       });
     } else {
       setInitialValues({
-        date: '',
-        volume: 0,
+        date: extractTimeFromDate(editData.time),
+        volume: editData.amount || 0,
       });
     }
   }, [editData]);
@@ -91,9 +98,8 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
   };
 
   const handleSubmit = (values, actions) => {
-
     onSaveWater(values);
-
+    dispatch(apiGetTodayWater());
     actions.resetForm();
     onClose();
   };
@@ -202,7 +208,6 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
           <div className={css.formField}>
             <label htmlFor={timeFieldId}>Recording time:</label>
             <Field
-
               as="select"
               name="date"
               id="timeFieldId"
@@ -211,7 +216,6 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
               {generateTimeOptions()}
             </Field>
             <ErrorMessage name="date" component="span" className={css.error} />
-
           </div>
           <div className={css.formField}>
             <label htmlFor={volumeFieldId} className={css.subTitle}>

@@ -36,7 +36,6 @@ const DailyNormaForm = ({ closeModal }) => {
   }, [gender, weight, time]);
 
   const submitData = values => {
-    console.log(values.waterAmount);
     dispatch(
       updateWaterRate({
         waterRate: Number.parseFloat(values.waterAmount) * 1000,

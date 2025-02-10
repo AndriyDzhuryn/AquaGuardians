@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { apiGetTodayWater } from './operations.js';
 
 const INITIAL_STATE = {
-  waterTodayData: null,
+  waterTodayData: [],
   isLoading: false,
   error: null,
 };
@@ -26,7 +26,7 @@ const waterTodaySlice = createSlice({
       .addCase(apiGetTodayWater.pending, handlePending)
       .addCase(apiGetTodayWater.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.waterTodayData = action.payload;
+        state.waterTodayData = action.payload.data;
       })
       .addCase(apiGetTodayWater.rejected, handleRejected),
 });

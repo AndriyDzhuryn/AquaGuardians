@@ -4,7 +4,6 @@ import SettingModal from '../SettingModal/SettingModal';
 
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
 
-
 const UserLogoModal = ({ onClose, containerRef }) => {
   const [showSettingModal, setShowSettingModal] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -30,20 +29,20 @@ const UserLogoModal = ({ onClose, containerRef }) => {
 
   const handleSettingClick = () => {
     setShowSettingModal(true);
-    onClose();
   };
 
   const handleLogoutClick = () => {
     setShowLogoutModal(true);
-    onClose();
   };
 
   const closeSettingModal = () => {
     setShowSettingModal(false);
+    onClose();
   };
 
   const closeLogoutModal = () => {
     setShowLogoutModal(false);
+    onClose();
   };
 
   return (
