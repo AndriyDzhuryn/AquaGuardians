@@ -19,7 +19,7 @@ const WaterTracker = () => {
   }, [dispatch]);
 
   const waterToday = useSelector(selectTodayUserData);
-  const waterList = waterToday.records;
+  const waterList = waterToday?.records;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);

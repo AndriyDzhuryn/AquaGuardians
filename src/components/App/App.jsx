@@ -5,7 +5,6 @@ import { Circles } from 'react-loader-spinner';
 
 import RestrictedRoute from '../RestrictedRoute/RestrictedRoute.jsx';
 import PrivateRoute from '../PrivateRoute/PrivateRoute.jsx';
-import Layout from '../Layout/Layout.jsx';
 
 import { apiGetCurrentUser } from '../../redux/auth/operations.js';
 import { selectAuthIsRefreshing } from '../../redux/auth/selectors.js';
@@ -50,42 +49,40 @@ function App() {
   }
 
   return (
-    <Layout>
-      <Suspense>
-        <Routes>
-          {/* SharedLayout рендериться на маршруті "/" і обгортає вкладені сторінки */}
-          <Route path="/" element={<SharedLayout />}>
-            {/* За замовчуванням для "/" рендериться WelcomePage */}
-            <Route index element={<WelcomePage />} />
+    <Suspense>
+      <Routes>
+        {/* SharedLayout рендериться на маршруті "/" і обгортає вкладені сторінки */}
+        <Route path="/" element={<SharedLayout />}>
+          {/* За замовчуванням для "/" рендериться WelcomePage */}
+          <Route index element={<WelcomePage />} />
 
-            <Route
-              path="home"
-              element={<PrivateRoute component={<HomePage />} />}
-            />
+          <Route
+            path="home"
+            element={<PrivateRoute component={<HomePage />} />}
+          />
 
-            <Route
-              path="signup"
-              element={
-                <RestrictedRoute
-                  component={<SignUpPage />}
-                  redirectTo="/signin"
-                />
-              }
-            />
+          <Route
+            path="signup"
+            element={
+              <RestrictedRoute
+                component={<SignUpPage />}
+                redirectTo="/signin"
+              />
+            }
+          />
 
-            <Route
-              path="signin"
-              element={<RestrictedRoute component={<SignInPage />} />}
-            />
+          <Route
+            path="signin"
+            element={<RestrictedRoute component={<SignInPage />} />}
+          />
 
-            <Route
-              path="*"
-              element={<RestrictedRoute component={<SignInPage />} />}
-            />
-          </Route>
-        </Routes>
-      </Suspense>
-    </Layout>
+          <Route
+            path="*"
+            element={<RestrictedRoute component={<SignInPage />} />}
+          />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 

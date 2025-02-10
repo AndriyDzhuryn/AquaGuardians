@@ -18,13 +18,13 @@ export default function WaterRatioPanel() {
 
   const normaValue = updateWaterRate
     ? updateWaterRate?.waterRate
-    : waterRate.waterRate;
+    : waterRate?.waterRate;
 
   const todayWater = useSelector(selectTodayUserData);
-  const percent = todayWater.percentage;
-  const consumptionNumbers = todayWater.records;
+  const percent = todayWater?.percentage;
+  const consumptionNumbers = todayWater?.records;
 
-  const consumptionValue = todayWater.records
+  const consumptionValue = todayWater?.records
     ? consumptionNumbers.reduce((acc, num) => acc + num.volume, 0)
     : percent;
 
