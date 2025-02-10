@@ -29,20 +29,20 @@ const UserLogoModal = ({ onClose, containerRef }) => {
 
   const handleSettingClick = () => {
     setShowSettingModal(true);
-    onClose();
   };
 
   const handleLogoutClick = () => {
     setShowLogoutModal(true);
-    onClose();
   };
 
   const closeSettingModal = () => {
     setShowSettingModal(false);
+    onClose();
   };
 
   const closeLogoutModal = () => {
     setShowLogoutModal(false);
+    onClose();
   };
 
   return (
