@@ -50,9 +50,7 @@ const UserLogo = () => {
           <use href="/icons/icons-sprite.svg#chevron-double-up"></use>
         </svg>
       </button>
-      {modalOpen && (
-        <UserLogoModal onClose={toggleModal} containerRef={containerRef} />
-      )}
+      {modalOpen && <UserLogoModal onClose={toggleModal} />}
     </div>
   );
 };
