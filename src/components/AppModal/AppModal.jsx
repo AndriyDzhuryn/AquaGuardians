@@ -1,12 +1,14 @@
 import Modal from 'react-modal';
+import { useDispatch } from 'react-redux';
+
+import { deleteWater } from '../../redux/water/operations.js';
+
 import css from './AppModal.module.css';
 import 'izitoast/dist/css/iziToast.min.css';
-import { deleteWater } from '../../redux/water/operations.js';
-import { useDispatch } from 'react-redux';
 
 Modal.setAppElement('#root');
 
-const AppModal = ({ id, onClose }) => {
+const AppModal = ({ isOpen, onClose, id }) => {
   const dispatch = useDispatch();
   const handleDelete = () => {
     dispatch(deleteWater(id));
@@ -16,7 +18,7 @@ const AppModal = ({ id, onClose }) => {
     <Modal
       overlayClassName={css.modalOverlay}
       className={css.modal}
-      isOpen={true}
+      isOpen={isOpen}
       onRequestClose={onClose}
       contentLabel="Example Modal"
     >
@@ -27,7 +29,7 @@ const AppModal = ({ id, onClose }) => {
         </div>
         <button type="button" onClick={onClose}>
           <svg width="24" height="24">
-            <use href="../../../public/icons/icons-sprite.svg#close-icon"></use>
+            <use href="/icons/icons-sprite.svg#close-icon"></use>
           </svg>
         </button>
       </div>

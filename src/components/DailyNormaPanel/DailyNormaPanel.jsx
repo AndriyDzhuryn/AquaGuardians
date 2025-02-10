@@ -1,12 +1,18 @@
-import css from './DailyNormaPanel.module.css';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import DailyNormaModal from '../DailyNormaModal/DailyNormaModal';
+import DailyNormaModal from '../DailyNormaModal/DailyNormaModal.jsx';
+
+import { selectAuthUserData } from '../../redux/auth/selectors.js';
+
+import css from './DailyNormaPanel.module.css';
 
 const DailyNormaPanel = () => {
-  const normaValue = useSelector(
-    state => state.waterRate?.waterRate ?? state.auth.userData.waterRate
-  );
+  const waterRate = useSelector(selectAuthUserData);
+  const updateWaterRate = useSelector(state => state.waterRate?.waterRate);
+
+  const normaValue = updateWaterRate
+    ? updateWaterRate?.waterRate
+    : waterRate.waterRate;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {

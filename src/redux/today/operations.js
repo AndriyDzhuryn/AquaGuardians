@@ -15,6 +15,8 @@ export const apiGetTodayWater = createAsyncThunk(
     try {
       // setToken(token);
       const { data } = await authInstans.get('/today');
+      console.log(data);
+
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
