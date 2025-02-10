@@ -1,39 +1,36 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import style from '../Settings.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAuthUserData } from '../../../redux/auth/selectors';
+import { apiUpdateUserPhoto } from '../../../redux/auth/operations';
 
-const UploadPhoto = ({ photo, setPhoto }) => {
-  const handleChange = e => {
-    const file = e.target.files[0];
-    if (file) {
-      setPhoto(file);
-    }
-  };
+const UploadPhoto = () => {
+  const userData = useSelector(selectAuthUserData);
+  const dispatch = useDispatch();
+  const [photoUrl, setPhotoUrl] = useState(null);
 
   useEffect(() => {
-    if (photo) {
-      const objectURL = URL.createObjectURL(photo);
-      return () => {
-        URL.revokeObjectURL(objectURL);
-      };
+    if (userData?.photo) {
+      setPhotoUrl(userData.photo);
     }
-  }, [photo]);
+  }, [userData?.photo]);
+
+const handleChange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    dispatch(apiUpdateUserPhoto(file));
+    const objectURL = URL.createObjectURL(file); 
+    setPhotoUrl(objectURL);
+  }
+};
+
 
   return (
     <>
-      {photo ? (
-        <img
-          src={URL.createObjectURL(photo)}
-          alt="Avatar"
-          className={style.avatar}
-        />
+      {photoUrl ? (
+        <img src={photoUrl} alt="Avatar" className={style.avatar} />
       ) : (
-        <svg
-
-          fill="none"
-          stroke="#2f2f2f"
-          width="80px"
-          height="80px"
-        >
+        <svg fill="none" stroke="#2f2f2f" width="80px" height="80px">
           <use href="/icons/icons-sprite.svg#user" />
         </svg>
       )}
