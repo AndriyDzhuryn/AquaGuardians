@@ -43,6 +43,7 @@ export const apiSignInUser = createAsyncThunk(
   }
 );
 
+
 export const apiLogOutUser = createAsyncThunk(
   'auth/logoutUser',
   async (_, thunkApi) => {
@@ -109,48 +110,21 @@ export const apiUpdateUserProfile = createAsyncThunk(
 
 export const apiUpdateUserPhoto = createAsyncThunk(
   'user/updateUserPhoto',
-  async (urlPhoto, thunkAPI) => {
+  async (Photo, thunkAPI) => {
     const state = thunkAPI.getState();
     const token = state.auth.token;
 
     if (!token) {
       return thunkAPI.rejectWithValue('No token provided to refresh user');
     }
-
+   
     try {
       setToken(token);
-      const { data } = await authInstans.patch(`/user/photo`, urlPhoto);
+      const { data } = await authInstans.patch(`/user/photo`, Photo);
+      console.log(data);
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
-
-// export const updateUserProfile = createAsyncThunk(
-//   'auth/updateProfile',
-//   async (formData, thunkAPI) => {
-//     try {
-//       const state = thunkAPI.getState();
-//       const token = state.token;
-//       const id = state.userData.id;
-
-//       //  formData.forEach((value, key) => console.log(key, value));
-
-//       const { data } = await authInstans.patch(`/users/${id}`, formData, {
-//         headers: {
-//           'Content-Type': 'multipart/form-data',
-//           Authorization: `Bearer ${token}`,
-//         },
-//       });
-
-//       return data;
-//     } catch (error) {
-//       console.error(
-//         'Error updating profile:',
-//         error.response?.data || error.message
-//       );
-//       return thunkAPI.rejectWithValue(error.response?.data || error.message);
-//     }
-//   }
-// );

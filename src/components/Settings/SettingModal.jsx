@@ -7,11 +7,10 @@ import { selectAuthUserData } from '../../redux/auth/selectors.js';
 import InputFromPassword from './InputFromPassword/InputFromPassword.jsx';
 import CloseButton from './CloseButton/ClosseButton.jsx';
 import UploadPhoto from './UploadPhoto/UploadPhoto.jsx';
-import { updateUserProfile } from '../../redux/auth/operations.js';
+import { apiUpdateUserProfile } from '../../redux/auth/operations.js';
 
 const SettingModal = ({ onClose }) => {
   const userData = useSelector(selectAuthUserData);
-  const [photo, setPhoto] = useState(null);
   const dispatch = useDispatch();
   const [visiblePasswords, setVisiblePasswords] = useState({});
 
@@ -19,13 +18,12 @@ const SettingModal = ({ onClose }) => {
     name: userData?.name || '',
     email: userData?.email || '',
     gender: userData?.gender || 'woman',
-    photo: userData?.photo || '',
-    outdatedPassword: '',
-    newPassword: '',
+    oldPassword: '',
+    password: '',
     repeatPassword: '',
   };
 
-  useEffect(() => setPhoto(userData?.photo || null), [userData]);
+  
 
   const togglePasswordVisibility = field => {
     setVisiblePasswords(prev => ({ ...prev, [field]: !prev[field] }));
@@ -44,17 +42,16 @@ const SettingModal = ({ onClose }) => {
   }, [handleEscape]);
 
   const onSubmit = values => {
-    const formData = new FormData();
-    formData.append('name', values.name);
-    formData.append('email', values.email);
-    formData.append('gender', values.gender);
-    formData.append('outdatedPassword', values.outdatedPassword);
-    formData.append('newPassword', values.newPassword);
-    if (photo) {
-      formData.append('photo', photo);
-    }
+  console.log('onSubmit', values);
+  
 
-    dispatch(updateUserProfile(formData));
+    const { repeatPassword, ...formValues } = values;
+    
+    console.log(
+      'витягування повторення паролю', formValues
+      );
+      
+    dispatch(apiUpdateUserProfile(formValues));
   };
 
   return (
@@ -63,7 +60,13 @@ const SettingModal = ({ onClose }) => {
         <div className={style.title}>
           <h2 className={style.settings}>Setting</h2>
           <CloseButton onClose={onClose} />
+
+
         </div>
+          <h3 className={style.titlePhoto}>Your photo</h3>
+              <div className={style.upload}>
+                <UploadPhoto/>
+              </div>
 
         <Formik
           validationSchema={validationSchema}
@@ -73,10 +76,7 @@ const SettingModal = ({ onClose }) => {
         >
           {({ values, errors, touched}) => (
             <Form className={style.form}>
-                <h3 className={style.titlePhoto}>Your photo</h3>
-              <div className={style.upload}>
-                <UploadPhoto photo={photo} setPhoto={setPhoto} />
-              </div>
+              
               <div className={style.container}>
                     <div className={style.info}>
                 <label className={style.gender}>
@@ -137,13 +137,13 @@ const SettingModal = ({ onClose }) => {
               </div>
               <div className={style.password}>
                 <h3 className={style.passwordtitle}>Password</h3>
-                {['outdatedPassword', 'newPassword', 'repeatPassword'].map(
+                {['oldPassword', 'password', 'repeatPassword'].map(
                   field => (
                     <div  key={field} className={style.inputpass}>
                       <label htmlFor={field} className={style.label}>
-                        {field === 'outdatedPassword'
+                        {field === 'oldPassword'
                           ? 'Current Password'
-                          : field === 'newPassword'
+                          : field === 'password'
                           ? 'New Password'
                           : 'Repeat Password'}
                       </label>
@@ -151,12 +151,13 @@ const SettingModal = ({ onClose }) => {
                         id={field}
                         name={field}
                         error={errors[field]}
-                        touched={touched.newPassword}
+                        touched={touched[field]}
                         showPassword={visiblePasswords[field]}
                         togglePasswordVisibility={() =>
                           togglePasswordVisibility(field)
                         }
                         autoComplete={field}
+                        value={values[field] || ''}
                       />
                       <ErrorMessage
                         name={field}
@@ -168,8 +169,6 @@ const SettingModal = ({ onClose }) => {
                 )}
               </div>
                 </div>
-          
-
               <button type="submit" className={style.submitButton}>
                 Save
               </button>
