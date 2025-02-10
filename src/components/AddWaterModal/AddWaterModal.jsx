@@ -26,8 +26,6 @@ const waterSchema = Yup.object().shape({
 const customStyles = {
   content: {
     backgroundColor: 'rgba(255, 255, 255)',
-    width: 280,
-    minHeight: 540,
     padding: 0,
     borderRadius: 10,
     border: 0,
