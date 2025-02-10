@@ -41,7 +41,9 @@ const customStyles = {
   },
 };
 
+
 export default function AddWaterModal({ isOpen, onClose, editData }) {
+
   const timeFieldId = useId();
   const volumeFieldId = useId();
   const formikRef = useRef(null);
@@ -89,7 +91,9 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
   };
 
   const handleSubmit = (values, actions) => {
+
     onSaveWater(values);
+
     actions.resetForm();
     onClose();
   };
@@ -198,6 +202,7 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
           <div className={css.formField}>
             <label htmlFor={timeFieldId}>Recording time:</label>
             <Field
+
               as="select"
               name="date"
               id="timeFieldId"
@@ -206,6 +211,7 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
               {generateTimeOptions()}
             </Field>
             <ErrorMessage name="date" component="span" className={css.error} />
+
           </div>
           <div className={css.formField}>
             <label htmlFor={volumeFieldId} className={css.subTitle}>

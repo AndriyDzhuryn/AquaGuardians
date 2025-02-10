@@ -1,14 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import css from './Logo.module.css';
+import { useSelector } from 'react-redux';
+import { selectAuthIsLoggedIn } from '../../redux/auth/selectors';
 
 const Logo = () => {
-  //замінити
-  const isLoggedIn = true;
+  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
+
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
     if (isLoggedIn) {
-      navigate('/home');
+      navigate('/');
     } else {
       navigate('/welcome');
     }
@@ -16,11 +18,7 @@ const Logo = () => {
 
   return (
     <div className={css.logo} onClick={handleLogoClick}>
-      <img
-        src="../../../public/logo/logo.png"
-        alt="Logo"
-        className={css.logoImage}
-      />
+      <img src="/logo/logo.png" alt="Logo" className={css.logoImage} />
     </div>
   );
 };

@@ -10,6 +10,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 const WaterItems = ({ amount, time, id }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -26,13 +27,13 @@ const WaterItems = ({ amount, time, id }) => {
     } catch (error) {
       iziToast.error({ title: 'Error', message: 'Failed to delete entry' });
     }
-  };
 
+  };
   return (
     <div className={css.wrapperWaterConsumedItem}>
       <div className={css.glassWaterWrapper}>
         <svg className={css.glassOfWater}>
-          <use href="../../../public/icons/icons-sprite.svg#glass-of-water"></use>
+          <use href="/icons/icons-sprite.svg#glass-of-water"></use>
         </svg>
         <div>
           <span className={css.amountWater}>{amount} мл</span>
@@ -46,7 +47,7 @@ const WaterItems = ({ amount, time, id }) => {
           onClick={() => setEditModalIsOpen(true)}
         >
           <svg className={css.editWaterItem}>
-            <use href="../../../public/icons/icons-sprite.svg#pensil-aquare"></use>
+            <use href="/icons/icons-sprite.svg#pensil-aquare"></use>
           </svg>
         </button>
         <button
@@ -56,9 +57,10 @@ const WaterItems = ({ amount, time, id }) => {
           }}
         >
           <svg className={css.trash}>
-            <use href="../../../public/icons/icons-sprite.svg#trash"></use>
+            <use href="/icons/icons-sprite.svg#trash"></use>
           </svg>
         </button>
+
         <AppModal
           modalIsOpen={modalIsOpen}
           setIsOpen={setModalIsOpen}
@@ -72,6 +74,7 @@ const WaterItems = ({ amount, time, id }) => {
           onClose={() => setEditModalIsOpen(false)}
           editData={{ id, amount, time }}
         />
+
       </div>
     </div>
   );

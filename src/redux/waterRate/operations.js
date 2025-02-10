@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { authInstans } from '../auth/operations';
+import { authInstans } from '../auth/operations.js';
 
 export const updateWaterRate = createAsyncThunk(
   'waterRate/updateWaterRate',

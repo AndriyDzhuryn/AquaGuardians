@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { updateWaterRate } from './operations';
+import { updateWaterRate } from './operations.js';
 
 const handlePending = state => {
   state.loading = true;
@@ -25,7 +25,7 @@ const waterRateSlice = createSlice({
       .addCase(updateWaterRate.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.waterRate = action.payload.waterRate;
+        state.waterRate = action.payload.data;
       });
   },
 });
