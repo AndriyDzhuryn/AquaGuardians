@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getWater, addWater, deleteWater } from './operations.js';
+
+import { getWater, addWater,updateWater, deleteWater } from './operations.js';
 
 const handlePending = state => {
   state.loading = true;
@@ -35,12 +36,27 @@ const waterSlice = createSlice({
         state.error = null;
         state.items.push(action.payload);
       })
+
+      .addCase(updateWater.pending, handlePending)
+      .addCase(updateWater.rejected, handleRejected)
+      .addCase(updateWater.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        const index = state.items.findIndex(
+          item => item.id === action.payload.id
+        );
+        if (index !== -1) {
+          state.items[index] = action.payload;
+        }
+      });
+
       .addCase(deleteWater.pending, handlePending)
       .addCase(deleteWater.fulfilled, (state, action) => {
         state.loading = false;
         state.items = state.items.filter(e => e.id !== action.payload);
       })
       .addCase(deleteWater.rejected, handleRejected);
+
   },
 });
 

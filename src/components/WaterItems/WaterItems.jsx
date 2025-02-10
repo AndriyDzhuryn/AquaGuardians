@@ -3,14 +3,31 @@ import { useDispatch } from 'react-redux';
 import iziToast from 'izitoast';
 
 import AppModal from '../AppModal/AppModal.jsx';
+import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 
 import css from './WaterItems.module.css';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const WaterItems = ({ amount, time, id }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const closeModal = () => {
-    setModalIsOpen(false);
+
+  const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleDelete = async () => {
+    try {
+      // const token = localStorage.getItem('token');
+      // await axios.delete(`https://your-api.com/api/water-intake/${id}`, {
+      //   headers: { Authorization: `Bearer ${token}` },
+      // });
+
+      // setEntries(prevEntries => prevEntries.filter(entry => entry._id !== id)); //setEntries - стан у компоненті listWater
+
+      setIsOpen(false);
+    } catch (error) {
+      iziToast.error({ title: 'Error', message: 'Failed to delete entry' });
+    }
+
   };
   return (
     <div className={css.wrapperWaterConsumedItem}>
@@ -25,7 +42,10 @@ const WaterItems = ({ amount, time, id }) => {
       </div>
 
       <div>
-        <button className={css.btnWater}>
+        <button
+          className={css.btnWater}
+          onClick={() => setEditModalIsOpen(true)}
+        >
           <svg className={css.editWaterItem}>
             <use href="/icons/icons-sprite.svg#pensil-aquare"></use>
           </svg>
@@ -40,7 +60,21 @@ const WaterItems = ({ amount, time, id }) => {
             <use href="/icons/icons-sprite.svg#trash"></use>
           </svg>
         </button>
-        {modalIsOpen && <AppModal onClose={closeModal} id={id} />}
+
+        <AppModal
+          modalIsOpen={modalIsOpen}
+          setIsOpen={setModalIsOpen}
+          handleAccept={handleDelete}
+          title="Delete entry"
+          description="Are you sure you want to delete the entry?"
+          acceptButton="Delete"
+        />
+        <AddWaterModal
+          isOpen={editModalIsOpen}
+          onClose={() => setEditModalIsOpen(false)}
+          editData={{ id, amount, time }}
+        />
+
       </div>
     </div>
   );

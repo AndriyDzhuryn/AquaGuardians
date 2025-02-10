@@ -10,6 +10,7 @@ import { getWater } from '../../redux/water/operations.js';
 // import { selectWater } from '../../redux/water/selectors.js';
 
 import css from './WaterTracker.module.css';
+import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 
 const WaterTracker = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,10 @@ const WaterTracker = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <div className={css.waterTrackerWrapper}>
       <div className={css.listWrapper}>
@@ -60,6 +65,7 @@ const WaterTracker = () => {
             ))}
           </ul>
         )}
+
         <button className={css.btnAddWater} onClick={openModal}>
           <svg className={css.plus}>
             <use href="/icons/icons-sprite.svg#plus-small"></use>
@@ -71,6 +77,7 @@ const WaterTracker = () => {
       <AddWaterModal isOpen={isModalOpen} onClose={closeModal} />
 
       <Calendar />
+
     </div>
   );
 };
