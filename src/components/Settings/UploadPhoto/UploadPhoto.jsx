@@ -10,25 +10,20 @@ const UploadPhoto = () => {
   const [photoUrl, setPhotoUrl] = useState(null);
 
   useEffect(() => {
-    if (userData?.photo instanceof File) {
-      const objectURL = URL.createObjectURL(userData.photo);
-      setPhotoUrl(objectURL);
-
-      return () => {
-        URL.revokeObjectURL(objectURL);
-      };
-    } else {
-      setPhotoUrl(userData?.photo || null);
+    if (userData?.photo) {
+      setPhotoUrl(userData.photo);
     }
   }, [userData?.photo]);
 
-  const handleChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      console.log('file', file);
-      dispatch(apiUpdateUserPhoto(file));
-    }
-  };
+const handleChange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    dispatch(apiUpdateUserPhoto(file));
+    const objectURL = URL.createObjectURL(file); 
+    setPhotoUrl(objectURL);
+  }
+};
+
 
   return (
     <>

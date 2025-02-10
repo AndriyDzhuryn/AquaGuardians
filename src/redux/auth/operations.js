@@ -108,23 +108,27 @@ export const apiUpdateUserProfile = createAsyncThunk(
   }
 );
 
-export const apiUpdateUserPhoto = createAsyncThunk(
-  'user/updateUserPhoto',
-  async (Photo, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const token = state.auth.token;
 
-    if (!token) {
-      return thunkAPI.rejectWithValue('No token provided to refresh user');
-    }
-   
+
+
+
+export const apiUpdateUserPhoto = createAsyncThunk(
+  'auth/updatePhoto',
+  async (file, thunkAPI) => {
+    
+    
+
     try {
-      setToken(token);
-      const { data } = await authInstans.patch(`/user/photo`, Photo);
-      console.log(data);
-      return data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+      const formData = new FormData();
+      formData.append('photo', file);
+
+      const { data } = await authInstans.patch('/user/photo', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      return data; 
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
   }
 );
