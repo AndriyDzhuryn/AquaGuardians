@@ -10,7 +10,8 @@ import UploadPhoto from './UploadPhoto/UploadPhoto.jsx';
 import { apiGetCurrentUser, apiUpdateUserProfile } from '../../redux/auth/operations.js';
 import iziToast from 'izitoast';
 
-const SettingModal = ({ onClose }) => {
+const SettingModal = ({ onClose, }) => {
+   
   const userData = useSelector(selectAuthUserData);
   const dispatch = useDispatch();
   const [visiblePasswords, setVisiblePasswords] = useState({});

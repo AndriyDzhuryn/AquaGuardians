@@ -1,12 +1,13 @@
-import Modal from 'react-modal';
+
 import css from '../UserLogoutModal/UserLogoutModal.module.css';
 import { apiLogOutUser } from '../../redux/auth/operations.js';
 import { useDispatch } from 'react-redux';
 import iziToast from 'izitoast';
 
-Modal.setAppElement('#root');
+
 const UserLogoutModal = ({ onClose }) => {
   const dispatch = useDispatch();
+
   const handleLogOut = async e => {
     e.preventDefault();
     e.stopPropagation();
@@ -19,14 +20,8 @@ const UserLogoutModal = ({ onClose }) => {
   };
 
   return (
-    <Modal
-      overlayClassName={css.modalOverlay}
-      className={css.modal}
-      isOpen={true}
-      onRequestClose={onClose}
-      contentLabel="Example Modal"
-    >
-      <div className={css.wrapper}>
+    <>
+    <div className={css.wrapper}>
         <div className={css.text}>
           <h3>Log out</h3>
           <p>Do you really want to leave?</p>
@@ -45,7 +40,7 @@ const UserLogoutModal = ({ onClose }) => {
           Logout
         </button>
       </div>
-    </Modal>
+    </>
   );
 };
 

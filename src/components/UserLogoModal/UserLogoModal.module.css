@@ -1,11 +1,31 @@
+
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.80);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.modal{
+   padding: 32px 12px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background: var(--Primery-Color-White);
+}
+
+
 .userLogoModal {
   position: absolute;
   top: 100%;
   right: 0;
   background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-
+  
   z-index: 100;
   max-width: 118px;
 }
@@ -13,6 +33,7 @@
 .dropdownList {
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
   gap: 16px;
   max-width: 118px;
   list-style: none;
@@ -20,20 +41,13 @@
   padding: 16px;
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.2);
 }
-.itemWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: row;
-  gap: 8px;
-}
+
 
 .dropdownItem {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.25;
-  color: #407bff;
   cursor: pointer;
 }
 
@@ -43,4 +57,35 @@
   height: 16px;
   fill: none;
   stroke: #407bff;
+}
+
+
+.button{
+  color: var(--Primery-Color-Blue);
+  display: flex;
+  flex-direction: row;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  gap: 8px;
+}
+
+
+
+
+@media only screen and (min-width: 768px){
+  .modal{
+    padding: 32px 12px;
+  }
+}
+
+
+
+
+
+@media only screen and (min-width: 1440px){
+  .modal{
+    padding: 32px 24px;
+  }
+  
 }

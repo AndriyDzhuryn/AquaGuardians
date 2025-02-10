@@ -15,9 +15,9 @@ const UserLogo = () => {
   };
 
   let avatarContent;
-  if (user?.avatar) {
+  if (user?.photo) {
     avatarContent = (
-      <img src={user.avatar} alt="avatar" className={css.avatarImg} />
+      <img src={user.photo} alt="avatar" className={css.avatarImg} />
     );
   } else if (user?.name) {
     avatarContent = (
