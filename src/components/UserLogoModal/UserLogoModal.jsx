@@ -1,31 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import css from './UserLogoModal.module.css';
-import SettingModal from '../SettingModal/SettingModal';
-
+import SettingModal from '../Settings/SettingModal';
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
 
-const UserLogoModal = ({ onClose, containerRef }) => {
+const UserLogoModal = () => {
   const [showSettingModal, setShowSettingModal] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = event => {
-      if (
-        containerRef &&
-        containerRef.current &&
-        !containerRef.current.contains(event.target)
-      ) {
-        onClose();
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [onClose, containerRef]);
 
   const handleSettingClick = () => {
     setShowSettingModal(true);
@@ -37,12 +19,10 @@ const UserLogoModal = ({ onClose, containerRef }) => {
 
   const closeSettingModal = () => {
     setShowSettingModal(false);
-    onClose();
   };
 
   const closeLogoutModal = () => {
     setShowLogoutModal(false);
-    onClose();
   };
 
   return (
