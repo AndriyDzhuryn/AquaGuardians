@@ -1,20 +1,24 @@
-import { useId, useRef } from 'react';
+import { useId, useRef, useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik';
 import { useDispatch } from 'react-redux';
-import { addWater } from '../../redux/water/operations';
+import { addWater, updateWater } from '../../redux/water/operations';
 import * as Yup from 'yup';
 import Modal from 'react-modal';
 import css from './AddWaterModal.module.css';
+import WaterItemModal from '../WaterItemModal/WaterItemModal';
 
 Modal.setAppElement('#root');
 
+const MIN_WATER_VOLUME = 50;
+const MAX_WATER_VOLUME = 5000;
+
 const waterSchema = Yup.object().shape({
-  time: Yup.string()
+  date: Yup.string()
     .matches(/^([01][0-9]|2[0-3]):([0-5][0-9])$/, 'Invalid time format')
     .required('Time is required'),
   volume: Yup.number()
-    .min(1, 'Volume must be at least 1')
-    .max(5000, 'Volume cannot be more than 5000')
+    .min(MIN_WATER_VOLUME, `Volume must be at least ${MIN_WATER_VOLUME}`)
+    .max(MAX_WATER_VOLUME, `Volume cannot be more than ${MAX_WATER_VOLUME}`)
     .required('Volume is required'),
 });
 
@@ -37,33 +41,59 @@ const customStyles = {
   },
 };
 
-function getTodayDateWithTime(time) {
-  const parts = time.split(':');
-  var date = new Date();
-  date.setHours(parts[0], parts[1], 0, 0);
-  return date.toISOString().slice(0, 16);
-}
 
-export default function AddWaterModal({ isOpen, onClose }) {
+export default function AddWaterModal({ isOpen, onClose, editData }) {
+
   const timeFieldId = useId();
   const volumeFieldId = useId();
   const formikRef = useRef(null);
-
-  const initialValues = {
-    time: '',
+  const [initialValues, setInitialValues] = useState({
+    date: '',
     volume: 0,
-  };
+  });
 
   const dispatch = useDispatch();
 
-  const onAddWater = newWater => {
-    dispatch(addWater(newWater));
+  const combineDateAndTime = time => {
+    const currentDate = new Date().toISOString().split('T')[0];
+    return `${currentDate}T${time}`;
+  };
+
+  const extractTimeFromDate = date => {
+    if (!date) return '';
+    return date.split('T')[1].substring(0, 5);
+  };
+
+  useEffect(() => {
+    if (editData) {
+      setInitialValues({
+        date: extractTimeFromDate(editData.date),
+        volume: editData.amount || 0,
+      });
+    } else {
+      setInitialValues({
+        date: '',
+        volume: 0,
+      });
+    }
+  }, [editData]);
+
+  const onSaveWater = newWater => {
+    const waterWithDate = {
+      ...newWater,
+      date: combineDateAndTime(newWater.date),
+    };
+    if (editData) {
+      dispatch(updateWater({ ...waterWithDate, id: editData.id }));
+    } else {
+      dispatch(addWater(waterWithDate));
+    }
   };
 
   const handleSubmit = (values, actions) => {
-    const date = getTodayDateWithTime(values.time);
-    const volume = values.volume;
-    onAddWater({ date: date, volume: volume });
+
+    onSaveWater(values);
+
     actions.resetForm();
     onClose();
   };
@@ -78,7 +108,7 @@ export default function AddWaterModal({ isOpen, onClose }) {
 
   const handleVolumeChange = event => {
     const newVolume =
-      event.target.value === '' ? '' : Number(event.target.value);
+      event.target.value === '' ? 0 : Number(event.target.value);
     if (formikRef.current) {
       formikRef.current.setFieldValue('volume', newVolume);
     }
@@ -95,11 +125,28 @@ export default function AddWaterModal({ isOpen, onClose }) {
     return <div className={css.value}>{values.volume}ml</div>;
   };
 
+  const generateTimeOptions = () => {
+    const options = [];
+    for (let hour = 0; hour < 24; hour++) {
+      for (let minute = 0; minute < 60; minute += 5) {
+        const date = `${String(hour).padStart(2, '0')}:${String(
+          minute
+        ).padStart(2, '0')}`;
+        options.push(
+          <option key={date} value={date}>
+            {date}
+          </option>
+        );
+      }
+    }
+    return options;
+  };
+
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onClose}
-      contentLabel="Add Water"
+      contentLabel={editData ? 'Edit Water' : 'Add Water'}
       style={customStyles}
     >
       <Formik
@@ -107,6 +154,7 @@ export default function AddWaterModal({ isOpen, onClose }) {
         onSubmit={handleSubmit}
         validationSchema={waterSchema}
         innerRef={formikRef}
+        enableReinitialize
       >
         <Form className={css.form}>
           <button className={css.btnIcon} onClick={onClose}>
@@ -114,7 +162,16 @@ export default function AddWaterModal({ isOpen, onClose }) {
               <use href="/icons/icons-sprite.svg#close-icon" />
             </svg>
           </button>
-          <h2 className={css.title}>Add Water</h2>
+          <h2 className={css.title}>
+            {editData ? 'Edit the entered amount of water' : 'Add water'}
+          </h2>
+          {editData && (
+            <WaterItemModal
+              volume={initialValues.volume}
+              date={initialValues.time}
+            />
+          )}
+
           <div className={css.formField}>
             <h3 className={css.subTitle}>Choose a value:</h3>
             <p>Amount of water:</p>
@@ -145,13 +202,16 @@ export default function AddWaterModal({ isOpen, onClose }) {
           <div className={css.formField}>
             <label htmlFor={timeFieldId}>Recording time:</label>
             <Field
-              name="time"
+
+              as="select"
+              name="date"
               id="timeFieldId"
               className={css.input}
-              type="time"
-              placeholder="HH:MM"
-            />
-            <ErrorMessage name="time" component="span" className={css.error} />
+            >
+              {generateTimeOptions()}
+            </Field>
+            <ErrorMessage name="date" component="span" className={css.error} />
+
           </div>
           <div className={css.formField}>
             <label htmlFor={volumeFieldId} className={css.subTitle}>
@@ -163,6 +223,11 @@ export default function AddWaterModal({ isOpen, onClose }) {
               id="volumeFieldId"
               onChange={handleVolumeChange}
               onFocus={handleVolumeFocus}
+              onBlur={e => {
+                if (e.target.value === '') {
+                  formikRef.current.setFieldValue('volume', 0);
+                }
+              }}
               className={css.input}
             />
             <ErrorMessage

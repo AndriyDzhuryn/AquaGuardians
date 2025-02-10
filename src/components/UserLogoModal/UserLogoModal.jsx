@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import css from './UserLogoModal.module.css';
 import SettingModal from '../SettingModal/SettingModal';
-import AppModal from '../AppModal/AppModal';
+
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
-// import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
+
 
 const UserLogoModal = ({ onClose, containerRef }) => {
   const [showSettingModal, setShowSettingModal] = useState(false);
