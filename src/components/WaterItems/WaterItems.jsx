@@ -8,8 +8,13 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 const WaterItems = ({ amount, time, id }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+
+  const date = new Date(time);
+  const hours = date.getHours();
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const timeDrink = `${hours}:${minutes}`;
+
   return (
     <div className={css.wrapperWaterConsumedItem}>
       <div className={css.glassWaterWrapper}>
@@ -18,7 +23,7 @@ const WaterItems = ({ amount, time, id }) => {
         </svg>
         <div>
           <span className={css.amountWater}>{amount} мл</span>
-          <span className={css.time}>{time}</span>
+          <span className={css.time}>{timeDrink}</span>
         </div>
       </div>
 
