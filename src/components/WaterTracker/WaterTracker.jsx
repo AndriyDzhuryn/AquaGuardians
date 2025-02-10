@@ -6,37 +6,20 @@ import WaterItems from '../WaterItems/WaterItems.jsx';
 import Calendar from '../Calendar/Calendar.jsx';
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 
-import { getWater } from '../../redux/water/operations.js';
-// import { selectWater } from '../../redux/water/selectors.js';
+import { selectTodayUserData } from '../../redux/today/selectors.js';
+import { apiGetTodayWater } from '../../redux/today/operations.js';
 
 import css from './WaterTracker.module.css';
-import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 
 const WaterTracker = () => {
   const dispatch = useDispatch();
 
-  // const waterList = useSelector(selectWater);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   useEffect(() => {
-    dispatch(getWater());
+    dispatch(apiGetTodayWater());
   }, [dispatch]);
 
-  const waterList = [
-    { id: 1, amount: 250, time: '07:00 AM' },
-    { id: 2, amount: 220, time: '11:00 AM' },
-    { id: 3, amount: 200, time: '14:00 PM' },
-    { id: 4, amount: 250, time: '07:00 AM' },
-    { id: 5, amount: 220, time: '11:00 AM' },
-    { id: 6, amount: 200, time: '14:00 PM' },
-    { id: 7, amount: 250, time: '07:00 AM' },
-    { id: 8, amount: 220, time: '11:00 AM' },
-    { id: 9, amount: 200, time: '14:00 PM' },
-  ];
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const waterToday = useSelector(selectTodayUserData);
+  const waterList = waterToday.records;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
@@ -55,11 +38,11 @@ const WaterTracker = () => {
             )}
           >
             {waterList.map(item => (
-              <li key={item.id} className={css.waterConsumedItem}>
+              <li key={item._id} className={css.waterConsumedItem}>
                 <WaterItems
-                  amount={item.amount}
-                  time={item.time}
-                  id={item.id}
+                  amount={item.volume}
+                  time={item.date}
+                  id={item._id}
                 />
               </li>
             ))}
@@ -77,7 +60,6 @@ const WaterTracker = () => {
       <AddWaterModal isOpen={isModalOpen} onClose={closeModal} />
 
       <Calendar />
-
     </div>
   );
 };

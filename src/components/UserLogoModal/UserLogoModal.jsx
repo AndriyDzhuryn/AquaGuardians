@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import css from './UserLogoModal.module.css';
 import SettingModal from '../SettingModal/SettingModal';
+
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
 
 const UserLogoModal = ({ onClose, containerRef }) => {
