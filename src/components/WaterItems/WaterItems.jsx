@@ -6,27 +6,10 @@ import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 import css from './WaterItems.module.css';
 import 'izitoast/dist/css/iziToast.min.css';
 
-const WaterItems = ({ volume, date, id }) => {
+const WaterItems = ({ amount, time, id }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
-  const dispatch = useDispatch();
-
-  const handleDelete = async () => {
-    try {
-      // const token = localStorage.getItem('token');
-      // await axios.delete(`https://your-api.com/api/water-intake/${id}`, {
-      //   headers: { Authorization: `Bearer ${token}` },
-      // });
-
-      // setEntries(prevEntries => prevEntries.filter(entry => entry._id !== id)); //setEntries - стан у компоненті listWater
-
-      setIsOpen(false);
-    } catch (error) {
-      iziToast.error({ title: 'Error', message: 'Failed to delete entry' });
-    }
-
-  };
   return (
     <div className={css.wrapperWaterConsumedItem}>
       <div className={css.glassWaterWrapper}>
@@ -34,8 +17,8 @@ const WaterItems = ({ volume, date, id }) => {
           <use href="/icons/icons-sprite.svg#glass-of-water"></use>
         </svg>
         <div>
-          <span className={css.amountWater}>{volume} мл</span>
-          <span className={css.time}>{date}</span>
+          <span className={css.amountWater}>{amount} мл</span>
+          <span className={css.time}>{time}</span>
         </div>
       </div>
 
@@ -60,19 +43,15 @@ const WaterItems = ({ volume, date, id }) => {
         </button>
 
         <AppModal
-          modalIsOpen={modalIsOpen}
-          setIsOpen={setModalIsOpen}
-          handleAccept={handleDelete}
-          title="Delete entry"
-          description="Are you sure you want to delete the entry?"
-          acceptButton="Delete"
+          isOpen={modalIsOpen}
+          onClose={() => setModalIsOpen(false)}
+          id={id}
         />
         <AddWaterModal
           isOpen={editModalIsOpen}
           onClose={() => setEditModalIsOpen(false)}
           editData={{ id, amount, time }}
         />
-
       </div>
     </div>
   );

@@ -10,23 +10,15 @@ import { getWater } from '../../redux/water/operations.js';
 import { selectWater } from '../../redux/water/selectors.js';
 
 import css from './WaterTracker.module.css';
-import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 
 const WaterTracker = () => {
   const dispatch = useDispatch();
 
   const waterList = useSelector(selectWater);
 
-  console.log(waterList);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   useEffect(() => {
     dispatch(getWater());
   }, [dispatch]);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
@@ -47,8 +39,8 @@ const WaterTracker = () => {
             {waterList.map(item => (
               <li key={item._id} className={css.waterConsumedItem}>
                 <WaterItems
-                  volume={item.volume}
-                  date={item.date}
+                  amount={item.volume}
+                  time={item.date}
                   id={item._id}
                 />
               </li>
@@ -67,7 +59,6 @@ const WaterTracker = () => {
       <AddWaterModal isOpen={isModalOpen} onClose={closeModal} />
 
       <Calendar />
-
     </div>
   );
 };
