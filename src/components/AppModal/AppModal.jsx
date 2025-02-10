@@ -1,8 +1,10 @@
 import Modal from 'react-modal';
+import { useDispatch } from 'react-redux';
+
+import { deleteWater } from '../../redux/water/operations.js';
+
 import css from './AppModal.module.css';
 import 'izitoast/dist/css/iziToast.min.css';
-import { deleteWater } from '../../redux/water/operations.js';
-import { useDispatch } from 'react-redux';
 
 Modal.setAppElement('#root');
 

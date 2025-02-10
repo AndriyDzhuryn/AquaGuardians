@@ -1,13 +1,11 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import iziToast from 'izitoast';
 
 import AppModal from '../AppModal/AppModal.jsx';
 
 import css from './WaterItems.module.css';
 import 'izitoast/dist/css/iziToast.min.css';
 
-const WaterItems = ({ amount, time, id }) => {
+const WaterItems = ({ volume, date, id }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const closeModal = () => {
     setModalIsOpen(false);
@@ -19,8 +17,8 @@ const WaterItems = ({ amount, time, id }) => {
           <use href="/icons/icons-sprite.svg#glass-of-water"></use>
         </svg>
         <div>
-          <span className={css.amountWater}>{amount} мл</span>
-          <span className={css.time}>{time}</span>
+          <span className={css.amountWater}>{volume} мл</span>
+          <span className={css.time}>{date}</span>
         </div>
       </div>
 

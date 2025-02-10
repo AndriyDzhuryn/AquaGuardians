@@ -33,12 +33,13 @@ const waterSlice = createSlice({
       .addCase(addWater.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items.push(action.payload);
+        state.items.push(action.payload.data);
       })
       .addCase(deleteWater.pending, handlePending)
       .addCase(deleteWater.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = state.items.filter(e => e.id !== action.payload);
+        state.error = null;
+        state.items = state.items.filter(e => e.id !== action.payload.data);
       })
       .addCase(deleteWater.rejected, handleRejected);
   },

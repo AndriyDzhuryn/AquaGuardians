@@ -1,17 +1,32 @@
 import css from './WaterRatioPanel.module.css';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import AddWaterModal from '../AddWaterModal/AddWaterModal';
+import { apiGetTodayWater } from '../../redux/today/operations';
 
 export default function WaterRatioPanel() {
-  const consumptionNumbers = useSelector(state => state.today.waterTodayData);
-  const consumptionValue = consumptionNumbers
-    .filter(num => typeof num === 'number')
-    .reduce((acc, num) => acc + num, 0);
-  const normaValue = useSelector(
-    state => state.waterRate?.waterRate ?? state.auth.userData.waterRate
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(apiGetTodayWater());
+  }, [dispatch]);
+
+  // const consumptionNumbers = useSelector(
+  //   state => state.today.waterTodayData.records
+  // );
+  const percentValue = useSelector(
+    state => state.today.waterTodayData.percentage
   );
-  const percentValue = (consumptionValue / normaValue) * 100;
+
+  console.log(percentValue);
+
+  // const consumptionValue = consumptionNumbers
+  //   .filter(num => typeof num === 'number')
+  //   .reduce((acc, num) => acc + num, 0);
+  // const normaValue = useSelector(
+  //   state => state.waterRate?.waterRate ?? state.auth.userData.waterRate
+  // );
+  // const percentValue = (consumptionValue / normaValue) * 100;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
