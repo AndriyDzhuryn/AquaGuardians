@@ -43,6 +43,8 @@ const authSlice = createSlice({
 
       .addCase(apiSignInUser.pending, handlePending)
       .addCase(apiSignInUser.fulfilled, (state, action) => {
+        console.log(action.payload);
+
         state.isLoading = false;
         state.isLoggedIn = true;
         state.token = action.payload.data.accessToken;

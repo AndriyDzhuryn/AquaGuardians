@@ -12,7 +12,7 @@ const DailyNormaPanel = () => {
 
   const normaValue = updateWaterRate
     ? updateWaterRate?.waterRate
-    : waterRate.waterRate;
+    : waterRate?.waterRate;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {

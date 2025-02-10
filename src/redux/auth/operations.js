@@ -43,13 +43,11 @@ export const apiSignInUser = createAsyncThunk(
   }
 );
 
-
 export const apiLogOutUser = createAsyncThunk(
   'auth/logoutUser',
   async (_, thunkApi) => {
     try {
       const { data } = await authInstans.post('auth/logout');
-      console.log(data);
       clearToken();
       return data;
     } catch (error) {
@@ -108,16 +106,9 @@ export const apiUpdateUserProfile = createAsyncThunk(
   }
 );
 
-
-
-
-
 export const apiUpdateUserPhoto = createAsyncThunk(
   'auth/updatePhoto',
   async (file, thunkAPI) => {
-    
-    
-
     try {
       const formData = new FormData();
       formData.append('photo', file);
@@ -126,7 +117,7 @@ export const apiUpdateUserPhoto = createAsyncThunk(
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
-      return data; 
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
