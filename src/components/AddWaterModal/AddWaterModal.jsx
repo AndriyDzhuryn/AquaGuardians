@@ -62,7 +62,8 @@ export default function AddWaterModal({ isOpen, onClose }) {
 
   const handleSubmit = (values, actions) => {
     const date = getTodayDateWithTime(values.time);
-    onAddWater(values, date);
+    const volume = values.volume;
+    onAddWater({ date: date, volume: volume });
     actions.resetForm();
     onClose();
   };

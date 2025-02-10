@@ -1,14 +1,24 @@
 import css from './WaterRatioPanel.module.css';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import AddWaterModal from '../AddWaterModal/AddWaterModal';
 
 export default function WaterRatioPanel() {
+  const consumptionNumbers = useSelector(state => state.today.waterTodayData);
+  const consumptionValue = consumptionNumbers
+    .filter(num => typeof num === 'number')
+    .reduce((acc, num) => acc + num, 0);
+  const normaValue = useSelector(
+    state => state.waterRate?.waterRate ?? state.auth.userData.waterRate
+  );
+  const percentValue = (consumptionValue / normaValue) * 100;
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const Slider = ({ value = 50 }) => {
+  const Slider = ({ value = percentValue }) => {
     return (
       <div className={css.rangeSliderContainer}>
         <div className={css.sliderWrapper}>
