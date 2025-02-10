@@ -6,7 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import toast, { Toaster } from 'react-hot-toast';
 
-import { apiSignInUser, apiSignUpUser } from '../../redux/auth/operations';
+import { apiSignInUser, apiSignUpUser } from '../../redux/auth/operations.js';
 
 import css from './AuthForm.module.css';
 

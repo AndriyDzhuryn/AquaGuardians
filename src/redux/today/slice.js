@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { apiGetTodayWater } from './operations.js';
 
 const INITIAL_STATE = {
-  waterTodayData: [],
+  waterTodayData: null,
   isLoading: false,
   error: null,
 };

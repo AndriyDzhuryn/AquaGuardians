@@ -6,17 +6,12 @@ import iziToast from 'izitoast';
 
 Modal.setAppElement('#root');
 const UserLogoutModal = ({ onClose }) => {
-  // const user = useSelector(selectAuthUserData);
-
   const dispatch = useDispatch();
-  console.log(3);
   const handleLogOut = async e => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(1);
     try {
       dispatch(apiLogOutUser());
-      // dispatch(apiLogOutUser(user._id));
       iziToast.success({ message: 'Logged out successfully' });
     } catch (error) {
       iziToast.error({ message: `Logout failed: ${error}` });
@@ -38,7 +33,7 @@ const UserLogoutModal = ({ onClose }) => {
         </div>
         <button type="button" onClick={onClose}>
           <svg width="24" height="24">
-            <use href="../../../public/icons/icons-sprite.svg#close-icon"></use>
+            <use href="/icons/icons-sprite.svg#close-icon"></use>
           </svg>
         </button>
       </div>
