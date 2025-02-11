@@ -19,10 +19,8 @@ export const apiSignUpUser = createAsyncThunk(
     try {
       const { data } = await authInstans.post('auth/register', formData);
       setToken(data.token);
-      console.log(data);
       return data;
     } catch (error) {
-      console.log(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -33,11 +31,9 @@ export const apiSignInUser = createAsyncThunk(
   async (formData, thunkApi) => {
     try {
       const { data } = await authInstans.post('auth/login', formData);
-      console.log(data);
       setToken(data.token);
       return data;
     } catch (error) {
-      console.log(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -51,7 +47,6 @@ export const apiLogOutUser = createAsyncThunk(
       clearToken();
       return data;
     } catch (error) {
-      console.log(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -76,10 +71,6 @@ export const apiGetCurrentUser = createAsyncThunk(
       const { data } = await authInstans.get('user');
       return data;
     } catch (error) {
-      console.error(
-        'Error fetching current user:',
-        error.response?.data || error.message
-      );
       return thunkApi.rejectWithValue(error.message);
     }
   }
