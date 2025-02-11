@@ -1,4 +1,3 @@
-
 .error {
   color: var(--Secondary-color-3);
   font-size: 14px;
@@ -39,9 +38,9 @@
 }
 
 .titlePhoto {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
 .upload {
@@ -61,6 +60,7 @@
 }
 
 .labelPhoto {
+  cursor: pointer;
   color: var(--Primery-Color-Blue);
   font-size: 14px;
   font-weight: 500;
@@ -79,8 +79,8 @@
 }
 
 .gender {
-    font-size: 18px;
-    font-weight: 500;
+  font-size: 18px;
+  font-weight: 500;
   margin-bottom: 12px;
 }
 
@@ -103,7 +103,7 @@
   gap: 24px;
   margin-bottom: 24px;
 }
-.label{
+.label {
   margin-bottom: 8px;
 }
 .inputBlock {
@@ -113,10 +113,10 @@
   position: relative;
 }
 
-.passwordtitle{
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 12px;
+.passwordtitle {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 12px;
 }
 .password {
   display: flex;
@@ -133,7 +133,7 @@
 .wrapper {
   position: relative;
 }
-.eyes{
+.eyes {
   fill: none;
   stroke: var(--Primery-Color-Blue);
 }
@@ -152,12 +152,12 @@
 }
 .inputerror {
   width: 100%;
-    border-radius: 6px;
+  border-radius: 6px;
   font-size: 16px;
-    font-weight: 400;
-    padding: 12px 10px;
-      outline: none;
-    line-height: 20px;
+  font-weight: 400;
+  padding: 12px 10px;
+  outline: none;
+  line-height: 20px;
   border: 1px solid var(--Secondary-color-3);
   color: var(--Secondary-color-3);
 }
@@ -195,33 +195,33 @@
   font-weight: 500;
 }
 @media only screen and (min-width: 768px) {
-   .submitButton{
-      width: 160px;
-      padding: 10px 30px;
-      margin-left: auto;
-   }
-   .info{
+  .submitButton {
+    width: 160px;
+    padding: 10px 30px;
+    margin-left: auto;
+  }
+  .info {
     margin-right: 288px;
-   }
-   .password{
+  }
+  .password {
     margin-right: 288px;
-   }
-   .input{
+  }
+  .input {
     min-width: 392px;
-   }
+  }
 }
 
-@media only screen and (min-width: 1440px){
-  .info{
+@media only screen and (min-width: 1440px) {
+  .info {
     margin-right: 24px;
   }
-  .password{
+  .password {
     margin-right: 176px;
   }
-  .radioGroup{
-    margin-bottom:52px;
+  .radioGroup {
+    margin-bottom: 52px;
   }
-  .container{
+  .container {
     display: flex;
   }
 }
