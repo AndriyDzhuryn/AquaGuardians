@@ -25,6 +25,24 @@ const WaterTracker = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  // Перевірка та сортування води
+  const sortedWaterList = Array.isArray(waterList)
+    ? waterList
+        .map(item => {
+          const date = new Date(item.date);
+          const timeDrink = date.toLocaleTimeString('uk-UA', {
+            hour: '2-digit',
+            minute: '2-digit',
+          });
+          return { ...item, timeDrink };
+        })
+        .sort((a, b) => {
+          if (a.timeDrink < b.timeDrink) return -1;
+          if (a.timeDrink > b.timeDrink) return 1;
+          return 0;
+        })
+    : [];
+
   return (
     <div className={css.waterTrackerWrapper}>
       <div className={css.listWrapper}>
@@ -37,15 +55,17 @@ const WaterTracker = () => {
               waterList.length < 5 && css.scrollbar
             )}
           >
-            {waterList.map(item => (
-              <li key={item._id} className={css.waterConsumedItem}>
-                <WaterItems
-                  amount={item.volume}
-                  time={item.date}
-                  id={item._id}
-                />
-              </li>
-            ))}
+            {sortedWaterList.map(item => {
+              return (
+                <li key={item._id} className={css.waterConsumedItem}>
+                  <WaterItems
+                    amount={item.volume}
+                    time={item.date}
+                    id={item._id}
+                  />
+                </li>
+              );
+            })}
           </ul>
         )}
 

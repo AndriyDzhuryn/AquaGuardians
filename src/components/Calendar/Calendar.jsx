@@ -20,8 +20,6 @@ import css from './Calendar.module.css';
 const Calendar = () => {
   const monthData = useSelector(selectMonthUserData);
 
-  console.log(monthData);
-
   const dispatch = useDispatch();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -130,14 +128,13 @@ const Calendar = () => {
             const dayData = monthData.find(item => item.date === formattedDate);
             const percentValue = dayData ? parseFloat(dayData.percentage) : 0;
             const percentage = percentValue.toFixed([0]);
-            console.log(dayData);
             return (
               <div key={day} className={css.wrapperDay}>
                 <button
                   ref={buttonRef}
                   className={clsx(
                     css.day,
-                    dayData && percentage < 100 && css.norm
+                    dayData && percentage >= 100 && css.norm
                   )}
                   onClick={event => handleDayClick(event, day)}
                 >

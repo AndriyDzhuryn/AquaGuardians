@@ -1,12 +1,16 @@
 import { useId, useRef, useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik';
 import { useDispatch } from 'react-redux';
-import { addWater, updateWater } from '../../redux/water/operations.js';
+import { startOfMonth } from 'date-fns';
 import * as Yup from 'yup';
+
+import { addWater, updateWater } from '../../redux/water/operations.js';
 import Modal from 'react-modal';
-import css from './AddWaterModal.module.css';
 import WaterItemModal from '../WaterItemModal/WaterItemModal.jsx';
 import { apiGetTodayWater } from '../../redux/today/operations.js';
+import { apiGetMonthWater } from '../../redux/month/operations.js';
+
+import css from './AddWaterModal.module.css';
 
 Modal.setAppElement('#root');
 
@@ -48,6 +52,7 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
     date: '',
     volume: 0,
   });
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   const dispatch = useDispatch();
 
@@ -83,6 +88,10 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
     }
   }, [editData]);
 
+  const start = startOfMonth(currentDate);
+  const month = start.toLocaleDateString('en-US', { month: 'numeric' });
+  const year = start.toLocaleDateString('en-US', { year: 'numeric' });
+
   const onSaveWater = newWater => {
     const waterWithDate = {
       ...newWater,
@@ -98,6 +107,7 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
   const handleSubmit = (values, actions) => {
     onSaveWater(values);
     dispatch(apiGetTodayWater());
+    dispatch(apiGetMonthWater({ month, year }));
     actions.resetForm();
     onClose();
   };
