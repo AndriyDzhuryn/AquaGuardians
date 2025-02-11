@@ -6,7 +6,6 @@ import {
   apiSignUpUser,
   apiUpdateUserPhoto,
   apiUpdateUserProfile,
-  // updateUserProfile,
 } from './operations.js';
 
 const INITIAL_STATE = {
@@ -36,7 +35,6 @@ const authSlice = createSlice({
       .addCase(apiSignUpUser.pending, handlePending)
       .addCase(apiSignUpUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        // state.token = action.payload.token;
         state.userData = action.payload.data;
       })
       .addCase(apiSignUpUser.rejected, handleRejected)
@@ -48,7 +46,6 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isLoggedIn = true;
         state.token = action.payload.data.accessToken;
-        // state.userData = action.payload.user;
       })
       .addCase(apiSignInUser.rejected, handleRejected)
 
@@ -59,11 +56,9 @@ const authSlice = createSlice({
       .addCase(apiLogOutUser.rejected, handleRejected)
 
       .addCase(apiGetCurrentUser.pending, state => {
-    
         state.error = null;
       })
       .addCase(apiGetCurrentUser.fulfilled, (state, action) => {
-    
         state.isLoggedIn = true;
         state.userData = action.payload.data;
       })
@@ -85,13 +80,6 @@ const authSlice = createSlice({
         state.userData.photo = action.payload.data.photo;
       })
       .addCase(apiUpdateUserPhoto.rejected, handleRejected),
-
-  // .addCase(updateUserProfile.pending, handlePending)
-  // .addCase(updateUserProfile.fulfilled, (state, action) => {
-  //   state.userData = action.payload.user;
-  //   state.isLoading = false;
-  // })
-  // .addCase(updateUserProfile.rejected, handleRejected),
 });
 
 export const authReducer = authSlice.reducer;

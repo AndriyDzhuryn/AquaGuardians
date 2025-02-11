@@ -92,6 +92,7 @@
 }
 
 .radio {
+  cursor: pointer;
   display: flex;
   align-items: baseline;
   gap: 8px;

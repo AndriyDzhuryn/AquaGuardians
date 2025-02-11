@@ -20,6 +20,8 @@ import css from './Calendar.module.css';
 const Calendar = () => {
   const monthData = useSelector(selectMonthUserData);
 
+  console.log(monthData);
+
   const dispatch = useDispatch();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -123,23 +125,29 @@ const Calendar = () => {
 
       <div className={css.wrapperDays}>
         {Array.isArray(monthData) &&
-          days.map(day => (
-            <div key={day} className={css.wrapperDay}>
-              <button
-                ref={buttonRef}
-                className={clsx(
-                  css.day,
-                  monthData[format(day, 'yyyy-MM-dd')] < 100 && css.norm
-                )}
-                onClick={event => handleDayClick(event, day)}
-              >
-                {format(day, 'd')}
-              </button>
-              <span className={css.textProgress}>
-                {monthData[format(day, 'yyyy-MM-dd')]?.percentage || 0}%
-              </span>
-            </div>
-          ))}
+          days.map(day => {
+            const formattedDate = format(day, 'dd, MMMM');
+            const dayData = monthData.find(item => item.date === formattedDate);
+            const percentage = dayData ? parseFloat(dayData.percentage) : 0;
+            console.log(dayData);
+            return (
+              <div key={day} className={css.wrapperDay}>
+                <button
+                  ref={buttonRef}
+                  className={clsx(
+                    css.day,
+                    dayData && percentage < 100 && css.norm
+                  )}
+                  onClick={event => handleDayClick(event, day)}
+                >
+                  {format(day, 'd')}
+                </button>
+                <span className={css.textProgress}>
+                  {percentage ? `${percentage}%` : '0%'}
+                </span>
+              </div>
+            );
+          })}
         <div ref={dropdownRef}>
           {Array.isArray(monthData) && (
             <DaysGeneralStats
@@ -147,9 +155,11 @@ const Calendar = () => {
               isOpen={isOpen}
               date={selectedDate}
               monthData={
-                monthData[format(selectedDate, 'yyyy-MM-dd')] || {
-                  dailyWaterNorm: 0,
-                  percentage: 0,
+                monthData.find(
+                  item => item.date === format(selectedDate, 'dd, MMMM')
+                ) || {
+                  dailyWaterNorm: '0 L',
+                  percentage: '0%',
                   consumptionCount: 0,
                 }
               }
