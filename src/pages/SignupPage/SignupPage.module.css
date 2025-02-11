@@ -1,58 +1,63 @@
 .section {
-  background-image: url("../../assets/images/sign/mobile-bg-sign-up.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center bottom;
-  min-height: 100%;
+  background:
+    url("../../assets/images/sign/mobile-bg-sign-botl.png") no-repeat center bottom 20px / 280px 210px,
+    url("../../assets/images/sign/mobile-bg-sign-decor.png") no-repeat center top 50px / 320px 572px;
+  min-height: 624px;
   max-width: 320px;
   margin: 0 auto;
 }
 .wrapper {
   max-width: 280px;
+  padding-top: 24px;
   margin: 0 auto;
-  padding: 24px 0 204px 0;
 }
 
 @media (min-resolution: 192dpi) and (min-width: 320px) {
   .section {
-    background-image: url("../../assets/images/sign/mobile-bg-sign-up@2x.png");
+    background-image: url("../../assets/images/sign/mobile-bg-sign-botl@2x.png"),
+      url("../../assets/images/sign/mobile-bg-sign-decor@2x.png");
   }
 }
 
 @media only screen and (min-width: 768px) {
   .section {
-    background-image: url("../../assets/images/sign/tablet-bg-sign-up.png");
-    background-size: cover;
+    background:
+      url("../../assets/images/sign/tablet-bg-sign-botl.png") no-repeat left 112px bottom 16px / 736px 548px,
+      url("../../assets/images/sign/tablet-bg-sign-decor.png") no-repeat center bottom 35px / cover;
     max-width: 768px;
   }
   .wrapper {
     max-width: 336px;
-    padding: 40px 0 172px 0;
+    padding-top: 40px;
     margin: 0 auto 0 32px;
   }
 }
 
 @media (min-resolution: 192dpi) and (min-width: 768px) {
   .section {
-    background-image: url("../../assets/images/sign/tablet-bg-sign-up@2x.png");
+    background-image: url("../../assets/images/sign/tablet-bg-sign-botl@2x.png"),
+      url("../../assets/images/sign/tablet-bg-sign-decor@2x.png");
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .section {
-    background-image: url("../../assets/images/sign/dectop-bg-sign-up.png");
-    background-position: center top;
+    min-height: 748px;
+    background:
+      url("../../assets/images/sign/desctop-bg-sign-botl.png") no-repeat left -51px bottom 40px / 916px 680px,
+      url("../../assets/images/sign/dectop-bg-sign-decor.png") no-repeat center top / 1404px 582px;
     max-width: 1440px;
   }
   .wrapper {
     max-width: 384px;
-    padding: 148px 0 196px 0;
+    padding-top: 148px;
     margin: 0 216px 0 auto;
   }
 }
 
 @media (min-resolution: 192dpi) and (min-width: 1440px) {
   .section {
-    background-image: url("../../assets/images/sign/dectop-bg-sign-up@2x.png");
+    background-image: url("../../assets/images/sign/dectop-bg-sign-botl@2x.png"),
+      url("../../assets/images/sign/dectop-bg-sign-decor@2x.png");
   }
 }
