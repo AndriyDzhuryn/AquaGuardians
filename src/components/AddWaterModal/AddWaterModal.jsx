@@ -11,7 +11,7 @@ import { apiGetTodayWater } from '../../redux/today/operations.js';
 import { apiGetMonthWater } from '../../redux/month/operations.js';
 
 import css from './AddWaterModal.module.css';
-import { current } from '@reduxjs/toolkit';
+
 
 Modal.setAppElement('#root');
 
