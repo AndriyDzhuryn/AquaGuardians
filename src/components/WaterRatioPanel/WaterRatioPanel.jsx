@@ -28,7 +28,7 @@ export default function WaterRatioPanel() {
     ? consumptionNumbers.reduce((acc, num) => acc + num.volume, 0)
     : percent;
 
-  const percentToday = (consumptionValue / normaValue) * 100;
+  const percentToday = Math.min((consumptionValue / normaValue) * 100, 100);
 
   const percentValue = percentToday.toFixed([2]);
 
