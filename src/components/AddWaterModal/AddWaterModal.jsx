@@ -11,7 +11,6 @@ import { apiGetTodayWater } from '../../redux/today/operations.js';
 import { apiGetMonthWater } from '../../redux/month/operations.js';
 
 import css from './AddWaterModal.module.css';
-import { current } from '@reduxjs/toolkit';
 
 Modal.setAppElement('#root');
 
@@ -73,11 +72,9 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
     const minutes = String(now.getMinutes()).padStart(2, '0');
     return `${hours}:${minutes}`;
   };
-  
 
   useEffect(() => {
     if (!editData) {
-
       setInitialValues({
         date: getCurrentTime(),
         volume: 0,

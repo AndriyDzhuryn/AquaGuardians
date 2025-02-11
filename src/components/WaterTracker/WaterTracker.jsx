@@ -25,7 +25,6 @@ const WaterTracker = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  // Перевірка та сортування води
   const sortedWaterList = Array.isArray(waterList)
     ? waterList
         .map(item => {
@@ -62,6 +61,7 @@ const WaterTracker = () => {
                     amount={item.volume}
                     time={item.date}
                     id={item._id}
+                    timeWater={item.timeDrink}
                   />
                 </li>
               );

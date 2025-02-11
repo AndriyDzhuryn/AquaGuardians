@@ -6,15 +6,9 @@ import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 import css from './WaterItems.module.css';
 import 'izitoast/dist/css/iziToast.min.css';
 
-const WaterItems = ({ amount, time, id }) => {
+const WaterItems = ({ amount, time, id, timeWater }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
-
-  const date = new Date(time);
-  const timeDrink = date.toLocaleTimeString('uk-UA', {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
 
   return (
     <div className={css.wrapperWaterConsumedItem}>
@@ -24,7 +18,7 @@ const WaterItems = ({ amount, time, id }) => {
         </svg>
         <div>
           <span className={css.amountWater}>{amount} мл</span>
-          <span className={css.time}>{timeDrink}</span>
+          <span className={css.time}>{timeWater}</span>
         </div>
       </div>
 
@@ -56,7 +50,7 @@ const WaterItems = ({ amount, time, id }) => {
         <AddWaterModal
           isOpen={editModalIsOpen}
           onClose={() => setEditModalIsOpen(false)}
-          editData={{ id, amount, time }}
+          editData={{ id, amount, time, timeWater }}
         />
       </div>
     </div>
