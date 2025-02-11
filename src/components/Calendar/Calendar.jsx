@@ -128,7 +128,8 @@ const Calendar = () => {
           days.map(day => {
             const formattedDate = format(day, 'dd, MMMM');
             const dayData = monthData.find(item => item.date === formattedDate);
-            const percentage = dayData ? parseFloat(dayData.percentage) : 0;
+            const percentValue = dayData ? parseFloat(dayData.percentage) : 0;
+            const percentage = percentValue.toFixed([0]);
             console.log(dayData);
             return (
               <div key={day} className={css.wrapperDay}>
