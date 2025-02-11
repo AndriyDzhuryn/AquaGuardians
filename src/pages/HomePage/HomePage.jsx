@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <section className={css.section}>
       <div className={css.wrapper}>
-        <div>
+        <div className={css.DailyWater}>
           <DailyNormaPanel />
           <WaterRatioPanel />
         </div>
