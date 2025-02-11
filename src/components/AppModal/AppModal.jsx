@@ -2,6 +2,7 @@ import Modal from 'react-modal';
 import { useDispatch } from 'react-redux';
 
 import { deleteWater } from '../../redux/water/operations.js';
+import { apiGetTodayWater } from '../../redux/today/operations.js';
 
 import css from './AppModal.module.css';
 import 'izitoast/dist/css/iziToast.min.css';
@@ -12,6 +13,7 @@ const AppModal = ({ isOpen, onClose, id }) => {
   const dispatch = useDispatch();
   const handleDelete = () => {
     dispatch(deleteWater(id));
+    dispatch(apiGetTodayWater());
     onClose();
   };
   return (

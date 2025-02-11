@@ -31,6 +31,8 @@ const waterSlice = createSlice({
       .addCase(addWater.pending, handlePending)
       .addCase(addWater.rejected, handleRejected)
       .addCase(addWater.fulfilled, (state, action) => {
+        console.log(action.payload);
+
         state.loading = false;
         state.error = null;
         state.items.push(action.payload);
