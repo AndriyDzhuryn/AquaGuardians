@@ -22,11 +22,11 @@ const DaysGeneralStats = ({ position, isOpen, date, monthData }) => {
           </p>
           <p className={css.dailyNorma}>
             Daily norma:{' '}
-            <b className={css.result}>{monthData.dailyWaterNorm} L</b>
+            <b className={css.result}>{monthData.dailyWaterNorm}</b>
           </p>
           <p className={css.dailyNorma}>
             Fulfillment of the daily norm:{' '}
-            <b className={css.result}>{monthData.percentage}%</b>
+            <b className={css.result}>{monthData.percentage}</b>
           </p>
           <p className={css.dailyNorma}>
             How many servings of water:{' '}

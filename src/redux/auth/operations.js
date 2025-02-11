@@ -74,7 +74,6 @@ export const apiGetCurrentUser = createAsyncThunk(
     try {
       setToken(token);
       const { data } = await authInstans.get('user');
-      console.log(data);
       return data;
     } catch (error) {
       console.error(

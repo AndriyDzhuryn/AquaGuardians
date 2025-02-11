@@ -8,6 +8,8 @@ import RadioButtons from './RadioButtons/RadioButtons.jsx';
 import { updateWaterRate } from '../../redux/waterRate/operations.js';
 
 import css from './DailyNormaForm.module.css';
+import { apiGetMonthWater } from '../../redux/month/operations.js';
+import { startOfMonth } from 'date-fns';
 
 const dailyNormaFormSchema = Yup.object().shape({
   waterAmount: Yup.string()
@@ -20,6 +22,8 @@ const DailyNormaForm = ({ closeModal }) => {
   const [gender, setGender] = useState('female');
   const [weight, setWeight] = useState('0');
   const [time, setTime] = useState('0');
+  const [currentDate, setCurrentDate] = useState(new Date());
+
   const dispatch = useDispatch();
   useEffect(() => {
     if (gender === 'female') {
@@ -35,6 +39,10 @@ const DailyNormaForm = ({ closeModal }) => {
     }
   }, [gender, weight, time]);
 
+  const start = startOfMonth(currentDate);
+  const month = start.toLocaleDateString('en-US', { month: 'numeric' });
+  const year = start.toLocaleDateString('en-US', { year: 'numeric' });
+
   const submitData = values => {
     dispatch(
       updateWaterRate({
@@ -42,6 +50,7 @@ const DailyNormaForm = ({ closeModal }) => {
       })
     );
     closeModal();
+    dispatch(apiGetMonthWater({ month, year }));
   };
 
   return (
