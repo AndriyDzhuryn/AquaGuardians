@@ -10,9 +10,9 @@ const Logo = () => {
 
   const handleLogoClick = () => {
     if (isLoggedIn) {
-      navigate('/');
+      navigate('/home');
     } else {
-      navigate('/welcome');
+      navigate('/');
     }
   };
 
