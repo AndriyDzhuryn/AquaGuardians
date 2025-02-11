@@ -11,9 +11,10 @@ const WaterItems = ({ amount, time, id }) => {
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
 
   const date = new Date(time);
-  const hours = date.getHours();
-  const minutes = String(date.getMinutes()).padStart(2, '0');
-  const timeDrink = `${hours}:${minutes}`;
+  const timeDrink = date.toLocaleTimeString('uk-UA', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 
   return (
     <div className={css.wrapperWaterConsumedItem}>

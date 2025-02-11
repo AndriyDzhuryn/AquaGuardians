@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import Modal from 'react-modal';
 import { useDispatch } from 'react-redux';
+import { startOfMonth } from 'date-fns';
 
 import { deleteWater } from '../../redux/water/operations.js';
 import { apiGetTodayWater } from '../../redux/today/operations.js';
+import { apiGetMonthWater } from '../../redux/month/operations.js';
 
 import css from './AppModal.module.css';
 import 'izitoast/dist/css/iziToast.min.css';
@@ -10,10 +13,18 @@ import 'izitoast/dist/css/iziToast.min.css';
 Modal.setAppElement('#root');
 
 const AppModal = ({ isOpen, onClose, id }) => {
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  const start = startOfMonth(currentDate);
+  const month = start.toLocaleDateString('en-US', { month: 'numeric' });
+  const year = start.toLocaleDateString('en-US', { year: 'numeric' });
+
   const dispatch = useDispatch();
+
   const handleDelete = () => {
     dispatch(deleteWater(id));
     dispatch(apiGetTodayWater());
+    dispatch(apiGetMonthWater({ month, year }));
     onClose();
   };
   return (
