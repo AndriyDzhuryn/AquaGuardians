@@ -6,7 +6,7 @@ export const apiGetMonthWater = createAsyncThunk(
   'month/monthWater',
   async ({ year, month }, thunkAPI) => {
     try {
-      const { data } = await authInstans.get(`/water/month/${year}/${month}`);
+      const { data } = await authInstans.get(`water/month/${year}/${month}`);
 
       return data;
     } catch (e) {
