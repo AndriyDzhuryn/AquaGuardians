@@ -11,6 +11,7 @@ import { apiGetTodayWater } from '../../redux/today/operations.js';
 import { apiGetMonthWater } from '../../redux/month/operations.js';
 
 import css from './AddWaterModal.module.css';
+import { current } from '@reduxjs/toolkit';
 
 Modal.setAppElement('#root');
 
@@ -72,12 +73,13 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
     const minutes = String(now.getMinutes()).padStart(2, '0');
     return `${hours}:${minutes}`;
   };
+  
 
   useEffect(() => {
     if (!editData) {
-      const currentTime = getCurrentTime();
+
       setInitialValues({
-        date: currentTime,
+        date: getCurrentTime(),
         volume: 0,
       });
     } else {
@@ -86,7 +88,7 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
         volume: editData.amount || 0,
       });
     }
-  }, [editData]);
+  }, [editData, isOpen]);
 
   const start = startOfMonth(currentDate);
   const month = start.toLocaleDateString('en-US', { month: 'numeric' });
@@ -169,6 +171,7 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
         validationSchema={waterSchema}
         innerRef={formikRef}
         enableReinitialize
+        key={isOpen}
       >
         <Form className={css.form}>
           <button className={css.btnIcon} onClick={onClose}>
@@ -182,7 +185,7 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
           {editData && (
             <WaterItemModal
               volume={initialValues.volume}
-              date={initialValues.time}
+              date={initialValues.date}
             />
           )}
 
