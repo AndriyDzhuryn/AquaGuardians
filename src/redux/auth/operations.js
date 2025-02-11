@@ -113,7 +113,7 @@ export const apiUpdateUserPhoto = createAsyncThunk(
       const formData = new FormData();
       formData.append('photo', file);
 
-      const { data } = await authInstans.patch('/user/photo', formData, {
+      const { data } = await authInstans.patch('user/photo', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
