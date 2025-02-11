@@ -11,7 +11,7 @@ import { apiGetTodayWater } from '../../redux/today/operations.js';
 import { apiGetMonthWater } from '../../redux/month/operations.js';
 
 import css from './AddWaterModal.module.css';
-import { current } from '@reduxjs/toolkit';
+
 
 Modal.setAppElement('#root');
 
@@ -221,7 +221,7 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
             <Field
               as="select"
               name="date"
-              id="timeFieldId"
+              id={timeFieldId}
               className={css.input}
             >
               {generateTimeOptions()}
@@ -235,7 +235,7 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
             <Field
               type="number"
               name="volume"
-              id="volumeFieldId"
+              id={volumeFieldId}
               onChange={handleVolumeChange}
               onFocus={handleVolumeFocus}
               onBlur={e => {
