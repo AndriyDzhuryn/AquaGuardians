@@ -35,7 +35,7 @@ export const addWater = createAsyncThunk(
 
 export const updateWater = createAsyncThunk(
   'water/updateWater',
-  async ({ water, id }, thunkAPI) => {
+  async ({ id, ...water }, thunkAPI) => {
     try {
       const response = await authInstans.patch(`/water/${id}`, water);
       return response.data;
