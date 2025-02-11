@@ -7,6 +7,8 @@
   box-sizing: content-box;
   width: 280px;
   gap: 16px;
+  margin: 0 auto;
+  margin-top: 300px;
 }
 
 .wrapper {
@@ -31,6 +33,7 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
+  width: 280px;
   justify-content: center;
   align-items: center;
   height: 36px;
@@ -145,6 +148,8 @@
 /* tablet */
 @media screen and (min-width: 768px) {
   .container {
+    margin: 0 auto;
+    margin-top: 430px;
     flex-direction: row;
     width: 704px;
     gap: 12px;
@@ -171,6 +176,7 @@
 /* desktop */
 @media screen and (min-width: 1440px) {
   .container {
+    margin-top: 620px;
     width: 592px;
     gap: 23px;
   }
