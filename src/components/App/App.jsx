@@ -54,7 +54,10 @@ function App() {
         {/* SharedLayout рендериться на маршруті "/" і обгортає вкладені сторінки */}
         <Route path="/" element={<SharedLayout />}>
           {/* За замовчуванням для "/" рендериться WelcomePage */}
-          <Route index element={<WelcomePage />} />
+          <Route
+            index
+            element={<RestrictedRoute component={<WelcomePage />} />}
+          />
 
           <Route
             path="home"

@@ -126,6 +126,7 @@ const Calendar = () => {
           days.map(day => {
             const formattedDate = format(day, 'dd, MMMM');
             const dayData = monthData.find(item => item.date === formattedDate);
+
             const percentValue = dayData ? parseFloat(dayData.percentage) : 0;
             const percentage = percentValue.toFixed([0]);
 

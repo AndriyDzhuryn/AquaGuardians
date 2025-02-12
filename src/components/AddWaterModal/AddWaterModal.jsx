@@ -75,9 +75,8 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
 
   useEffect(() => {
     if (!editData) {
-      const currentTime = getCurrentTime();
       setInitialValues({
-        date: currentTime,
+        date: getCurrentTime(),
         volume: 0,
       });
     } else {
@@ -86,7 +85,7 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
         volume: editData.amount || 0,
       });
     }
-  }, [editData]);
+  }, [editData, isOpen]);
 
   const start = startOfMonth(currentDate);
   const month = start.toLocaleDateString('en-US', { month: 'numeric' });
@@ -168,7 +167,8 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
         onSubmit={handleSubmit}
         validationSchema={waterSchema}
         innerRef={formikRef}
-        enableReinitialize
+        enableReinitialize={true}
+        key={isOpen}
       >
         <Form className={css.form}>
           <button className={css.btnIcon} onClick={onClose}>
@@ -182,7 +182,7 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
           {editData && (
             <WaterItemModal
               volume={initialValues.volume}
-              date={initialValues.time}
+              date={initialValues.date}
             />
           )}
 
@@ -218,7 +218,7 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
             <Field
               as="select"
               name="date"
-              id="timeFieldId"
+              id={timeFieldId}
               className={css.input}
             >
               {generateTimeOptions()}
@@ -232,7 +232,7 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
             <Field
               type="number"
               name="volume"
-              id="volumeFieldId"
+              id={volumeFieldId}
               onChange={handleVolumeChange}
               onFocus={handleVolumeFocus}
               onBlur={e => {
