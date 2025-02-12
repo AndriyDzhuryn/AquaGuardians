@@ -9,7 +9,7 @@ export const validationSchema = Yup.object().shape({
     .email('Некоректний формат email')
     .required('Email є обов’язковим'),
 
-  oldPassword: Yup.string().required('Старий пароль є обов’язковим'),
+  oldPassword: Yup.string(),
 
   password: Yup.string()
     .min(8, 'Пароль має містити мінімум 8 символів')
