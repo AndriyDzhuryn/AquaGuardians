@@ -1,16 +1,17 @@
 .section {
-  width: 320px;
+  max-width: 320px;
   margin: 0 auto;
-  background-image: url('../../assets/images/tracker-water/mobile-bg-tracker-water-min.png');
+  background-image: url("../../assets/images/tracker-water/mobile-bg-tracker-water-min.png");
   background-repeat: no-repeat;
   background-size: contain;
   min-height: 100%;
   height: 100%;
-  background-position: top 25px center, top 52px left 0;
+  background-position:
+    top 25px center,
+    top 52px left 0;
 }
 
 .DailyWater {
-  /* display: flex; */
   flex-direction: column;
   width: 280px;
 }
@@ -21,7 +22,7 @@
 
 @media (min-resolution: 192dpi) and (min-width: 320px) {
   .section {
-    background-image: url('../../assets/images/tracker-water/mobile-bg-tracker-water@2x-min.png');
+    background-image: url("../../assets/images/tracker-water/mobile-bg-tracker-water@2x-min.png");
   }
 }
 
@@ -29,7 +30,7 @@
   .section {
     width: 100%;
     height: 100%;
-    background-image: url('../../assets/images/tracker-water/tablet-bg-tracker-water-min.png');
+    background-image: url("../../assets/images/tracker-water/tablet-bg-tracker-water-min.png");
   }
 
   .DailyWater {
@@ -47,13 +48,13 @@
 
 @media (min-resolution: 192dpi) and (min-width: 768px) {
   .section {
-    background-image: url('../../assets/images/tracker-water/tablet-bg-tracker-water@2x-min.png');
+    background-image: url("../../assets/images/tracker-water/tablet-bg-tracker-water@2x-min.png");
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .section {
-    background-image: url('../../assets/images/tracker-water/dectop-bg-tracker-water-min.png');
+    background-image: url("../../assets/images/tracker-water/dectop-bg-tracker-water-min.png");
     background-position: center;
     max-width: 1440px;
     margin: 0 auto;
@@ -65,12 +66,10 @@
     flex-direction: row;
     gap: 32px;
     width: 1440px;
-    /* height: 800px; */
     justify-content: center;
   }
 
   .DailyWater {
-    /* gap: 466px; */
     margin-left: 0;
     margin-right: 312px;
     margin-top: 52px;
@@ -79,6 +78,6 @@
 
 @media (min-resolution: 192dpi) and (min-width: 1440px) {
   .section {
-    background-image: url('../../assets/images/tracker-water/dectop-bg-tracker-water@2x-min.png');
+    background-image: url("../../assets/images/tracker-water/dectop-bg-tracker-water@2x-min.png");
   }
 }

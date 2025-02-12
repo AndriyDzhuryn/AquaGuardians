@@ -13,10 +13,42 @@ import css from './DailyNormaForm.module.css';
 import { apiGetMonthWater } from '../../redux/month/operations.js';
 import { startOfMonth } from 'date-fns';
 
+// const dailyNormaFormSchema = Yup.object().shape({
+//   waterAmount: Yup.string()
+//     .max(2, 'Too long! Amount of water should be in liters.')
+//     .required('Required'),
+// });
+
 const dailyNormaFormSchema = Yup.object().shape({
-  waterAmount: Yup.number()
-    .max(5, 'Too long! Amount of water should be in liters.')
-    .required('Required'),
+
+  weight: Yup.string()
+    .matches(/^\d+(\.\d+)?$/, 'Weight must be a valid number') // Проверка на число с возможной дробной частью
+    .test('is-valid-weight', 'Weight must be between 1 and 500 kg', value => {
+      const weight = parseFloat(value);
+      return weight >= 1 && weight <= 500; // Ограничение от 1 до 500 кг
+    })
+    .required('Weight is required'),
+
+  time: Yup.string()
+    .matches(/^\d+(\.\d+)?$/, 'Time must be a valid number') // Проверка на число с возможной дробной частью
+    .test('is-valid-time', 'Time must be between 0 and 24 hours', value => {
+      const time = parseFloat(value);
+      return time >= 0 && time <= 24; // Ограничение от 0 до 24 часов
+    })
+    .required('Time is required'),
+
+  waterAmount: Yup.string()
+    .matches(/^\d+(\.\d+)?$/, 'Water amount must be a valid number') // Проверка на число с возможной дробной частью
+    .test(
+      'is-valid-water',
+      'Water amount must be between 0 and 10 liters',
+      value => {
+        const waterAmount = parseFloat(value);
+        return waterAmount >= 0 && waterAmount <= 10; // Ограничение от 0 до 10 литров
+      }
+    )
+    .required('Water amount is required'),
+
 });
 
 const DailyNormaForm = ({ closeModal }) => {
@@ -90,6 +122,11 @@ const DailyNormaForm = ({ closeModal }) => {
                 <label>
                   <FormInput name="weight" onChange={setWeight} {...props} />
                 </label>
+                <ErrorMessage
+                  className={css.error}
+                  name="weight"
+                  component="span"
+                />
                 <p className={css.infoBox}>
                   The time of active participation in sports or other activities
                   with a high physical. Load in hours:
@@ -97,6 +134,11 @@ const DailyNormaForm = ({ closeModal }) => {
                 <label>
                   <FormInput name="time" onChange={setTime} {...props} />
                 </label>
+                <ErrorMessage
+                  className={css.error}
+                  name="time"
+                  component="span"
+                />
                 <p className={css.textRequired}>
                   The required amount of water in liters per day:
                   <span className={css.waterLiters}>{liters.toFixed(1)} L</span>
