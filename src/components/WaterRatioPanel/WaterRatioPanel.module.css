@@ -8,7 +8,7 @@
   width: 280px;
   gap: 16px;
   margin: 0 auto;
-  margin-top: 180px;
+  margin-top: 232px;
 }
 
 .wrapper {
@@ -177,9 +177,9 @@
 /* desktop */
 @media screen and (min-width: 1440px) {
   .container {
-    margin-top: 430px;
+    margin-top: 480px;
     width: 592px;
-    gap: 23px;
+    gap: 32px;
   }
 
   .wrapper {
