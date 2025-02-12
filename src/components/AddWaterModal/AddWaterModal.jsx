@@ -66,6 +66,19 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
     return date.split('T')[1].substring(0, 5);
   };
 
+  const generateTimeOptions = () => {
+    const options = [];
+    for (let hour = 0; hour < 24; hour++) {
+      for (let minute = 0; minute < 60; minute += 5) {
+        const time = `${String(hour).padStart(2, '0')}:${String(
+          minute
+        ).padStart(2, '0')}`;
+        options.push(time);
+      }
+    }
+    return options;
+  };
+
   const getCurrentTime = () => {
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, '0');
@@ -74,9 +87,11 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
   };
 
   useEffect(() => {
+    const currentTime = getCurrentTime();
+
     if (!editData) {
       setInitialValues({
-        date: getCurrentTime(),
+        date: currentTime,
         volume: 0,
       });
     } else {
@@ -137,24 +152,6 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
     const { values } = useFormikContext();
     return <div className={css.value}>{values.volume}ml</div>;
   };
-
-  const generateTimeOptions = () => {
-    const options = [];
-    for (let hour = 0; hour < 24; hour++) {
-      for (let minute = 0; minute < 60; minute += 5) {
-        const date = `${String(hour).padStart(2, '0')}:${String(
-          minute
-        ).padStart(2, '0')}`;
-        options.push(
-          <option key={date} value={date}>
-            {date}
-          </option>
-        );
-      }
-    }
-    return options;
-  };
-
   return (
     <Modal
       isOpen={isOpen}
@@ -221,7 +218,14 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
               id={timeFieldId}
               className={css.input}
             >
-              {generateTimeOptions()}
+              {!generateTimeOptions().includes(initialValues.date) && (
+                <option value={initialValues.date}>{initialValues.date}</option>
+              )}
+              {generateTimeOptions().map(time => (
+                <option key={time} value={time}>
+                  {time}
+                </option>
+              ))}
             </Field>
             <ErrorMessage name="date" component="span" className={css.error} />
           </div>
