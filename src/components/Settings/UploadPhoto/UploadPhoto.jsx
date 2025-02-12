@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import style from '../Settings.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAuthUserData } from '../../../redux/auth/selectors';
+import { selectAuthIsLoading, selectAuthUserData } from '../../../redux/auth/selectors';
 import { apiUpdateUserPhoto } from '../../../redux/auth/operations';
+import { Circles } from 'react-loader-spinner';
 
 const UploadPhoto = () => {
   const userData = useSelector(selectAuthUserData);
+  const isLoading = useSelector(selectAuthIsLoading);
   const dispatch = useDispatch();
   const [photoUrl, setPhotoUrl] = useState(null);
 
@@ -22,11 +24,28 @@ const handleChange = (e) => {
     const objectURL = URL.createObjectURL(file); 
     setPhotoUrl(objectURL);
   }
-};
+  };
+  
+  if (isLoading) { return (
+     
+        <div className={style.loaderWrapper}>
+                <Circles
+                  height="80"
+                  width="80"
+                  color="#5353ec"
+                  ariaLabel="circles-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                />
+              </div>
+    ) }
+ 
 
 
   return (
     <>
+      
       {photoUrl ? (
         <img src={photoUrl} alt="Avatar" className={style.avatar} />
       ) : (
