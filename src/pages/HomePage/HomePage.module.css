@@ -4,18 +4,15 @@
   background-image: url('../../assets/images/tracker-water/mobile-bg-tracker-water-min.png');
   background-repeat: no-repeat;
   background-size: contain;
-  /* background-position: center bottom; */
   min-height: 100%;
   height: 100%;
   background-position: top 25px center, top 52px left 0;
 }
 
 .DailyWater {
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
-  gap: 232px;
-  /* margin-left: 20px; */
-  margin-top: 24px;
+  width: 280px;
 }
 
 .wrapper {
@@ -36,8 +33,6 @@
   }
 
   .DailyWater {
-    gap: 326px;
-    /* margin-left: 32px; */
     margin-top: 40px;
   }
 
@@ -61,23 +56,23 @@
     background-image: url('../../assets/images/tracker-water/dectop-bg-tracker-water-min.png');
     background-position: center;
     max-width: 1440px;
-    margin: 0;
+    margin: 0 auto;
   }
 
   .wrapper {
     margin: 0 auto;
     display: flex;
     flex-direction: row;
+    gap: 32px;
     width: 1440px;
     /* height: 800px; */
     justify-content: center;
-    margin-bottom: 40px;
   }
 
   .DailyWater {
-    gap: 466px;
+    /* gap: 466px; */
     margin-left: 0;
-    margin-right: 32px;
+    margin-right: 312px;
     margin-top: 52px;
   }
 }
