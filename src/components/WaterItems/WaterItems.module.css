@@ -1,6 +1,7 @@
 .wrapperWaterConsumedItem {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--Secondary-color-5);
   padding-top: 12px;
@@ -10,6 +11,7 @@
 .glassWaterWrapper {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .amountWater {
@@ -85,6 +87,11 @@
 @media only screen and (min-width: 768px) {
   .amountWater {
     margin-right: 16px;
+  }
+
+  .glassOfWater {
+    width: 36px;
+    height: 36px;
   }
 }
 

@@ -13,42 +13,36 @@ import css from './DailyNormaForm.module.css';
 import { apiGetMonthWater } from '../../redux/month/operations.js';
 import { startOfMonth } from 'date-fns';
 
-// const dailyNormaFormSchema = Yup.object().shape({
-//   waterAmount: Yup.string()
-//     .max(2, 'Too long! Amount of water should be in liters.')
-//     .required('Required'),
-// });
-
 const dailyNormaFormSchema = Yup.object().shape({
-
   weight: Yup.string()
-    .matches(/^\d+(\.\d+)?$/, 'Weight must be a valid number') // Проверка на число с возможной дробной частью
+    .matches(/^\d+(\.\d+)?$/, 'Weight must be a valid number')
     .test('is-valid-weight', 'Weight must be between 1 and 500 kg', value => {
+      if (!value) return true;
       const weight = parseFloat(value);
-      return weight >= 1 && weight <= 500; // Ограничение от 1 до 500 кг
+      return weight >= 1 && weight <= 500;
     })
-    .required('Weight is required'),
+    .nullable(),
 
   time: Yup.string()
-    .matches(/^\d+(\.\d+)?$/, 'Time must be a valid number') // Проверка на число с возможной дробной частью
+    .matches(/^\d+(\.\d+)?$/, 'Time must be a valid number')
     .test('is-valid-time', 'Time must be between 0 and 24 hours', value => {
+      if (!value) return true;
       const time = parseFloat(value);
-      return time >= 0 && time <= 24; // Ограничение от 0 до 24 часов
+      return time >= 0 && time <= 24;
     })
-    .required('Time is required'),
+    .nullable(),
 
   waterAmount: Yup.string()
-    .matches(/^\d+(\.\d+)?$/, 'Water amount must be a valid number') // Проверка на число с возможной дробной частью
+    .matches(/^\d+(\.\d+)?$/, 'Water amount must be a valid number')
     .test(
       'is-valid-water',
       'Water amount must be between 0 and 10 liters',
       value => {
         const waterAmount = parseFloat(value);
-        return waterAmount >= 0 && waterAmount <= 10; // Ограничение от 0 до 10 литров
+        return waterAmount >= 0 && waterAmount <= 10;
       }
     )
-    .required('Water amount is required'),
-
+    .required('Weight is required'),
 });
 
 const DailyNormaForm = ({ closeModal }) => {
@@ -104,8 +98,8 @@ const DailyNormaForm = ({ closeModal }) => {
       <Formik
         initialValues={{
           gender: 'female',
-          weight: '0',
-          time: '0',
+          weight: '',
+          time: '',
           waterAmount:
             currentWaterRate?.waterRate / 1000 ||
             userWaterRate?.waterRate / 1000 ||

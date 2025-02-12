@@ -30,7 +30,7 @@ export default function WaterRatioPanel() {
 
   const percentToday = Math.min((consumptionValue / normaValue) * 100, 100);
 
-  const percentValue = percentToday.toFixed([2]);
+  const percentValue = percentToday.toFixed([0]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 

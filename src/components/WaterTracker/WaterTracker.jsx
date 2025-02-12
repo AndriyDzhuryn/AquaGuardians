@@ -47,7 +47,7 @@ const WaterTracker = () => {
       <div className={css.listWrapper}>
         <h2 className={css.title}>Today</h2>
 
-        {Array.isArray(waterList) && waterList.length !== 0 && (
+        {Array.isArray(waterList) && (
           <ul
             className={clsx(
               css.listWaterTracker,

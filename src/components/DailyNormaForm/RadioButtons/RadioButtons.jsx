@@ -1,9 +1,13 @@
 import { Field, useField } from 'formik';
 import css from '../DailyNormaForm.module.css';
+import { useEffect } from 'react';
 
 const RadioButtons = ({ onChange }) => {
   const [{ value }] = useField('gender');
-  onChange(value);
+  useEffect(() => {
+    onChange(value);
+  }, [onChange, value]);
+
   return (
     <div className={css.select}>
       <label className={css.label}>
