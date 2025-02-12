@@ -92,7 +92,7 @@ const SettingModal = ({ onClose }) => {
                         value="woman"
                         checked={values.gender === 'woman'}
                       />
-                      <span className={style.identification}>Woman</span>
+                      <label htmlFor="woman" className={style.identification}>Woman</label>
                     </div>
                     <div className={style.radio}>
                       <Field
@@ -102,7 +102,7 @@ const SettingModal = ({ onClose }) => {
                         value="man"
                         checked={values.gender === 'man'}
                       />
-                      <span className={style.identification}>Man</span>
+                      <label htmlFor="man" className={style.identification}>Man</label>
                     </div>
                   </div>
                   <div className={style.inputContainer}>
