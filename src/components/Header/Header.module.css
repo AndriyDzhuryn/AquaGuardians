@@ -8,6 +8,7 @@
   background-color: #ffffff;
   /* padding: 4px 8px; */
   /* border-bottom: 1px solid #ccc; */
+  padding-top: 8px;
 }
 
 @media (min-width: 768px) {
@@ -15,6 +16,7 @@
     margin-top: 16px;
     max-width: 704px;
     /* padding: 6px 12px; */
+    padding-top: 16px;
   }
 }
 
@@ -23,5 +25,6 @@
     margin-top: 12px;
     max-width: 1216px;
     /* padding: 10px 20px; */
+    padding-top: 12px;
   }
 }
