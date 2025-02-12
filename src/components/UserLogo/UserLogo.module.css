@@ -1,5 +1,10 @@
 .userLogo {
   position: relative;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.userLogo:hover {
+  transform: scale(1.05);
 }
 
 .userLogoBtn {
@@ -11,13 +16,10 @@
   display: flex;
   align-items: center;
 }
-.userLogoBtn:hover {
-  transform: scale(1.1);
-}
 
 .userName {
   margin-right: 8px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.25;
@@ -43,7 +45,7 @@
   font-size: 20px;
   text-transform: uppercase;
 
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.25;
