@@ -5,11 +5,12 @@ import FormInput from './FormInput/FormInput';
 import RadioButtons from './RadioButtons/RadioButtons';
 import * as Yup from 'yup';
 import { updateWaterRate } from '../../redux/waterRate/operations';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import toast, { Toaster } from 'react-hot-toast';
 
 const dailyNormaFormSchema = Yup.object().shape({
-  waterAmount: Yup.string()
-    .max(2, 'Too long! Amount of water should be in liters.')
+  waterAmount: Yup.number()
+    .max(5, 'Too long! Amount of water should be in liters.')
     .required('Required'),
 });
 
@@ -19,6 +20,7 @@ const DailyNormaForm = () => {
   const [weight, setWeight] = useState('0');
   const [time, setTime] = useState('0');
   const dispatch = useDispatch();
+  const currentWaterRate = useSelector(state => state.waterRate?.waterRate);
   useEffect(() => {
     if (gender === 'female') {
       setLiters(
@@ -39,7 +41,14 @@ const DailyNormaForm = () => {
       updateWaterRate({
         waterRate: Number.parseFloat(values.waterAmount) * 1000,
       })
-    );
+    )
+      .unwrap()
+      .catch(() =>
+        toast.error('Request wasn`t successful', {
+          duration: 3000,
+          position: 'top-right',
+        })
+      );
   };
 
   return (
@@ -49,7 +58,7 @@ const DailyNormaForm = () => {
           gender: 'female',
           weight: '0',
           time: '0',
-          waterAmount: '0',
+          waterAmount: currentWaterRate,
         }}
         onSubmit={submitData}
         validationSchema={dailyNormaFormSchema}
@@ -94,6 +103,7 @@ const DailyNormaForm = () => {
           </Form>
         )}
       </Formik>
+      <Toaster />
     </div>
   );
 };
