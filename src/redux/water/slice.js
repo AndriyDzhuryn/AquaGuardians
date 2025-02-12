@@ -33,7 +33,7 @@ const waterSlice = createSlice({
       .addCase(addWater.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items.push(action.payload);
+        state.items = [...state.items, action.payload];
       })
 
       .addCase(updateWater.pending, handlePending)

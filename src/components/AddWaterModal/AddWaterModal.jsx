@@ -120,8 +120,10 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
 
   const handleSubmit = (values, actions) => {
     onSaveWater(values);
-    dispatch(apiGetTodayWater());
-    dispatch(apiGetMonthWater({ month, year }));
+    setTimeout(() => {
+      dispatch(apiGetTodayWater());
+      dispatch(apiGetMonthWater({ month, year }));
+    }, 250);
     actions.resetForm();
     onClose();
   };
