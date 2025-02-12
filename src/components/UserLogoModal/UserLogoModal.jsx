@@ -1,25 +1,18 @@
 import { useState, useRef, useEffect } from 'react';
-import Modal from 'react-modal'; 
+import Modal from 'react-modal';
 import css from './UserLogoModal.module.css';
 import SettingModal from '../Settings/SettingModal';
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
 
 const UserLogoModal = () => {
-
-
-
-
-
   const [showSettingModal, setShowSettingModal] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [dropdownVisible, setDropdownVisible] = useState(true);
   const dropdownRef = useRef(null);
 
-
-
   const handleSettingClick = () => {
-    setDropdownVisible(false);
     setShowSettingModal(true);
+    setDropdownVisible(false);
   };
 
   const handleLogoutClick = () => {
@@ -33,7 +26,7 @@ const UserLogoModal = () => {
     setShowLogoutModal(false);
   };
 
-  const handleClickOutside = (event) => {
+  const handleClickOutside = event => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setDropdownVisible(false);
     }
@@ -52,7 +45,11 @@ const UserLogoModal = () => {
         <ul className={css.dropdownList}>
           <li className={css.dropdownItem}>
             <div className={css.itemWrapper}>
-              <button onClick={handleSettingClick} type="button" className={css.button}>
+              <button
+                onClick={handleSettingClick}
+                type="button"
+                className={css.button}
+              >
                 <svg className={css.setIcon}>
                   <use href="/icons/icons-sprite.svg#cog-tooth"></use>
                 </svg>
@@ -62,7 +59,11 @@ const UserLogoModal = () => {
           </li>
           <li className={css.dropdownItem}>
             <div className={css.itemWrapper}>
-              <button onClick={handleLogoutClick} type="button" className={css.button}>
+              <button
+                onClick={handleLogoutClick}
+                type="button"
+                className={css.button}
+              >
                 <svg className={css.outIcon}>
                   <use href="/icons/icons-sprite.svg#arrow-right-on-rectangle"></use>
                 </svg>
@@ -79,6 +80,7 @@ const UserLogoModal = () => {
         contentLabel="Setting Modal"
         className={css.modal}
         overlayClassName={css.overlay}
+        appElement={document.getElementById('root')}
       >
         <SettingModal onClose={closeModal} />
       </Modal>
@@ -89,6 +91,7 @@ const UserLogoModal = () => {
         contentLabel="Logout Modal"
         className={css.modal}
         overlayClassName={css.overlay}
+        appElement={document.getElementById('root')}
       >
         <UserLogoutModal onClose={closeModal} />
       </Modal>
