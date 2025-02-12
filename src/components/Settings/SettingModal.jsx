@@ -178,7 +178,7 @@ const SettingModal = ({ onClose }) => {
                         togglePasswordVisibility={() =>
                           togglePasswordVisibility(field)
                         }
-                        autoComplete={field}
+                        autoComplete={'off'}
                         value={values[field] || ''}
                       />
                       <ErrorMessage
