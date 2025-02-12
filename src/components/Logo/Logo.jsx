@@ -18,7 +18,7 @@ const Logo = () => {
 
   return (
     <div className={css.logo} onClick={handleLogoClick}>
-      <img src="/logo/logo.png" alt="Logo" className={css.logoImage} />
+      <img src="/logo/logo.svg" alt="Logo" className={css.logoImage} />
     </div>
   );
 };

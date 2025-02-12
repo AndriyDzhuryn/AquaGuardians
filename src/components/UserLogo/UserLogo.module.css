@@ -1,14 +1,15 @@
 .userLogo {
   position: relative;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 5px;
+  border-radius: 15px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .userLogo:hover {
-  transform: scale(1.05);
+  background-color: var(--Secondary-color-2);
 }
 
 .userLogoBtn {
-  /* max-width: 122px; */
   padding: 0;
   background: none;
   border: none;
@@ -63,6 +64,3 @@
     font-size: 18px;
   }
 }
-
-/* @media (min-width: 1440px) {
-} */
