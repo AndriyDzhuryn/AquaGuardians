@@ -19,7 +19,7 @@ const UserLogoutModal = ({ onClose }) => {
 
   return (
     <div className={css.overlay} onClick={onClose}>
-      <div className={css.modal}>
+      <div className={css.modal} onClick={e => e.stopPropagation()}>
         <div className={css.wrapper}>
           <div className={css.text}>
             <h3>Log out</h3>
