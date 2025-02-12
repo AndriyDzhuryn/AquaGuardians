@@ -94,7 +94,9 @@ const DailyNormaForm = ({ closeModal }) => {
         })
       );
     closeModal();
-    dispatch(apiGetMonthWater({ month, year }));
+    setTimeout(() => {
+      dispatch(apiGetMonthWater({ month, year }));
+    }, 250);
   };
 
   return (
