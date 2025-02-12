@@ -71,7 +71,11 @@
 }
 
 .day.norm {
-  border: 1px solid var(--Secondary-color-6);
+  border: 1px solid green;
+}
+
+.today {
+  outline: 1px solid var(--Primery-Color-Blue);
 }
 
 .textProgress {
