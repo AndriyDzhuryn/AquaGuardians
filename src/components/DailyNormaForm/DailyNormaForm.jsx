@@ -1,11 +1,13 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import toast, { Toaster } from 'react-hot-toast';
 import * as Yup from 'yup';
 
 import FormInput from './FormInput/FormInput.jsx';
 import RadioButtons from './RadioButtons/RadioButtons.jsx';
 import { updateWaterRate } from '../../redux/waterRate/operations.js';
+import { selectAuthUserData } from '../../redux/auth/selectors.js';
 
 import css from './DailyNormaForm.module.css';
 import { apiGetMonthWater } from '../../redux/month/operations.js';
@@ -18,6 +20,7 @@ import { startOfMonth } from 'date-fns';
 // });
 
 const dailyNormaFormSchema = Yup.object().shape({
+
   weight: Yup.string()
     .matches(/^\d+(\.\d+)?$/, 'Weight must be a valid number') // Проверка на число с возможной дробной частью
     .test('is-valid-weight', 'Weight must be between 1 and 500 kg', value => {
@@ -45,6 +48,7 @@ const dailyNormaFormSchema = Yup.object().shape({
       }
     )
     .required('Water amount is required'),
+
 });
 
 const DailyNormaForm = ({ closeModal }) => {
@@ -52,9 +56,12 @@ const DailyNormaForm = ({ closeModal }) => {
   const [gender, setGender] = useState('female');
   const [weight, setWeight] = useState('0');
   const [time, setTime] = useState('0');
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate] = useState(new Date());
 
   const dispatch = useDispatch();
+  const userWaterRate = useSelector(selectAuthUserData);
+  const currentWaterRate = useSelector(state => state.waterRate?.waterRate);
+
   useEffect(() => {
     if (gender === 'female') {
       setLiters(
@@ -78,7 +85,14 @@ const DailyNormaForm = ({ closeModal }) => {
       updateWaterRate({
         waterRate: Number.parseFloat(values.waterAmount) * 1000,
       })
-    );
+    )
+      .unwrap()
+      .catch(() =>
+        toast.error('Request wasn`t successful', {
+          duration: 3000,
+          position: 'top-right',
+        })
+      );
     closeModal();
     dispatch(apiGetMonthWater({ month, year }));
   };
@@ -90,7 +104,10 @@ const DailyNormaForm = ({ closeModal }) => {
           gender: 'female',
           weight: '0',
           time: '0',
-          waterAmount: '0',
+          waterAmount:
+            currentWaterRate?.waterRate / 1000 ||
+            userWaterRate?.waterRate / 1000 ||
+            0,
         }}
         onSubmit={submitData}
         validationSchema={dailyNormaFormSchema}
@@ -145,6 +162,7 @@ const DailyNormaForm = ({ closeModal }) => {
           </Form>
         )}
       </Formik>
+      <Toaster />
     </div>
   );
 };

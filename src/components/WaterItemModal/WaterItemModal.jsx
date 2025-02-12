@@ -5,7 +5,7 @@ const WaterItemModal = ({ volume, date }) => {
     <div className={css.wrapperWaterConsumedItem}>
       <div className={css.glassWaterWrapper}>
         <svg className={css.glassOfWater}>
-          <use href="../../../public/icons/icons-sprite.svg#glass-of-water"></use>
+          <use href="/icons/icons-sprite.svg#glass-of-water"></use>
         </svg>
         <div>
           <span className={css.amountWater}>{volume} ml</span>
