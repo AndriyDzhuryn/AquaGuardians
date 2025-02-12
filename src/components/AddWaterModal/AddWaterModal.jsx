@@ -12,7 +12,6 @@ import { apiGetMonthWater } from '../../redux/month/operations.js';
 
 import css from './AddWaterModal.module.css';
 
-
 Modal.setAppElement('#root');
 
 const MIN_WATER_VOLUME = 50;
@@ -73,11 +72,9 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
     const minutes = String(now.getMinutes()).padStart(2, '0');
     return `${hours}:${minutes}`;
   };
-  
 
   useEffect(() => {
     if (!editData) {
-
       setInitialValues({
         date: getCurrentTime(),
         volume: 0,
@@ -170,7 +167,7 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
         onSubmit={handleSubmit}
         validationSchema={waterSchema}
         innerRef={formikRef}
-        enableReinitialize
+        enableReinitialize={true}
         key={isOpen}
       >
         <Form className={css.form}>
