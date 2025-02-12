@@ -23,8 +23,10 @@ const AppModal = ({ isOpen, onClose, id }) => {
 
   const handleDelete = () => {
     dispatch(deleteWater(id));
-    dispatch(apiGetTodayWater());
-    dispatch(apiGetMonthWater({ month, year }));
+    setTimeout(() => {
+      dispatch(apiGetTodayWater());
+      dispatch(apiGetMonthWater({ month, year }));
+    }, 250);
     onClose();
   };
   return (
