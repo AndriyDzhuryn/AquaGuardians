@@ -1,0 +1,66 @@
+.userLogo {
+  position: relative;
+}
+
+.userLogoBtn {
+  /* max-width: 122px; */
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.userLogoBtn:hover {
+  transform: scale(1.1);
+}
+
+.userName {
+  margin-right: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: right;
+  color: #2f2f2f;
+}
+
+.avatarImg {
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.avatarPlaceholder {
+  height: 28px;
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid #2f2f2f;
+  border-radius: 50%;
+  font-size: 20px;
+  text-transform: uppercase;
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+}
+.arrowIcon {
+  margin-left: 4px;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: #407bff;
+}
+
+@media (min-width: 768px) {
+  .userName {
+    font-size: 18px;
+  }
+}
+
+/* @media (min-width: 1440px) {
+} */

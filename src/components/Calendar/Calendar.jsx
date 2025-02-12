@@ -8,12 +8,20 @@ import {
   addMonths,
 } from 'date-fns';
 import clsx from 'clsx';
+import { useDispatch, useSelector } from 'react-redux';
 
 import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats.jsx';
 
+import { apiGetMonthWater } from '../../redux/month/operations.js';
+import { selectMonthUserData } from '../../redux/month/selectors.js';
+
 import css from './Calendar.module.css';
 
-const Calendar = ({ waterData }) => {
+const Calendar = () => {
+  const monthData = useSelector(selectMonthUserData);
+
+  const dispatch = useDispatch();
+
   const [isOpen, setIsOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
@@ -22,24 +30,30 @@ const Calendar = ({ waterData }) => {
 
   const calendarRef = useRef(null);
   const dropdownRef = useRef(null);
+  const buttonRef = useRef(null);
 
   const start = startOfMonth(currentDate);
   const end = endOfMonth(currentDate);
   const days = eachDayOfInterval({ start, end });
+  const month = start.toLocaleDateString('en-US', { month: 'numeric' });
+  const year = start.toLocaleDateString('en-US', { year: 'numeric' });
 
   useEffect(() => {
+    dispatch(apiGetMonthWater({ month, year }));
+
     const handleResize = () => setWindowWidth(window.innerWidth);
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [dispatch, month, year]);
 
   useEffect(() => {
     const handleClickOutside = event => {
       if (
-        calendarRef.current &&
-        calendarRef.current.contains(event.target) &&
-        (!dropdownRef.current || !dropdownRef.current.contains(event.target))
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target)
       ) {
         setSelectedDate(null);
         setIsOpen(false);
@@ -92,7 +106,7 @@ const Calendar = ({ waterData }) => {
             className={css.btnSwitchMonth}
           >
             <svg className={css.switchMonth}>
-              <use href="../../../icons/icons-sprite.svg#chevron-left"></use>
+              <use href="/icons/icons-sprite.svg#chevron-left"></use>
             </svg>
           </button>
           <p className={css.monthName}>{format(currentDate, 'MMMM yyyy')}</p>
@@ -101,42 +115,61 @@ const Calendar = ({ waterData }) => {
             className={css.btnSwitchMonth}
           >
             <svg className={css.switchMonth}>
-              <use href="../../../icons/icons-sprite.svg#chevron-right"></use>
+              <use href="/icons/icons-sprite.svg#chevron-right"></use>
             </svg>
           </button>
         </div>
       </div>
 
       <div className={css.wrapperDays}>
-        {days.map(day => (
-          <div key={day} className={css.wrapperDay}>
-            <button
-              className={clsx(
-                css.day,
-                waterData[format(day, 'yyyy-MM-dd')] < 100 && css.norm
-              )}
-              onClick={event => handleDayClick(event, day)}
-            >
-              {format(day, 'd')}
-            </button>
-            <span className={css.textProgress}>
-              {waterData[format(day, 'yyyy-MM-dd')]?.progress || 0}%
-            </span>
-          </div>
-        ))}
+        {Array.isArray(monthData) &&
+          days.map(day => {
+            const formattedDate = format(day, 'dd, MMMM');
+            const dayData = monthData.find(item => item.date === formattedDate);
+
+            const percentValue = dayData ? parseFloat(dayData.percentage) : 0;
+            const percentage = percentValue.toFixed([0]);
+
+            const today = new Date();
+            const isToday =
+              format(day, 'dd, MMMM yyyy') === format(today, 'dd, MMMM yyyy');
+
+            return (
+              <div key={day} className={css.wrapperDay}>
+                <button
+                  ref={buttonRef}
+                  className={clsx(
+                    css.day,
+                    dayData && percentage >= 100 && css.norm,
+                    isToday && css.today
+                  )}
+                  onClick={event => handleDayClick(event, day)}
+                >
+                  {format(day, 'd')}
+                </button>
+                <span className={css.textProgress}>
+                  {percentage ? `${percentage}%` : '0%'}
+                </span>
+              </div>
+            );
+          })}
         <div ref={dropdownRef}>
-          <DaysGeneralStats
-            position={menuPosition}
-            isOpen={isOpen}
-            date={selectedDate}
-            waterData={
-              waterData[format(selectedDate, 'yyyy-MM-dd')] || {
-                norm: 0,
-                progress: 0,
-                servings: 0,
+          {Array.isArray(monthData) && (
+            <DaysGeneralStats
+              position={menuPosition}
+              isOpen={isOpen}
+              date={selectedDate}
+              monthData={
+                monthData.find(
+                  item => item.date === format(selectedDate, 'dd, MMMM')
+                ) || {
+                  dailyWaterNorm: '0 L',
+                  percentage: '0%',
+                  consumptionCount: 0,
+                }
               }
-            }
-          />
+            />
+          )}
         </div>
       </div>
     </div>

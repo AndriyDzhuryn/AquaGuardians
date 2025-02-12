@@ -1,0 +1,60 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.modal {
+  width: 100%;
+  height: 100%;
+}
+
+.userLogoModal {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+
+  z-index: 100;
+  max-width: 118px;
+}
+
+.dropdownList {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  gap: 16px;
+  max-width: 118px;
+  list-style: none;
+  margin: 0;
+  padding: 16px;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.2);
+}
+
+.dropdownItem {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  cursor: pointer;
+}
+
+.setIcon,
+.outIcon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: #407bff;
+}
+
+.button {
+  color: var(--Primery-Color-Blue);
+  display: flex;
+  flex-direction: row;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  gap: 8px;
+}

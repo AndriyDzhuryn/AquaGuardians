@@ -1,6 +1,6 @@
 import css from './DaysGeneralStats.module.css';
 
-const DaysGeneralStats = ({ position, isOpen, date, waterData }) => {
+const DaysGeneralStats = ({ position, isOpen, date, monthData }) => {
   return (
     <>
       {isOpen && (
@@ -21,15 +21,16 @@ const DaysGeneralStats = ({ position, isOpen, date, waterData }) => {
             })}
           </p>
           <p className={css.dailyNorma}>
-            Daily norma: <b className={css.result}>{waterData.norm} L</b>
+            Daily norma:{' '}
+            <b className={css.result}>{monthData.dailyWaterNorm}</b>
           </p>
           <p className={css.dailyNorma}>
             Fulfillment of the daily norm:{' '}
-            <b className={css.result}>{waterData.progress}%</b>
+            <b className={css.result}>{monthData.percentage}</b>
           </p>
           <p className={css.dailyNorma}>
             How many servings of water:{' '}
-            <b className={css.result}>{waterData.servings}</b>
+            <b className={css.result}>{monthData.consumptionCount}</b>
           </p>
         </div>
       )}

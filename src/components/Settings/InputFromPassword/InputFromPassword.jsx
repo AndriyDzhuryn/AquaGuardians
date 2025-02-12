@@ -9,6 +9,7 @@ const InputFromPassword = ({
   autoComplete,
   error,
   touched,
+  value,  
 }) => (
   <div className={style.wrapper}>
     <Field
@@ -20,6 +21,7 @@ const InputFromPassword = ({
       className={
         error && touched ? `${style.input} ${style.inputerror}` : style.input
       }
+      value={value || ''} 
     />
     <button
       type="button"

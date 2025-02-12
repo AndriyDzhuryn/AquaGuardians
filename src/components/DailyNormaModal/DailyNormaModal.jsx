@@ -52,7 +52,7 @@ const DailyNormaModal = ({ closeModal }) => {
             loads (in the absence of these, you must set 0)
           </p>
         </div>
-        <DailyNormaForm />
+        <DailyNormaForm closeModal={closeModal} />
       </div>
     </div>
   );

@@ -5,10 +5,12 @@ import { Circles } from 'react-loader-spinner';
 
 import RestrictedRoute from '../RestrictedRoute/RestrictedRoute.jsx';
 import PrivateRoute from '../PrivateRoute/PrivateRoute.jsx';
-import Layout from '../Layout/Layout.jsx';
 
 import { apiGetCurrentUser } from '../../redux/auth/operations.js';
 import { selectAuthIsRefreshing } from '../../redux/auth/selectors.js';
+
+//цей компонент рендерить хедер та все інше по тз
+import SharedLayout from '../SharedLayout/SharedLayout.jsx';
 
 import css from './App.module.css';
 
@@ -47,16 +49,23 @@ function App() {
   }
 
   return (
-    <Layout>
-      <Suspense>
-        <Routes>
-          <Route path="/" element={<WelcomePage />} />
+    <Suspense>
+      <Routes>
+        {/* SharedLayout рендериться на маршруті "/" і обгортає вкладені сторінки */}
+        <Route path="/" element={<SharedLayout />}>
+          {/* За замовчуванням для "/" рендериться WelcomePage */}
           <Route
-            path="/home"
+            index
+            element={<RestrictedRoute component={<WelcomePage />} />}
+          />
+
+          <Route
+            path="home"
             element={<PrivateRoute component={<HomePage />} />}
           />
+
           <Route
-            path="/signup"
+            path="signup"
             element={
               <RestrictedRoute
                 component={<SignUpPage />}
@@ -64,17 +73,19 @@ function App() {
               />
             }
           />
+
           <Route
-            path="/signin"
+            path="signin"
             element={<RestrictedRoute component={<SignInPage />} />}
           />
+
           <Route
             path="*"
             element={<RestrictedRoute component={<SignInPage />} />}
           />
-        </Routes>
-      </Suspense>
-    </Layout>
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 

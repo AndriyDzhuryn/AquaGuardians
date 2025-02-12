@@ -1,65 +1,85 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import clsx from 'clsx';
+import { useDispatch, useSelector } from 'react-redux';
 
 import WaterItems from '../WaterItems/WaterItems.jsx';
 import Calendar from '../Calendar/Calendar.jsx';
+import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
+
+import { selectTodayUserData } from '../../redux/today/selectors.js';
+import { apiGetTodayWater } from '../../redux/today/operations.js';
 
 import css from './WaterTracker.module.css';
 
 const WaterTracker = () => {
-  const [waterList, setWaterList] = useState([
-    { id: 1, amount: 250, time: '07:00 AM' },
-    { id: 2, amount: 220, time: '11:00 AM' },
-    { id: 3, amount: 200, time: '14:00 PM' },
-    { id: 4, amount: 250, time: '07:00 AM' },
-    { id: 5, amount: 220, time: '11:00 AM' },
-    { id: 6, amount: 200, time: '14:00 PM' },
-    { id: 7, amount: 250, time: '07:00 AM' },
-    { id: 8, amount: 220, time: '11:00 AM' },
-    { id: 9, amount: 200, time: '14:00 PM' },
-  ]);
+  const dispatch = useDispatch();
 
-  const waterData = {
-    '2025-01-01': { norm: 1.5, progress: 60, servings: 6 },
-    '2025-01-02': { norm: 2.0, progress: 80, servings: 8 },
-    '2025-01-03': { norm: 1.5, progress: 100, servings: 5 },
-    '2025-01-04': { norm: 1.5, progress: 70, servings: 4 },
-    '2025-01-05': { norm: 1.5, progress: 60, servings: 6 },
-    '2025-01-06': { norm: 1.5, progress: 100, servings: 4 },
-    '2025-01-07': { norm: 1.5, progress: 60, servings: 6 },
-    '2025-01-08': { norm: 1.5, progress: 70, servings: 5 },
-    '2025-01-09': { norm: 1.5, progress: 60, servings: 6 },
-    '2025-01-10': { norm: 1.5, progress: 100, servings: 6 },
-    '2025-01-11': { norm: 1.5, progress: 60, servings: 5 },
-    '2025-01-17': { norm: 1.5, progress: 70, servings: 6 },
-    '2025-01-19': { norm: 1.5, progress: 100, servings: 4 },
-    '2025-01-20': { norm: 1.5, progress: 60, servings: 6 },
-  };
+  useEffect(() => {
+    dispatch(apiGetTodayWater());
+  }, [dispatch]);
+
+  const waterToday = useSelector(selectTodayUserData);
+  const waterList = waterToday?.records;
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const sortedWaterList = Array.isArray(waterList)
+    ? waterList
+        .map(item => {
+          const date = new Date(item.date);
+          const timeDrink = date.toLocaleTimeString('uk-UA', {
+            hour: '2-digit',
+            minute: '2-digit',
+          });
+          return { ...item, timeDrink };
+        })
+        .sort((a, b) => {
+          if (a.timeDrink < b.timeDrink) return -1;
+          if (a.timeDrink > b.timeDrink) return 1;
+          return 0;
+        })
+    : [];
 
   return (
     <div className={css.waterTrackerWrapper}>
-      <h2 className={css.title}>Today</h2>
+      <div className={css.listWrapper}>
+        <h2 className={css.title}>Today</h2>
 
-      <ul
-        className={clsx(
-          css.listWaterTracker,
-          waterList.length < 5 && css.scrollbar
+        {Array.isArray(waterList) && waterList.length !== 0 && (
+          <ul
+            className={clsx(
+              css.listWaterTracker,
+              waterList.length < 5 && css.scrollbar
+            )}
+          >
+            {sortedWaterList.map(item => {
+              return (
+                <li key={item._id} className={css.waterConsumedItem}>
+                  <WaterItems
+                    amount={item.volume}
+                    time={item.date}
+                    id={item._id}
+                    timeWater={item.timeDrink}
+                  />
+                </li>
+              );
+            })}
+          </ul>
         )}
-      >
-        {waterList.map(item => (
-          <li key={item.id} className={css.waterConsumedItem}>
-            <WaterItems amount={item.amount} time={item.time} id={item.id} />
-          </li>
-        ))}
-      </ul>
-      <button className={css.btnAddWater}>
-        <svg className={css.plus}>
-          <use href="../../../public/icons/icons-sprite.svg#plus-small"></use>
-        </svg>
-        Add water
-      </button>
 
-      <Calendar waterData={waterData} />
+        <button className={css.btnAddWater} onClick={openModal}>
+          <svg className={css.plus}>
+            <use href="/icons/icons-sprite.svg#plus-small"></use>
+          </svg>
+          Add water
+        </button>
+      </div>
+
+      <AddWaterModal isOpen={isModalOpen} onClose={closeModal} />
+
+      <Calendar />
     </div>
   );
 };

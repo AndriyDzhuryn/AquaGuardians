@@ -1,0 +1,47 @@
+.wrapperWaterConsumedItem {
+  width: 254px;
+  height: 52px;
+  background-color: var(--Secondary-color-2);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  border-bottom: 1px solid var(--Secondary-color-5);
+  padding: 12px;
+}
+
+.glassWaterWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.amountWater {
+  font-size: 18px;
+  line-height: 1.33;
+  color: var(--Primery-Color-Blue);
+  margin-right: 12px;
+}
+
+.time {
+  font-size: 12px;
+  line-height: 2;
+  color: var(--Primery-Color-Black);
+}
+
+.glassOfWater {
+  width: 17px;
+  height: 22px;
+  margin-right: 12px;
+  fill: none;
+  stroke: var(--Primery-Color-Blue);
+}
+
+@media only screen and (min-width: 768px) {
+  .amountWater {
+    margin-right: 16px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+}

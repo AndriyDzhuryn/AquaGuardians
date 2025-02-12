@@ -9,18 +9,14 @@ export const validationSchema = Yup.object().shape({
     .email('Некоректний формат email')
     .required('Email є обов’язковим'),
 
-  newPassword: Yup.string()
-    .min(8, 'Пароль має містити мінімум 8 символів')
-    .max(64, 'Пароль занадто довгий')
-    .required('Пароль є обов’язковим'),
+  oldPassword: Yup.string(),
 
-  repeatPassword: Yup.string()
-    .required('Пароль є обов’язковим')
-    .test('repeatPassword-match', 'Паролі не співпадають', function (value) {
-      const { newPassword } = this.parent;
-      if (newPassword && newPassword.length > 0) {
-        return value && value === newPassword;
-      }
-      return true;
-    }),
+  password: Yup.string()
+    .min(8, 'Пароль має містити мінімум 8 символів')
+    .max(64, 'Пароль занадто довгий'),
+
+  repeatPassword: Yup.string().oneOf(
+    [Yup.ref('password'), null],
+    'Паролі не співпадають'
+  ),
 });

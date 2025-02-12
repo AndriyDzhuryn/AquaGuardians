@@ -1,0 +1,15 @@
+.main {
+  /* padding: 8px; */
+}
+
+@media (min-width: 768px) {
+  .main {
+    /* padding: 12px; */
+  }
+}
+
+@media (min-width: 1440px) {
+  .main {
+    /* padding: 20px; */
+  }
+}

@@ -1,0 +1,30 @@
+.appHeader {
+  max-width: 280px;
+  margin: 0 auto;
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  /* padding: 4px 8px; */
+  /* border-bottom: 1px solid #ccc; */
+  padding-top: 8px;
+}
+
+@media (min-width: 768px) {
+  .appHeader {
+    margin-top: 16px;
+    max-width: 704px;
+    /* padding: 6px 12px; */
+    padding-top: 16px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .appHeader {
+    margin-top: 12px;
+    max-width: 1216px;
+    /* padding: 10px 20px; */
+    padding-top: 12px;
+  }
+}

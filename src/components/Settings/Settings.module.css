@@ -1,25 +1,18 @@
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
+.overlay {
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 1000;
+  align-items: flex-start;
+  overflow-x: auto;
 }
 
-.modalContent {
-  display: flex;
-  padding: 32px 12px;
-  flex-direction: column;
+.modal {
+  background-color: var(--Primery-Color-White);
   border-radius: 10px;
- 
-  background: var(--Primery-Color-White);
+  padding: 32px 12px;
+  margin-top: 44px;
 }
-
 
 .error {
   color: var(--Secondary-color-3);
@@ -61,9 +54,9 @@
 }
 
 .titlePhoto {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
 .upload {
@@ -83,6 +76,7 @@
 }
 
 .labelPhoto {
+  cursor: pointer;
   color: var(--Primery-Color-Blue);
   font-size: 14px;
   font-weight: 500;
@@ -101,8 +95,8 @@
 }
 
 .gender {
-    font-size: 18px;
-    font-weight: 500;
+  font-size: 18px;
+  font-weight: 500;
   margin-bottom: 12px;
 }
 
@@ -114,6 +108,7 @@
 }
 
 .radio {
+  cursor: pointer;
   display: flex;
   align-items: baseline;
   gap: 8px;
@@ -125,7 +120,7 @@
   gap: 24px;
   margin-bottom: 24px;
 }
-.label{
+.label {
   margin-bottom: 8px;
 }
 .inputBlock {
@@ -135,10 +130,10 @@
   position: relative;
 }
 
-.passwordtitle{
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 12px;
+.passwordtitle {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 12px;
 }
 .password {
   display: flex;
@@ -155,13 +150,12 @@
 .wrapper {
   position: relative;
 }
-.eyes{
+.eyes {
   fill: none;
   stroke: var(--Primery-Color-Blue);
 }
 
 .input {
-  min-width: 256px;
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
@@ -174,12 +168,12 @@
 }
 .inputerror {
   width: 100%;
-    border-radius: 6px;
+  border-radius: 6px;
   font-size: 16px;
-    font-weight: 400;
-    padding: 12px 10px;
-      outline: none;
-    line-height: 20px;
+  font-weight: 400;
+  padding: 12px 10px;
+  outline: none;
+  line-height: 20px;
   border: 1px solid var(--Secondary-color-3);
   color: var(--Secondary-color-3);
 }
@@ -217,36 +211,37 @@
   font-weight: 500;
 }
 @media only screen and (min-width: 768px) {
-  .modalContent{
+  .modal {
     padding: 32px 24px;
+    margin-top: 40px;
+    min-width: 704px;
   }
-   .submitButton{
-      width: 160px;
-      padding: 10px 30px;
-      margin-left: auto;
-   }
-   .info{
-    margin-right: 288px;
-   }
-   .password{
-    margin-right: 288px;
-   }
-   .input{
-    min-width: 392px;
-   }
+  .submitButton {
+    width: 160px;
+    padding: 10px 30px;
+    margin-left: auto;
+  }
 }
 
-@media only screen and (min-width: 1440px){
-  .info{
+@media only screen and (min-width: 1440px) {
+  .overlay {
+    align-items: center;
+  }
+  .modal {
+    margin-top: 0;
+    min-width: 1008px;
+  }
+  .password {
+    min-width: 392px;
+  }
+
+  .info {
     margin-right: 24px;
   }
-  .password{
-    margin-right: 176px;
+  .radioGroup {
+    margin-bottom: 52px;
   }
-  .radioGroup{
-    margin-bottom:52px;
-  }
-  .container{
+  .container {
     display: flex;
   }
 }

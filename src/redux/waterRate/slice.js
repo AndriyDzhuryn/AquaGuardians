@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { updateWaterRate } from './operations';
+import { updateWaterRate } from './operations.js';
 
 const handlePending = state => {
   state.loading = true;
@@ -11,7 +11,7 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
-const waterSlice = createSlice({
+const waterRateSlice = createSlice({
   name: 'waterRate',
   initialState: {
     waterRate: null,
@@ -25,9 +25,9 @@ const waterSlice = createSlice({
       .addCase(updateWaterRate.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.waterRate = action.payload.waterRate;
+        state.waterRate = action.payload.data;
       });
   },
 });
 
-export const waterRateReducer = waterSlice.reducer;
+export const waterRateReducer = waterRateSlice.reducer;
