@@ -167,7 +167,7 @@ export default function AddWaterModal({ isOpen, onClose, editData }) {
         onSubmit={handleSubmit}
         validationSchema={waterSchema}
         innerRef={formikRef}
-        enableReinitialize
+        enableReinitialize={true}
         key={isOpen}
       >
         <Form className={css.form}>
