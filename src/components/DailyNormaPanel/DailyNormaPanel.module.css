@@ -42,7 +42,9 @@
   border: none;
 }
 
-.btn:hover {
+.btnEdit:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .btn:focus {
