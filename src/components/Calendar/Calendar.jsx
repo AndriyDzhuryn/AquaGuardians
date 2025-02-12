@@ -128,13 +128,19 @@ const Calendar = () => {
             const dayData = monthData.find(item => item.date === formattedDate);
             const percentValue = dayData ? parseFloat(dayData.percentage) : 0;
             const percentage = percentValue.toFixed([0]);
+
+            const today = new Date();
+            const isToday =
+              format(day, 'dd, MMMM yyyy') === format(today, 'dd, MMMM yyyy');
+
             return (
               <div key={day} className={css.wrapperDay}>
                 <button
                   ref={buttonRef}
                   className={clsx(
                     css.day,
-                    dayData && percentage >= 100 && css.norm
+                    dayData && percentage >= 100 && css.norm,
+                    isToday && css.today
                   )}
                   onClick={event => handleDayClick(event, day)}
                 >
