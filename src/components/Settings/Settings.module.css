@@ -250,7 +250,7 @@
   }
   .modal {
     width: 1008px;
-    height: 592px;
+    height: 610px;
     margin-top: 0;
     min-width: 1008px;
   }
@@ -260,6 +260,7 @@
     height: 340px;
   }
   .password {
+    margin-bottom: 0;
     min-width: 392px;
   }
 
