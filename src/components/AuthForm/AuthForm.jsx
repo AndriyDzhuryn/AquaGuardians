@@ -144,7 +144,7 @@ const AuthForm = ({ type }) => {
             >
               <svg className={css.icon} width="14" height="12">
                 <use
-                  href={`../../../icons/icons-sprite.svg#${
+                  href={`/icons/icons-sprite.svg#${
                     showPassword ? 'eye' : 'eye-slash'
                   }`}
                 ></use>
@@ -177,7 +177,7 @@ const AuthForm = ({ type }) => {
                 >
                   <svg className={css.icon} width="14" height="12">
                     <use
-                      href={`../../../icons/icons-sprite.svg#${
+                      href={`/icons/icons-sprite.svg#${
                         showRepeatPassword ? 'eye' : 'eye-slash'
                       }`}
                     ></use>
