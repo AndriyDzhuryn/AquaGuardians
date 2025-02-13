@@ -66,22 +66,6 @@ const SettingModal = ({ onClose }) => {
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className={style.loaderWrapper}>
-        <Circles
-          height="80"
-          width="80"
-          color="#5353ec"
-          ariaLabel="circles-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-        />
-      </div>
-    );
-  }
-
   return (
     <div className={style.overlay} onClick={onClose}>
       <div className={style.modal} onClick={e => e.stopPropagation()}>
@@ -100,127 +84,143 @@ const SettingModal = ({ onClose }) => {
           enableReinitialize
           initialValues={initialValues}
         >
-          {({ values, errors, touched }) => (
-            <Form className={style.form}>
-              <div className={style.container}>
-                <div className={style.info}>
-                  <label className={style.gender}>Your gender identity</label>
-                  <div className={style.radioGroup}>
-                    <div className={style.radio}>
-                      <Field
-                        type="radio"
-                        id="woman"
-                        name="gender"
-                        value="woman"
-                        checked={values.gender === 'woman'}
-                      />
-                      <label htmlFor="woman" className={style.identification}>
-                        Woman
-                      </label>
+          {isLoading ? (
+            <div className={style.loaderWrapper}>
+              <Circles
+                height="80"
+                width="80"
+                color="#5353ec"
+                ariaLabel="circles-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            </div>
+          ) : (
+            ({ values, errors, touched }) => (
+              <Form className={style.form}>
+                <div className={style.container}>
+                  <div className={style.info}>
+                    <label className={style.gender}>Your gender identity</label>
+                    <div className={style.radioGroup}>
+                      <div className={style.radio}>
+                        <Field
+                          type="radio"
+                          id="woman"
+                          name="gender"
+                          value="woman"
+                          checked={values.gender === 'woman'}
+                        />
+                        <label htmlFor="woman" className={style.identification}>
+                          Woman
+                        </label>
+                      </div>
+                      <div className={style.radio}>
+                        <Field
+                          type="radio"
+                          id="man"
+                          name="gender"
+                          value="man"
+                          checked={values.gender === 'man'}
+                        />
+                        <label htmlFor="man" className={style.identification}>
+                          Man
+                        </label>
+                      </div>
                     </div>
-                    <div className={style.radio}>
-                      <Field
-                        type="radio"
-                        id="man"
-                        name="gender"
-                        value="man"
-                        checked={values.gender === 'man'}
-                      />
-                      <label htmlFor="man" className={style.identification}>
-                        Man
-                      </label>
-                    </div>
-                  </div>
-                  <div className={style.inputContainer}>
-                    <div className={style.inputBlock}>
-                      <label htmlFor="name" className={style.label}>
-                        Your name
-                      </label>
-                      <Field
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Enter your name"
-                        className={
-                          errors.name && touched.name
-                            ? `${style.inputerror}`
-                            : `${style.input}`
-                        }
-                        autoComplete="name"
-                      />
-                      {errors.name && touched.name && (
-                        <ErrorMessage
+                    <div className={style.inputContainer}>
+                      <div className={style.inputBlock}>
+                        <label htmlFor="name" className={style.label}>
+                          Your name
+                        </label>
+                        <Field
+                          type="text"
+                          id="name"
                           name="name"
-                          component="span"
-                          className={style.error}
+                          placeholder="Enter your name"
+                          className={
+                            errors.name && touched.name
+                              ? `${style.inputerror}`
+                              : `${style.input}`
+                          }
+                          autoComplete="name"
                         />
-                      )}
-                    </div>
+                        {errors.name && touched.name && (
+                          <ErrorMessage
+                            name="name"
+                            component="span"
+                            className={style.error}
+                          />
+                        )}
+                      </div>
 
-                    <div className={style.inputBlock}>
-                      <label htmlFor="email" className={style.label}>
-                        E-mail
-                      </label>
-                      <Field
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Enter your email"
-                        className={
-                          errors.email && touched.email
-                            ? `${style.inputerror}`
-                            : `${style.input}`
-                        }
-                        autoComplete="email"
-                      />
-                      {errors.email && touched.email && (
-                        <ErrorMessage
+                      <div className={style.inputBlock}>
+                        <label htmlFor="email" className={style.label}>
+                          E-mail
+                        </label>
+                        <Field
+                          type="email"
+                          id="email"
                           name="email"
-                          component="span"
-                          className={style.error}
+                          placeholder="Enter your email"
+                          className={
+                            errors.email && touched.email
+                              ? `${style.inputerror}`
+                              : `${style.input}`
+                          }
+                          autoComplete="email"
                         />
-                      )}
+                        {errors.email && touched.email && (
+                          <ErrorMessage
+                            name="email"
+                            component="span"
+                            className={style.error}
+                          />
+                        )}
+                      </div>
                     </div>
+                  </div>
+
+                  <div className={style.password}>
+                    <h3 className={style.passwordtitle}>Password</h3>
+                    {['oldPassword', 'password', 'repeatPassword'].map(
+                      field => (
+                        <div key={field} className={style.inputpass}>
+                          <label htmlFor={field} className={style.label}>
+                            {field === 'oldPassword'
+                              ? 'Current Password'
+                              : field === 'password'
+                              ? 'New Password'
+                              : 'Repeat Password'}
+                          </label>
+                          <InputFromPassword
+                            id={field}
+                            name={field}
+                            error={errors[field]}
+                            touched={touched[field]}
+                            showPassword={visiblePasswords[field]}
+                            togglePasswordVisibility={() =>
+                              togglePasswordVisibility(field)
+                            }
+                            autoComplete={'off'}
+                            value={values[field] || ''}
+                          />
+                          <ErrorMessage
+                            name={field}
+                            component="span"
+                            className={style.error}
+                          />
+                        </div>
+                      )
+                    )}
                   </div>
                 </div>
 
-                <div className={style.password}>
-                  <h3 className={style.passwordtitle}>Password</h3>
-                  {['oldPassword', 'password', 'repeatPassword'].map(field => (
-                    <div key={field} className={style.inputpass}>
-                      <label htmlFor={field} className={style.label}>
-                        {field === 'oldPassword'
-                          ? 'Current Password'
-                          : field === 'password'
-                          ? 'New Password'
-                          : 'Repeat Password'}
-                      </label>
-                      <InputFromPassword
-                        id={field}
-                        name={field}
-                        error={errors[field]}
-                        touched={touched[field]}
-                        showPassword={visiblePasswords[field]}
-                        togglePasswordVisibility={() =>
-                          togglePasswordVisibility(field)
-                        }
-                        autoComplete={'off'}
-                        value={values[field] || ''}
-                      />
-                      <ErrorMessage
-                        name={field}
-                        component="span"
-                        className={style.error}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <button type="submit" className={style.submitButton}>
-                Save
-              </button>
-            </Form>
+                <button type="submit" className={style.submitButton}>
+                  Save
+                </button>
+              </Form>
+            )
           )}
         </Formik>
       </div>

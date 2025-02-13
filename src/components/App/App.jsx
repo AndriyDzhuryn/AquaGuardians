@@ -9,7 +9,6 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute.jsx';
 import { apiGetCurrentUser } from '../../redux/auth/operations.js';
 import { selectAuthIsRefreshing } from '../../redux/auth/selectors.js';
 
-//цей компонент рендерить хедер та все інше по тз
 import SharedLayout from '../SharedLayout/SharedLayout.jsx';
 
 import css from './App.module.css';
@@ -22,28 +21,11 @@ const WelcomePage = lazy(() =>
 );
 
 function App() {
-  const isRefreshing = useSelector(selectAuthIsRefreshing);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(apiGetCurrentUser());
   }, [dispatch]);
-
-  if (isRefreshing) {
-    return (
-      <div className={css.loaderWrapper}>
-        <Circles
-          height="80"
-          width="80"
-          color="#0000ff"
-          ariaLabel="circles-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-        />
-      </div>
-    );
-  }
 
   return (
     <Suspense>
