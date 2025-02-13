@@ -18,9 +18,11 @@ const DailyNormaPanel = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
+    document.body.classList.add('ReactModal__Body--open');
     setIsModalOpen(true);
   };
   const closeModal = () => {
+    document.body.classList.remove('ReactModal__Body--open');
     setIsModalOpen(false);
   };
 

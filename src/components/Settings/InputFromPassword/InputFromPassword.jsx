@@ -9,7 +9,7 @@ const InputFromPassword = ({
   autoComplete,
   error,
   touched,
-  value,  
+  value,
 }) => (
   <div className={style.wrapper}>
     <Field
@@ -21,7 +21,7 @@ const InputFromPassword = ({
       className={
         error && touched ? `${style.input} ${style.inputerror}` : style.input
       }
-      value={value || ''} 
+      value={value || ''}
     />
     <button
       type="button"
@@ -30,9 +30,7 @@ const InputFromPassword = ({
     >
       <svg className={style.eyes} width="16" height="16">
         <use
-          href={`../../../public/icons/icons-sprite.svg#${
-            showPassword ? 'eye' : 'eye-slash'
-          }`}
+          href={`/icons/icons-sprite.svg#${showPassword ? 'eye' : 'eye-slash'}`}
         ></use>
       </svg>
     </button>
