@@ -37,7 +37,7 @@ const DailyNormaModal = ({ closeModal }) => {
         >
           <svg className={css.svg}>
             <use
-              href="../../public/icons/icons-sprite.svg#close-icon"
+              href="/icons/icons-sprite.svg#close-icon"
               width="24px"
               height="24px"
             ></use>
