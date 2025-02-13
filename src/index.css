@@ -86,3 +86,6 @@ img {
   max-width: 100%;
   height: auto;
 }
+.ReactModal__Body--open {
+  overflow: hidden;
+}
