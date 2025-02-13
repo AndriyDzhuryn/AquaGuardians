@@ -4,6 +4,14 @@ import { useEffect } from 'react';
 
 const DailyNormaModal = ({ closeModal }) => {
   useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
+  useEffect(() => {
     const closeByEscape = event => {
       if (event.code === 'Escape') {
         closeModal();
