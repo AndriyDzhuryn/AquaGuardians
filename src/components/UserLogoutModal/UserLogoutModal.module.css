@@ -7,6 +7,8 @@
 }
 
 .modal {
+  width: 280px;
+  height: 260px;
   background-color: var(--Primery-Color-White);
   border-radius: 10px;
   padding: 32px 24px;
@@ -25,10 +27,15 @@
   gap: 24px;
 }
 
+.wrapperBtnClose {
+  display: flex;
+  justify-content: space-between;
+}
+
 .text h3 {
   font-size: 26px;
   font-weight: 500;
-  line-height: 32px;
+  line-height: 1.23;
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
@@ -37,13 +44,15 @@
 .text p {
   font-size: 18px;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 1.11;
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
 }
 
-.wrapper button {
+.closeButton {
+  width: 24px;
+  height: 24px;
   background-color: transparent;
   color: var(--Primery-Color-Blue);
   border: none;
@@ -51,6 +60,7 @@
   font-size: 24px;
   line-height: 100%;
 }
+
 .wrapper button svg {
   width: 24px;
   height: 24px;
@@ -74,6 +84,8 @@
   border: none;
 }
 .btnCancel {
+  width: 232px;
+  height: 36px;
   background-color: var(--Secondary-color-5);
   color: var(--Primery-Color-Blue);
 }
@@ -96,6 +108,15 @@
 }
 
 @media only screen and (min-width: 768px) {
+  .modal {
+    width: 592px;
+    height: 208px;
+  }
+
+  .text {
+    width: 100%;
+  }
+
   .control {
     flex-direction: row;
   }

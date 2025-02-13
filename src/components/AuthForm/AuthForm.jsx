@@ -71,7 +71,7 @@ const AuthForm = ({ type }) => {
       ? Yup.string()
           .oneOf([Yup.ref('password'), null], 'Passwords must match')
           .required('Repeat password is required')
-      : Yup.string().notRequired(), // Здесь важно добавить notRequired() для SignIn
+      : Yup.string().notRequired(),
   });
 
   const handleSubmit = values => {
