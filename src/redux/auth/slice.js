@@ -11,6 +11,7 @@ import {
 const INITIAL_STATE = {
   userData: null,
   isLoading: false,
+  isLoadingPhoto: false,
   error: null,
   token: null,
   isLoggedIn: false,

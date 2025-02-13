@@ -232,12 +232,27 @@
 }
 
 @media only screen and (min-width: 1440px) {
+  .loaderWrapper {
+    width: 960px;
+    height: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .overlay {
     align-items: center;
   }
   .modal {
+    width: 1008px;
+    height: 592px;
     margin-top: 0;
     min-width: 1008px;
+  }
+
+  .form {
+    width: 960px;
+    height: 340px;
   }
   .password {
     min-width: 392px;
