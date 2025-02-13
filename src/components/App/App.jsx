@@ -1,17 +1,13 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { Circles } from 'react-loader-spinner';
 
 import RestrictedRoute from '../RestrictedRoute/RestrictedRoute.jsx';
 import PrivateRoute from '../PrivateRoute/PrivateRoute.jsx';
 
 import { apiGetCurrentUser } from '../../redux/auth/operations.js';
-import { selectAuthIsRefreshing } from '../../redux/auth/selectors.js';
 
 import SharedLayout from '../SharedLayout/SharedLayout.jsx';
-
-import css from './App.module.css';
+import { useDispatch } from 'react-redux';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
 const SignUpPage = lazy(() => import('../../pages/SignupPage/SignupPage.jsx'));
