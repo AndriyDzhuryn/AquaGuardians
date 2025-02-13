@@ -33,7 +33,7 @@ const UploadPhoto = () => {
 
   if (isLoading) {
     return (
-      <div className={style.loaderWrapper}>
+      <div className={style.loaderPhotoWrapper}>
         <Circles
           height="80"
           width="80"
