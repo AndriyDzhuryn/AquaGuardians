@@ -1,3 +1,8 @@
+.loaderWrapper {
+  width: 33px;
+  display: flex;
+}
+
 .container {
   box-sizing: content-box;
   width: 124px;
@@ -21,10 +26,11 @@
 }
 
 .wrapper {
+  width: 124px;
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 12px;
-  align-items: baseline;
 }
 
 .number {
@@ -46,9 +52,6 @@
 .btnEdit:hover {
   text-decoration: underline;
   cursor: pointer;
-}
-
-.btn:focus {
 }
 
 @media only screen and (min-width: 768px) {
