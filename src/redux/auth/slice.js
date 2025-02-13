@@ -72,12 +72,18 @@ const authSlice = createSlice({
       })
       .addCase(apiUpdateUserProfile.rejected, handleRejected)
 
-      .addCase(apiUpdateUserPhoto.pending, handlePending)
+      .addCase(apiUpdateUserPhoto.pending, state => {
+        state.isLoadingPhoto = true;
+        state.error = null;
+      })
       .addCase(apiUpdateUserPhoto.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.isLoadingPhoto = false;
         state.userData.photo = action.payload.data.photo;
       })
-      .addCase(apiUpdateUserPhoto.rejected, handleRejected),
+      .addCase(apiUpdateUserPhoto.rejected, (state, action) => {
+        state.isLoadingPhoto = false;
+        state.error = action.payload;
+      }),
 });
 
 export const authReducer = authSlice.reducer;

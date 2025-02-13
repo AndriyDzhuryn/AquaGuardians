@@ -4,6 +4,14 @@ import { useEffect } from 'react';
 
 const DailyNormaModal = ({ closeModal }) => {
   useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
+  useEffect(() => {
     const closeByEscape = event => {
       if (event.code === 'Escape') {
         closeModal();
@@ -29,7 +37,7 @@ const DailyNormaModal = ({ closeModal }) => {
         >
           <svg className={css.svg}>
             <use
-              href="../../public/icons/icons-sprite.svg#close-icon"
+              href="/icons/icons-sprite.svg#close-icon"
               width="24px"
               height="24px"
             ></use>

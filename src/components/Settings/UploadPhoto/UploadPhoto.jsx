@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react';
-import style from '../Settings.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectAuthIsLoading, selectAuthUserData } from '../../../redux/auth/selectors';
-import { apiUpdateUserPhoto } from '../../../redux/auth/operations';
 import { Circles } from 'react-loader-spinner';
+import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  selectAuthIsLoadingPhoto,
+  selectAuthUserData,
+} from '../../../redux/auth/selectors.js';
+import { apiUpdateUserPhoto } from '../../../redux/auth/operations.js';
+
+import style from '../Settings.module.css';
 
 const UploadPhoto = () => {
   const userData = useSelector(selectAuthUserData);
-  const isLoading = useSelector(selectAuthIsLoading);
+  const isLoading = useSelector(selectAuthIsLoadingPhoto);
   const dispatch = useDispatch();
   const [photoUrl, setPhotoUrl] = useState(null);
 
@@ -17,35 +22,33 @@ const UploadPhoto = () => {
     }
   }, [userData?.photo]);
 
-const handleChange = (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    dispatch(apiUpdateUserPhoto(file));
-    const objectURL = URL.createObjectURL(file); 
-    setPhotoUrl(objectURL);
-  }
+  const handleChange = e => {
+    const file = e.target.files[0];
+    if (file) {
+      dispatch(apiUpdateUserPhoto(file));
+      const objectURL = URL.createObjectURL(file);
+      setPhotoUrl(objectURL);
+    }
   };
-  
-  if (isLoading) { return (
-     
-        <div className={style.loaderWrapper}>
-                <Circles
-                  height="80"
-                  width="80"
-                  color="#5353ec"
-                  ariaLabel="circles-loading"
-                  wrapperStyle={{}}
-                  wrapperClass=""
-                  visible={true}
-                />
-              </div>
-    ) }
- 
 
+  if (isLoading) {
+    return (
+      <div className={style.loaderWrapper}>
+        <Circles
+          height="80"
+          width="80"
+          color="#5353ec"
+          ariaLabel="circles-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div>
+    );
+  }
 
   return (
     <>
-      
       {photoUrl ? (
         <img src={photoUrl} alt="Avatar" className={style.avatar} />
       ) : (

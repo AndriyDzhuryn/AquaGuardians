@@ -3,7 +3,10 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { validationSchema } from './validation/validation.js';
 import style from '../Settings/Settings.module.css';
-import { selectAuthUserData } from '../../redux/auth/selectors.js';
+import {
+  selectAuthIsLoading,
+  selectAuthUserData,
+} from '../../redux/auth/selectors.js';
 import InputFromPassword from './InputFromPassword/InputFromPassword.jsx';
 import CloseButton from './CloseButton/ClosseButton.jsx';
 import UploadPhoto from './UploadPhoto/UploadPhoto.jsx';
@@ -12,9 +15,12 @@ import {
   apiUpdateUserProfile,
 } from '../../redux/auth/operations.js';
 import iziToast from 'izitoast';
+import { Circles } from 'react-loader-spinner';
 
 const SettingModal = ({ onClose }) => {
   const userData = useSelector(selectAuthUserData);
+  const isLoading = useSelector(selectAuthIsLoading);
+
   const dispatch = useDispatch();
   const [visiblePasswords, setVisiblePasswords] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
@@ -59,6 +65,22 @@ const SettingModal = ({ onClose }) => {
       iziToast.error({ message: `Logout failed: ${error}` });
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className={style.loaderWrapper}>
+        <Circles
+          height="80"
+          width="80"
+          color="#5353ec"
+          ariaLabel="circles-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={style.overlay} onClick={onClose}>

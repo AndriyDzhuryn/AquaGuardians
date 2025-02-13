@@ -20,9 +20,6 @@ const SignInPage = lazy(() => import('../../pages/SigninPage/SigninPage.jsx'));
 const WelcomePage = lazy(() =>
   import('../../pages/WelcomePage/WelcomePage.jsx')
 );
-// const NotFoundPage = lazy(() => {
-//   return import('../../pages/NotFoundPage/NotFoundPage.jsx');
-// });
 
 function App() {
   const isRefreshing = useSelector(selectAuthIsRefreshing);
@@ -51,9 +48,7 @@ function App() {
   return (
     <Suspense>
       <Routes>
-        {/* SharedLayout рендериться на маршруті "/" і обгортає вкладені сторінки */}
         <Route path="/" element={<SharedLayout />}>
-          {/* За замовчуванням для "/" рендериться WelcomePage */}
           <Route
             index
             element={<RestrictedRoute component={<WelcomePage />} />}

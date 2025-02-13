@@ -6,13 +6,18 @@ import WaterItems from '../WaterItems/WaterItems.jsx';
 import Calendar from '../Calendar/Calendar.jsx';
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 
-import { selectTodayUserData } from '../../redux/today/selectors.js';
+import {
+  selectTodayIsLoading,
+  selectTodayUserData,
+} from '../../redux/today/selectors.js';
 import { apiGetTodayWater } from '../../redux/today/operations.js';
 
 import css from './WaterTracker.module.css';
+import { Circles } from 'react-loader-spinner';
 
 const WaterTracker = () => {
   const dispatch = useDispatch();
+  const todayLoading = useSelector(selectTodayIsLoading);
 
   useEffect(() => {
     dispatch(apiGetTodayWater());
@@ -41,6 +46,22 @@ const WaterTracker = () => {
           return 0;
         })
     : [];
+
+  if (todayLoading) {
+    return (
+      <div className={css.loaderWrapper}>
+        <Circles
+          height="80"
+          width="80"
+          color="#5353ec"
+          ariaLabel="circles-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={css.waterTrackerWrapper}>

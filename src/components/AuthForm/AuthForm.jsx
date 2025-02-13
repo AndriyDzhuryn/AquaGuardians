@@ -77,7 +77,6 @@ const AuthForm = ({ type }) => {
   const handleSubmit = values => {
     if (isSignUp) {
       const { repeatePassword, ...userData } = values;
-      console.log(userData);
       dispatch(apiSignUpUser(userData))
         .unwrap()
         .then(() => {
