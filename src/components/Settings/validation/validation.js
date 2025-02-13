@@ -2,12 +2,12 @@ import * as Yup from 'yup';
 
 export const validationSchema = Yup.object().shape({
   name: Yup.string()
-    .max(32, 'Ім’я занадто довге')
-    .required('Ім’я є обов’язковим'),
+    .max(32, "Ім'я занадто довге")
+    .required("Ім'я є обов'язковим"),
 
   email: Yup.string()
     .email('Некоректний формат email')
-    .required('Email є обов’язковим'),
+    .required("Email є обов'язковим"),
 
   oldPassword: Yup.string(),
 
