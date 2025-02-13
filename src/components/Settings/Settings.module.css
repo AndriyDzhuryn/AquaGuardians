@@ -6,6 +6,11 @@
   align-items: center;
 }
 
+.loaderPhotoWrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .overlay {
   width: 100%;
   height: 100%;
